@@ -2,9 +2,17 @@ module.exports = function(app) {
   var express = require('express');
   var tournamentsRouter = express.Router();
 
+  var tournaments = [
+    {
+      id:           5,
+      name:         'GGG International League #2',
+      description:  ''
+    }
+  ];
+
   tournamentsRouter.get('/', function(req, res) {
     res.send({
-      'tournaments': []
+      'tournaments': tournaments
     });
   });
 
