@@ -6,7 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('tournament', {path: '/tournament/:tournamentId'});
+  this.resource('tournaments', {path: '/'}, function() {
+    this.resource('tournament', {path: '/tournament/:tournamentId'});
+  });
 });
 
 export default Router;
