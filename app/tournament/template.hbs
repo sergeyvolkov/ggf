@@ -2,16 +2,5 @@
 <hr>
 <h3>Matches</h3>
 
-<table class="matches">
-{{#each matches as |match|}}
-  <tr>
-    <td>{{match.id}}</td>
-    <td>{{match.homeTeam}}</td>
-    <td>
-      {{match.homeScore}} : {{match.awayScore}}
-    </td>
-    <td>{{match.awayTeam}}</td>
-  </tr>
-{{/each}}
-</table>
+{{ggf-tournament.matches-list matches=matches}}
 {{outlet}}
