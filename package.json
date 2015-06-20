@@ -1,7 +1,7 @@
 {
   "name": "ggf",
-  "version": "0.0.0",
-  "description": "Small description for ggf goes here",
+  "version": "0.1.0",
+  "description": "Good Gateway Football Application",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -16,7 +16,7 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Sergey Volkov <sergey.volkov.kh@yandex.ua>",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
