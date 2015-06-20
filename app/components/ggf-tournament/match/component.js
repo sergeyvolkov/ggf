@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  tagName: 'tr',
+
   score: function() {
     let match = this.get('match');
 
