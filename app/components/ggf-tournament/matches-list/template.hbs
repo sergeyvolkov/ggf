@@ -1,12 +1,5 @@
 <table class="matches">
 {{#each matches as |match|}}
-  <tr>
-    <td>{{match.id}}</td>
-    <td>{{match.homeTeam}}</td>
-    <td>
-      {{match.homeScore}} : {{match.awayScore}}
-    </td>
-    <td>{{match.awayTeam}}</td>
-  </tr>
+  {{ggf-tournament.match match=match}}
 {{/each}}
 </table>
