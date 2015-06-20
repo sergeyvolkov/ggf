@@ -6,7 +6,8 @@ module.exports = function(app) {
     {
       id:           5,
       name:         'GGG International League #2',
-      description:  ''
+      description:  '',
+      teams:        ['Spain', 'Argentina', 'Netherlands', 'Colombia', 'Uruguay', 'Chile']
     }
   ];
 
