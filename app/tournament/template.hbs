@@ -1,4 +1,18 @@
 <strong>Name:</strong> {{tournament.name}} <br>
 <strong>Description:</strong> {{tournament.description}} <br>
+<hr>
+<h3>Matches</h3>
 
+<table class="matches">
+{{#each matches as |match|}}
+  <tr>
+    <td>{{match.id}}</td>
+    <td>{{match.homeTeam}}</td>
+    <td>
+      {{match.homeScore}} : {{match.awayScore}}
+    </td>
+    <td>{{match.awayTeam}}</td>
+  </tr>
+{{/each}}
+</table>
 {{outlet}}
