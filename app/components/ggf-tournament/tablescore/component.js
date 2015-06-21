@@ -66,6 +66,8 @@ export default Ember.Component.extend({
       result.push(statistic[team]);
     }
 
+    result = this.orderedTeams(result);
+
     return result;
   }.property(),
 
@@ -81,5 +83,36 @@ export default Ember.Component.extend({
       goalsDifference:  0,
       points:           0
     };
+  },
+
+  // sort teams and set indexes
+  orderedTeams: function(teams) {
+    teams = this.sortTeams(teams);
+    teams = this.setIndexesForSortedTeams(teams);
+
+    return teams;
+  },
+
+  sortTeams: function(teams) {
+    teams.sort(function(team1, team2) {
+      if (team2.points === team1.points) {
+        return team2.goalsDifference - team1.goalsDifference;
+      }
+
+      return team2.points - team1.points;
+    });
+
+    return teams;
+  },
+
+  setIndexesForSortedTeams: function(teams) {
+    let startIndex = 1;
+
+    teams.forEach(function(team) {
+      team['index'] = startIndex++;
+    });
+
+    return teams;
   }
+
 });
