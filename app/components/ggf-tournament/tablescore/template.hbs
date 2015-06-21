@@ -1,12 +1,27 @@
-<table>
+<table class='bordered'>
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Team</td>
+      <td title="Matches">M</td>
+      <td title="Wins">W</td>
+      <td title="Draws">D</td>
+      <td title="Loses">L</td>
+      <td title="Goals Scored">GS</td>
+      <td title="Goals Againsted">GA</td>
+      <td title="Goals Difference">GD</td>
+      <td title="Points">P</td>
+    </tr>
+  </thead>
 {{#each tablescore as |team|}}
   <tr>
     <td>#</td>
     <td>{{team.name}}</td>
+    <td>{{team.matches}}</td>
     <td>{{team.wins}}</td>
     <td>{{team.draws}}</td>
     <td>{{team.loses}}</td>
-    <td>{{team.goalsScores}}</td>
+    <td>{{team.goalsScored}}</td>
     <td>{{team.goalsAgainsted}}</td>
     <td>{{team.goalsDifference}}</td>
     <td>{{team.points}}</td>
