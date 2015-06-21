@@ -4,23 +4,11 @@ export default Ember.Component.extend({
   statistic: function() {
     let teams = this.get('teams'),
         matches = this.get('matches'),
-        teamStatistic,
-        tablescore = {};
-
-    teamStatistic = {
-      matches:          0,
-      wins:             0,
-      draws:            0,
-      loses:            0,
-      goalsScored:      0,
-      goalsAgainsted:   0,
-      goalsDifference:  0,
-      points:           0
-    };
+        tablescore = {},
+        self = this;
 
     teams.forEach(function(team) {
-      tablescore[team] = teamStatistic;
-      tablescore[team]['name'] = team;
+      tablescore[team] = self.getBasicStatForTeam(team);
     });
 
     matches.forEach(function(match) {
@@ -79,5 +67,19 @@ export default Ember.Component.extend({
     }
 
     return result;
-  }.property()
+  }.property(),
+
+  getBasicStatForTeam: function(team) {
+    return {
+      name:             team,
+      matches:          0,
+      wins:             0,
+      draws:            0,
+      loses:            0,
+      goalsScored:      0,
+      goalsAgainsted:   0,
+      goalsDifference:  0,
+      points:           0
+    };
+  }
 });
