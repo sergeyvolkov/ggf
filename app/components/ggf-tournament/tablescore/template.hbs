@@ -1,0 +1,17 @@
+<table>
+{{#each tablescore as |team|}}
+  <tr>
+    <td>#</td>
+    <td>{{team.name}}</td>
+    <td>{{team.wins}}</td>
+    <td>{{team.draws}}</td>
+    <td>{{team.loses}}</td>
+    <td>{{team.goalsScores}}</td>
+    <td>{{team.goalsAgainsted}}</td>
+    <td>{{team.goalsDifference}}</td>
+    <td>{{team.points}}</td>
+  </tr>
+{{/each}}
+</table>
+
+{{yield}}
