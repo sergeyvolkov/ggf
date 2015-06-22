@@ -8,15 +8,37 @@
 // };
 
 module.exports = function(app) {
-  var globSync   = require('glob').sync;
-  var mocks      = globSync('./mocks/**/*.js', { cwd: __dirname }).map(require);
-  var proxies    = globSync('./proxies/**/*.js', { cwd: __dirname }).map(require);
+  var morgan    = require('morgan'),
+      mongoose  = require('mongoose'),
+      Tournament  = require('./models/tournament'),
+      Match       = require('./models/match');
 
-  // Log proxy requests
-  var morgan  = require('morgan');
   app.use(morgan('dev'));
 
-  mocks.forEach(function(route) { route(app); });
-  proxies.forEach(function(route) { route(app); });
+  mongoose.connect('mongodb://<user>:<password>@<host>:<port>/<host>');
+
+  app.get('/api/v1/tournaments', function(req, res) {
+    Tournament.find(
+      {},
+      {'_id': false},
+      function (error, tournaments) {
+        if (error) {
+          res.json(error);
+        }
+        res.json({tournaments: tournaments});
+      });
+  });
+
+  app.get('/api/v1/matches', function(req, res) {
+    Match.find(
+      {tournamentId: req.query.tournamentId},
+      {'_id': false},
+      function (error, matches) {
+        if (error) {
+          res.json(error);
+        }
+        res.json({matches: matches});
+      });
+  });
 
 };

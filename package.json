@@ -37,5 +37,8 @@
     "express": "^4.12.4",
     "glob": "^4.5.3",
     "morgan": "^1.6.0"
+  },
+  "dependencies": {
+    "mongoose": "^4.0.6"
   }
 }
