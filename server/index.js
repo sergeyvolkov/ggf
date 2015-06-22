@@ -10,12 +10,13 @@
 module.exports = function(app) {
   var morgan    = require('morgan'),
       mongoose  = require('mongoose'),
+      config    = require('./config'),
       Tournament  = require('./models/tournament'),
       Match       = require('./models/match');
 
   app.use(morgan('dev'));
 
-  mongoose.connect('mongodb://<user>:<password>@<host>:<port>/<host>');
+  mongoose.connect(config.mongoHost);
 
   app.get('/api/v1/tournaments', function(req, res) {
     Tournament.find(
