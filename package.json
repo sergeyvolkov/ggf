@@ -15,11 +15,11 @@
   },
   "repository": "",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": "0.12.x"
   },
   "author": "Sergey Volkov <sergey.volkov.kh@yandex.ua>",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "0.2.7",
     "ember-cli-app-version": "0.3.3",
@@ -37,9 +37,7 @@
     "ember-export-application-global": "^1.0.2",
     "express": "^4.12.4",
     "glob": "^4.5.3",
-    "morgan": "^1.6.0"
-  },
-  "dependencies": {
+    "morgan": "^1.6.0",
     "bower": "^1.4.1",
     "mongoose": "^4.0.6"
   }
