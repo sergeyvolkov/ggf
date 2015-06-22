@@ -10,7 +10,8 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "ember test"
+    "test": "ember test",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": "",
   "engines": {
@@ -39,6 +40,7 @@
     "morgan": "^1.6.0"
   },
   "dependencies": {
+    "bower": "^1.4.1",
     "mongoose": "^4.0.6"
   }
 }
