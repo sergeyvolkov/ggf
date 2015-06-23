@@ -8,6 +8,17 @@ table.bordered {
   }
 }
 
+table.tablescore {
+  td {
+    /* team name column */
+    &:nth-child(2) {
+      width: 150px;
+    }
+
+    width: 20px;
+  }
+}
+
 .separator {
   margin: 10px 0;
   border-bottom: 1px solid black;
