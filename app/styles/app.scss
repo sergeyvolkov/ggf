@@ -27,3 +27,26 @@ table.tablescore {
   margin: 10px 0;
   border-bottom: 1px solid black;
 }
+
+.match-result {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+
+  &.match-result-not-started {
+    background: #F0F1EE;
+  }
+
+  &.match-result-win {
+    background: #02C6A3;
+  }
+
+  &.match-result-draw {
+    background: #FFD464;
+  }
+
+  &.match-result-lose {
+    background: #FB6964;
+  }
+}
