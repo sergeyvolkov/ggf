@@ -15,6 +15,10 @@ table.tablescore {
       width: 150px;
     }
 
+    &:last-child {
+      width: 500px;
+    }
+
     width: 20px;
   }
 }
