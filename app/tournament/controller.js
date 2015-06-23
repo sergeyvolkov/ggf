@@ -44,6 +44,5 @@ export default Ember.Controller.extend({
       });
     });
 
-    console.warn(matchesForTeam, matches.get('length'));
   }.property()
 });
