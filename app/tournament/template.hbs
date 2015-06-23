@@ -5,6 +5,7 @@
 {{ggf-tournament.matches-list matches=matches}}
 <div class="separator"></div>
 <h3>Tablescore</h3>
-{{ggf-tournament.tablescore matches=matches teams=tournament.teams}}
+{{log teamsResults}}
+{{ggf-tournament.tablescore matches=matches teams=tournament.teams teamsResults=teamsResults}}
 
 {{outlet}}

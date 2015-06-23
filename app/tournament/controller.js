@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   tournament: Ember.A(),
   matches:    Ember.A(),
 
-  matchesForTeam: function() {
+  teamsResults: function() {
     // @todo need to merge with tablescore
     let matches = this.get('matches'),
         teams = this.get('tournament.teams'),
@@ -43,6 +43,8 @@ export default Ember.Controller.extend({
         result:   awayResult
       });
     });
+
+    return matchesForTeam;
 
   }.property()
 });

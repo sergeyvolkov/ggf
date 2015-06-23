@@ -63,6 +63,7 @@ export default Ember.Component.extend({
         continue;
       }
 
+      statistic[team]['form'] = this.get('teamsResults')[team];
       result.push(statistic[team]);
     }
 
