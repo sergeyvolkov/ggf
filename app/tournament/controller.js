@@ -17,16 +17,18 @@ export default Ember.Controller.extend({
     matches.forEach(function(match) {
       let homeTeam = match.get('homeTeam'),
           awayTeam = match.get('awayTeam'),
+          homeScore = match.get('homeScore'),
+          awayScore = match.get('awayScore'),
           homeResult = '',
           awayResult = '',
           matchId = match.get('id');
 
       if (match.get('status') !== 'finished') {
         homeResult = awayResult = 'N'; // not finished yet
-      } else if (homeTeam > awayTeam) {
+      } else if (homeScore > awayScore) {
         homeResult = 'W';
         awayResult = 'L';
-      } else if (homeTeam < awayTeam) {
+      } else if (homeScore < awayScore) {
         homeResult = 'L';
         awayResult = 'W';
       } else {
