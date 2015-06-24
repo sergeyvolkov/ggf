@@ -1,9 +1,13 @@
-Select tournament: <br>
+<div class="start-page">
+  <header class="start-header">
+    <strong>Good Gateway Football | Tournaments</strong>
+  </header>
 
-{{#each model as |tournament|}}
-  {{#link-to 'tournament' tournament.id}}
-    {{tournament.name}} <br>
-  {{/link-to}}
-{{/each}}
-<div class="separator"></div>
-{{outlet}}
+  <main class="start-main">
+    {{#each model as |tournament|}}
+      {{#link-to 'tournament' tournament.id class="start-links"}}
+        {{tournament.name}}
+      {{/link-to}}
+    {{/each}}
+  </main>
+</div>
