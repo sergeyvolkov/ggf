@@ -1,13 +1,1 @@
-<div class="start-page">
-  <header class="start-header">
-    <strong>Good Gateway Football | Tournaments</strong>
-  </header>
-
-  <main class="start-main">
-    {{#each model as |tournament|}}
-      {{#link-to 'tournament' tournament.id class="start-links"}}
-        {{tournament.name}}
-      {{/link-to}}
-    {{/each}}
-  </main>
-</div>
+{{outlet}}
