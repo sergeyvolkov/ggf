@@ -10,6 +10,21 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.col {
+  float: left;
+  min-height: 1px;
+
+  // 25% of width
+  &.col-25 {
+    width: 25%;
+  }
+
+  // 75% of width
+  &.col-75 {
+    width: 75%;
+  }
+}
+
 .start-page {
   text-align: center;
 

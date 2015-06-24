@@ -1,10 +1,8 @@
-{{ggf-tournament.info tournament=tournament}}
-<div class="separator"></div>
-<h3>Matches</h3>
+<div class="col col-75">
+  {{ggf-tournament.info tournament=tournament}}
+  {{ggf-tournament.tablescore matches=matches teams=tournament.teams teamsResults=teamsResults}}
+</div>
 
-{{ggf-tournament.matches-list matches=matches}}
-<div class="separator"></div>
-<h3>Tablescore</h3>
-{{ggf-tournament.tablescore matches=matches teams=tournament.teams teamsResults=teamsResults}}
-
-{{outlet}}
+<div class="col col-25">
+  {{ggf-tournament.matches-list matches=matches}}
+</div>
