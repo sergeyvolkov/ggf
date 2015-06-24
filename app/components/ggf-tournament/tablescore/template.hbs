@@ -1,4 +1,4 @@
-<table class='bordered tablescore'>
+<table class='bordered tablescore striped centered'>
   <thead>
     <tr>
       <td>#</td>
@@ -14,21 +14,23 @@
       <td title="Last matches">Form</td>
     </tr>
   </thead>
-{{#each tablescore as |team|}}
-  <tr>
-    <td>{{team.index}}</td>
-    <td>{{team.name}}</td>
-    <td>{{team.matches}}</td>
-    <td>{{team.wins}}</td>
-    <td>{{team.draws}}</td>
-    <td>{{team.loses}}</td>
-    <td>{{team.goalsScored}}</td>
-    <td>{{team.goalsAgainsted}}</td>
-    <td>{{team.goalsDifference}}</td>
-    <td>{{team.points}}</td>
-    <td>{{last-matches-form form=team.form}}</td>
-  </tr>
-{{/each}}
+  <tbody>
+    {{#each tablescore as |team|}}
+      <tr>
+        <td>{{team.index}}</td>
+        <td>{{team.name}}</td>
+        <td>{{team.matches}}</td>
+        <td>{{team.wins}}</td>
+        <td>{{team.draws}}</td>
+        <td>{{team.loses}}</td>
+        <td>{{team.goalsScored}}</td>
+        <td>{{team.goalsAgainsted}}</td>
+        <td>{{team.goalsDifference}}</td>
+        <td>{{team.points}}</td>
+        <td>{{last-matches-form form=team.form}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
 </table>
 
 {{yield}}

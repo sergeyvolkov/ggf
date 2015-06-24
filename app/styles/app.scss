@@ -11,8 +11,10 @@ body {
 }
 
 .col {
+  box-sizing: border-box;
   float: left;
   min-height: 1px;
+  padding: 5px;
 
   // 25% of width
   &.col-25 {
@@ -57,13 +59,32 @@ body {
   }
 }
 
-table.bordered {
-  text-align: center;
+table {
   border-collapse: collapse;
+
+  &.centered {
+    text-align: center;
+  }
+
+  &.bordered {
+    td {
+      border: 1px solid $colorBlack;
+    }
+  }
+
+  &.striped {
+    tbody tr {
+      &:nth-of-type(odd) {
+        background-color: darken($colorGrey, 10%);
+      }
+      &:nth-of-type(even) {
+       background-color: darken($colorGrey, 2%);
+      }
+    }
+  }
 
   td {
     padding: 10px;
-    border: 1px solid black;
   }
 }
 
@@ -82,19 +103,15 @@ table.tablescore {
   }
 }
 
-.separator {
-  margin: 10px 0;
-  border-bottom: 1px solid black;
-}
-
 .match-result {
   display: inline-block;
   width: 20px;
   height: 20px;
   border-radius: 10px;
+  border: 1px solid $colorBlack;
 
   &.match-result-not-started {
-    background: #F0F1EE;
+    background: #999;
   }
 
   &.match-result-win {
