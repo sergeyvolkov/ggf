@@ -16,14 +16,14 @@ body {
   min-height: 1px;
   padding: 5px;
 
-  // 25% of width
-  &.col-25 {
-    width: 25%;
+  // 30% of width
+  &.col-30 {
+    width: 30%;
   }
 
-  // 75% of width
-  &.col-75 {
-    width: 75%;
+  // 70% of width
+  &.col-70 {
+    width: 70%;
   }
 }
 
@@ -116,6 +116,21 @@ table.tablescore {
 
   &.match-result-lose {
     background: #FB6964;
+  }
+}
+
+.matches-list {
+  .match-score {
+    border-right: none;
+    border-left: none;
+  }
+
+  .home-logo {
+    border-right: none;
+  }
+
+  .away-logo {
+    border-left: none;
   }
 }
 
