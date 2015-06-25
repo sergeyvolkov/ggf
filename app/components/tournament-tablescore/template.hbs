@@ -19,7 +19,10 @@
     {{#each tablescore as |team|}}
       <tr>
         <td>{{team.index}}</td>
-        <td>{{team.name}}</td>
+        <td>
+          <img src="/teams-logo/{{team.name}}.png" class="team-logo">
+          {{team.name}}
+        </td>
         <td>{{team.matches}}</td>
         <td>{{team.wins}}</td>
         <td>{{team.draws}}</td>
