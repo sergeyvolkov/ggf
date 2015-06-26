@@ -1,12 +1,12 @@
 <td>{{match.id}}</td>
 <td>{{match.homeTeam}}</td>
 <td class="home-logo">
-  <img src="/teams-logo/{{match.homeTeam}}.png" class="team-logo">
+  <img src="/teams-logo/{{lower-case match.homeTeam}}.png" class="team-logo">
 </td>
 <td class="match-score">
   {{score}}
 </td>
 <td class="away-logo">
-  <img src="/teams-logo/{{match.awayTeam}}.png" class="team-logo">
+  <img src="/teams-logo/{{lower-case match.awayTeam}}.png" class="team-logo">
 </td>
 <td>{{match.awayTeam}}</td>
