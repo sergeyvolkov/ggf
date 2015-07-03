@@ -3,3 +3,4 @@
 Homestead.yaml
 .vagrant
 .idea
+.env
