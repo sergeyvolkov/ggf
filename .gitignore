@@ -4,3 +4,4 @@ Homestead.yaml
 .vagrant
 .idea
 .env
+public/dist
