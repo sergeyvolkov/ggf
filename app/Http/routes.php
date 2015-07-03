@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+Route::get('/api/v1/tournaments', function () {
+    return ['tournaments' => [
+        [
+            "id" => "5",
+            "name" => "GGG International #2",
+            "teams" => ["Spain", "Argentina", "Netherlands", "Colombia", "Uruguay", "Chile"],
+            "description" => ""
+        ]
+    ]];
+});
