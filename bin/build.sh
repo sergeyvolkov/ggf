@@ -3,3 +3,17 @@
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 echo $DIR
+
+cd ../resources/frontend
+
+# Install npm dependencies
+echo "NPM Install"
+npm install
+
+# Install bower dependencies
+echo "Bower Install"
+./node_modules/.bin/bower install
+
+# Build Ember Application
+echo "Build Ember"
+./node_modules/.bin/ember build
