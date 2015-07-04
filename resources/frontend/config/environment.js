@@ -16,8 +16,11 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      namespace: 'api/v1',
+      host: 'http://good-gateway-football.herokuapp.com'
     },
     contentSecurityPolicy: {
+      'connect-src': "'self' good-gateway-football.herokuapp.com",
       'font-src': "'self' data: fonts.gstatic.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
     }
@@ -29,6 +32,12 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.baseURL = '/';
+    ENV.APP.host = 'http://192.168.10.10';
+
+    ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
+
   }
 
   if (environment === 'test') {
@@ -44,7 +53,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.baseURL = '/';
   }
 
   return ENV;

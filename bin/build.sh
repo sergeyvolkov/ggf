@@ -13,5 +13,8 @@ echo "Bower Install"
 ./node_modules/.bin/bower install
 
 # Build Ember Application
-echo "Build Ember"
-./node_modules/.bin/ember build
+echo "Build Ember (env: ${EMBER_ENV})"
+./node_modules/.bin/ember build --environment=${EMBER_ENV}
+
+# Copy
+cp $DIR/../public/dist/index.html $DIR/../resources/views/app.blade.php
