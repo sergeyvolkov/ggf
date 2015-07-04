@@ -5,4 +5,6 @@ Homestead.yaml
 .idea
 .env
 resources/views/app.blade.php
-public/dist
+public/assets
+public/build
+public/teams-logo

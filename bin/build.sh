@@ -2,6 +2,10 @@
 
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 
+cd $DIR/../
+
+npm install --dev
+
 cd $DIR/../resources/frontend
 
 # Install npm dependencies
@@ -17,4 +21,6 @@ echo "Build Ember (env: ${EMBER_ENV})"
 ./node_modules/.bin/ember build --environment=${EMBER_ENV}
 
 # Copy
-cp $DIR/../public/dist/index.html $DIR/../resources/views/app.blade.php
+cp dist/index.html $DIR/../resources/views/app.blade.php
+cp -r dist/assets $DIR/../public
+cp -r dist/teams-logo $DIR/../public

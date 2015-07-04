@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'ggf',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -37,6 +37,7 @@ module.exports = function(environment) {
     ENV.APP.host = 'http://192.168.10.10';
 
     ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
+    ENV.APP.fingerprintEnabled = true;
 
   }
 
@@ -54,6 +55,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.baseURL = '/';
+    ENV.APP.fingerprintEnabled = true;
   }
 
   return ENV;
