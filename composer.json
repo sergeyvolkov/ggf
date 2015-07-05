@@ -8,7 +8,8 @@
     "require": {
         "php": "~5.5",
         "laravel/framework": "5.1.*",
-        "laravel/homestead": "~2.1"
+        "laravel/homestead": "~2.1",
+        "illuminate/html": "~5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
