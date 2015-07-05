@@ -19,6 +19,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::resource('tournament', 'TournamentController');
+
 Route::get('/api/v1/tournaments', function () {
 
     if (isset($_SERVER['HTTP_ORIGIN'])) {
