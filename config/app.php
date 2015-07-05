@@ -145,6 +145,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /* Vendor Service Providers */
+
+        Sorskod\Larasponse\LarasponseServiceProvider::class
+
     ],
 
     /*

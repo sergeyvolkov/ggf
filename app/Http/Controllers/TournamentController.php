@@ -26,7 +26,7 @@ class TournamentController extends Controller
      */
     public function store()
     {
-        Tournament::create(Request::all()   );
+        Tournament::create(Request::all());
 
         return redirect('tournament');
     }

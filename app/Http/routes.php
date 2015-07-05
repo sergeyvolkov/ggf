@@ -21,8 +21,10 @@ Route::get('/welcome', function () {
 
 Route::resource('tournament', 'TournamentController');
 
-Route::get('/api/v1/tournaments', function () {
+// API
 
+Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
+    // @todo Move to middleware
     if (isset($_SERVER['HTTP_ORIGIN'])) {
         $origin = $_SERVER['HTTP_ORIGIN'];
 
@@ -35,12 +37,5 @@ Route::get('/api/v1/tournaments', function () {
         }
     }
 
-    return ['tournaments' => [
-        [
-            "id" => "5",
-            "name" => "GGG International #2",
-            "teams" => ["Spain", "Argentina", "Netherlands", "Colombia", "Uruguay", "Chile"],
-            "description" => ""
-        ]
-    ]];
+    Route::get('/tournaments', 'API\TournamentController@catalogue');
 });
