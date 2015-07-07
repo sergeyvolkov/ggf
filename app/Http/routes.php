@@ -11,31 +11,23 @@
 |
 */
 
+Route::group(['middleware' => 'allow-origin'], function() {
+
+    Route::post('/auth/facebook/token', 'AuthController@facebookToken');
+
+    Route::resource('tournament', 'TournamentController');
+
+    // API
+
+    Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
+        Route::get('/tournaments', 'API\TournamentController@catalogue');
+    });
+});
+
 Route::get('/', function () {
     return view('app');
 });
 
 Route::get('/welcome', function () {
     return view('welcome');
-});
-
-Route::resource('tournament', 'TournamentController');
-
-// API
-
-Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
-    // @todo Move to middleware
-    if (isset($_SERVER['HTTP_ORIGIN'])) {
-        $origin = $_SERVER['HTTP_ORIGIN'];
-
-        // @todo Move list of allow origins to config
-        if (in_array($origin, ['http://localhost:4200'])) {
-            header("Access-Control-Allow-Origin: $origin");
-            header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-            header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
-            header('Access-Control-Allow-Credentials: true');
-        }
-    }
-
-    Route::get('/tournaments', 'API\TournamentController@catalogue');
 });
