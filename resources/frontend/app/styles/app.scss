@@ -138,3 +138,16 @@ table.tablescore {
   width: 25px;
   vertical-align: bottom;
 }
+
+.link {
+  color: rgb(0, 0, 238);
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:visited {
+    color: rgb(85, 26, 139);
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,1 +1,11 @@
+{{#if session.isAuthenticated}}
+    <div>
+        You are currently authenticated as <em>"{{session.user.name}}"</em> &nbsp;| <a class="link" {{ action 'invalidateSession' }}>Logout</a>
+    </div>
+{{else}}
+    {{#link-to 'login' class="link" }}Login{{/link-to}}
+{{/if}}
+
+<hr/>
+
 {{outlet}}
