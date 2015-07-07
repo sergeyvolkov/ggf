@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'ggf',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -50,9 +50,20 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
     ENV.APP.fingerprintEnabled = true;
 
+    ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = ENV.APP.host;
   }
 
-  if (environment === 'test') {
+  if (environment === 'local') {
+    ENV.baseURL = '/';
+    ENV.APP.host = 'http://192.168.10.10';
+
+    ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
+
+    ENV['torii']['providers']['facebook-oauth2']['apiKey'] = '682656945202561';
+    ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://localhost:4200';
+  }
+
+    if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -68,9 +79,6 @@ module.exports = function(environment) {
     ENV.baseURL = '/';
     ENV.APP.fingerprintEnabled = true;
   }
-
-
-  ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://localhost:4200';
 
   ENV['simple-auth'] = {
     authorizer: 'simple-auth-authorizer:oauth2-bearer',
