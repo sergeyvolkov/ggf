@@ -15,7 +15,8 @@
         "sorskod/larasponse": "dev-L5",
         "doctrine/dbal": "^2.5",
         "facebook/php-sdk-v4" : "^4.0.23",
-        "barryvdh/laravel-ide-helper": "^2.0@dev"
+        "barryvdh/laravel-ide-helper": "^2.0@dev",
+        "guzzlehttp/guzzle": "^6.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
