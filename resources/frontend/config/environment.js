@@ -80,12 +80,13 @@ module.exports = function(environment) {
     ENV.APP.fingerprintEnabled = true;
   }
 
-  ENV['simple-auth'] = {
+  ENV['simple-auth'] =
     authorizer: 'simple-auth-authorizer:oauth2-bearer',
   };
 
   ENV['simple-auth-oauth2'] = {
-    serverTokenEndpoint: ENV.APP.host+'/auth/facebook/token'
+    serverTokenEndpoint: ENV.APP.host+'/auth/facebook/token',
+    serverTokenRevocationEndpoint: ENV.APP.host+'/auth/sign-out'
   }
 
   return ENV;

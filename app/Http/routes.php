@@ -14,6 +14,7 @@
 Route::group(['middleware' => 'allow-origin'], function() {
 
     Route::post('/auth/facebook/token', 'Auth\FacebookController@token');
+    Route::any('/auth/sign-out', 'AuthController@signOut');
 
     Route::resource('tournament', 'TournamentController');
 
