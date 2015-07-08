@@ -1,19 +1,10 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# compiled output
-/dist
-/tmp
-
-# dependencies
+/vendor
 /node_modules
-/bower_components
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
-
-server/config.js
+Homestead.yaml
+.vagrant
+.idea
+.env
+resources/views/app.blade.php
+public/assets
+public/build
+public/teams-logo

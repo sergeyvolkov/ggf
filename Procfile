@@ -1,1 +1,1 @@
-web: ./node_modules/ember-cli/bin/ember server -prod --live-reload false
+web: vendor/bin/heroku-php-nginx -C config/heroku/nginx.conf public
