@@ -21,6 +21,8 @@ Route::group(['middleware' => 'allow-origin'], function() {
 
     Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
         Route::get('/tournaments', 'API\TournamentController@catalogue');
+
+        Route::get('/me', 'API\MemberController@current');
     });
 });
 
