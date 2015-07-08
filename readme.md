@@ -1,27 +1,35 @@
-## Laravel PHP Framework
+## Good Gateway Football
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### Setup development evnvironment with Homestead (per-project installation)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+1. Clone project
+2. Run the following command to prepare project and install vendors:
+    ```
+    EMBER_ENV=development composer setup
+    ```
+3. Setup homestead/vagrant environment:
+    ```
+    ./vendor/bin/homestead make
+    ```
+    > Remove this lines from Homestead.yaml if you don't have this keys on your machine (http://laravel.com/docs/5.0/homestead#installation-and-setup):
+    ```
+    authorize: ~/.ssh/id_rsa.pub
+    keys:
+        - ~/.ssh/id_rsa
+    ```
+4. Run vagrant
+    ```
+    vagrant up
+    ```
+5. Next, you should login to your virtual box through `vagrant ssh` and run the following command in the root folder of application:
+    ```
+    php artisan migrate
+    ```
+6. Add facebook settings to .env:
+    ```
+    FACEBOOK_APP_ID=...
+    FACEBOOK_APP_SECRET=...
+    FACEBOOK_REDIRECT_URI=http://192.168.10.10/
+    ```
+    
+7. Finally, browse http://192.168.10.10, you should see the main page of application.
