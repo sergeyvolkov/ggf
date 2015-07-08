@@ -28,40 +28,14 @@ return [
     |
     */
 
-    'model' => App\User::class,
+    'model' => App\Models\Member::class,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Table
-    |--------------------------------------------------------------------------
-    |
-    | When using the "Database" authentication driver, we need to know which
-    | table should be used to retrieve your users. We have chosen a basic
-    | default value but you may easily change it to any table you like.
-    |
-    */
-
-    'table' => 'users',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Settings
-    |--------------------------------------------------------------------------
-    |
-    | Here you may set the options for resetting passwords including the view
-    | that is your password reset e-mail. You can also set the name of the
-    | table that maintains all of the reset tokens for your application.
-    |
-    | The expire time is the number of minutes that the reset token should be
-    | considered valid. This security feature keeps tokens short-lived so
-    | they have less time to be guessed. You may change this as needed.
-    |
-    */
-
-    'password' => [
-        'email' => 'emails.password',
-        'table' => 'password_resets',
-        'expire' => 60,
-    ],
+    'providers' => [
+        'facebook' => [
+            'app_id' => env('FACEBOOK_APP_ID', ''),
+            'app_secret' => env('FACEBOOK_APP_SECRET', ''),
+            'redirect_uri' => env('FACEBOOK_REDIRECT_URI', ''),
+        ]
+    ]
 
 ];

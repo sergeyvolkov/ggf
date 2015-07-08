@@ -13,7 +13,7 @@
 
 Route::group(['middleware' => 'allow-origin'], function() {
 
-    Route::post('/auth/facebook/token', 'AuthController@facebookToken');
+    Route::post('/auth/facebook/token', 'Auth\FacebookController@token');
 
     Route::resource('tournament', 'TournamentController');
 
