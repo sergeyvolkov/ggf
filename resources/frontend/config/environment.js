@@ -88,7 +88,5 @@ module.exports = function(environment) {
     serverTokenEndpoint: ENV.APP.host+'/auth/facebook/token'
   }
 
-  console.log(ENV['torii']);
-
   return ENV;
 };
