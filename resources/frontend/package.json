@@ -22,6 +22,7 @@
   "devDependencies": {
     "bower": "^1.4.1",
     "broccoli-asset-rev": "^2.0.2",
+    "chalk": "^1.1.0",
     "ember-cli": "^1.13.1",
     "ember-cli-app-version": "0.4.0",
     "ember-cli-babel": "^5.0.0",
@@ -41,6 +42,9 @@
     "ember-data": "1.13.4",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
+    "fs-extra": "^0.21.0",
+    "path": "^0.11.14",
+    "rsvp": "^3.0.18",
     "torii": "0.4.1"
   },
   "ember-addon": {
