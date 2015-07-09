@@ -66,14 +66,17 @@ module.exports = {
         return new RSVP.Promise(function(resolve, reject) {
           var destinationFolderPath = path.resolve(this.backendRootPath, 'public/assets');
 
-          fs.copy(assetsFolderPath, destinationFolderPath, function (error) {
-            if (error) {
-              reject(error || 'Layout path is not valid');
-              return ;
-            }
+          fs.remove(destinationFolderPath, function() {
+            fs.copy(assetsFolderPath, destinationFolderPath, function (error) {
+              if (error) {
+                reject(error || 'Layout path is not valid');
+                return ;
+              }
 
-            resolve('Directory ' + destinationFolderPath + ' has been successfully copied.');
+              resolve('Directory ' + destinationFolderPath + ' has been successfully copied.');
+            });
           });
+
         }.bind(this));
       }.bind(this));
   },
