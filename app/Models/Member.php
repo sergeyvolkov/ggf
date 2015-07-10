@@ -21,7 +21,7 @@ class Member extends Model implements Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name','facebookId'];
+    protected $fillable = ['name', 'facebookId'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -43,4 +43,11 @@ class Member extends Model implements Authenticatable
         return $this->hasMany('TeamMember');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tokens()
+    {
+        return $this->hasMany('MemberToken');
+    }
 }
