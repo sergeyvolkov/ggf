@@ -147,7 +147,8 @@ return [
 
         /* Vendor Service Providers */
 
-        Sorskod\Larasponse\LarasponseServiceProvider::class
+        Sorskod\Larasponse\LarasponseServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class
 
     ],
 
