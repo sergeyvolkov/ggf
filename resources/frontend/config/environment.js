@@ -89,7 +89,7 @@ module.exports = function(environment) {
 
   ENV['simple-auth-oauth2'] = {
     serverTokenEndpoint: ENV.APP.host+'/auth/facebook/token',
-    serverTokenRevocationEndpoint: ENV.APP.host+'/auth/sign-out'
+    serverTokenRevocationEndpoint: ENV.APP.host+'/auth/logout'
   }
 
   return ENV;

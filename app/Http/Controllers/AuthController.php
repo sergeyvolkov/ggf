@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\Auth\Guard;
 
 class AuthController extends Controller
 {
-    public function signOut()
+    public function logout(Guard $auth)
     {
-        /**
-         * @var Session $session
-         */
-        $session = Auth::getSession();
-
-        $session->clear();
+        $auth->logout();
 
         return response()->json(['status' => 200]);
     }
