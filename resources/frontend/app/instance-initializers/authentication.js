@@ -8,16 +8,9 @@ let AuthenticationInitializer = {
 
     Session.reopen({
       user: Ember.computed(function () {
-        return this.get('secure').user;
+        return this.get('secure.user');
       })
     });
-
-    //let OAuth2 = instance.container.lookup('simple-auth-authenticator:oauth2-password-grant');
-    //OAuth2.reopen({
-    //  makeRequest: function (url, data) {
-    //
-    //  }
-    //});
   }
 };
 

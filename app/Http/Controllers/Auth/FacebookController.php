@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\MemberToken;
 use App\Models\Member;
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
@@ -13,12 +14,18 @@ use Illuminate\Contracts\Auth\Guard;
 
 
 use Facebook\FacebookSession;
+use Illuminate\Support\Facades\Session;
+
 // add other classes you plan to use, e.g.:
 // use Facebook\FacebookRequest;
 // use Facebook\GraphUser;
 // use Facebook\FacebookRequestException;
 
-
+/**
+ * Class FacebookController
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class FacebookController extends Controller
 {
     /**
@@ -43,6 +50,11 @@ class FacebookController extends Controller
 
         $appId = array_get($this->config, 'app_id');
         $appSecret = array_get($this->config, 'app_secret');
+
+
+        /**
+         * @todo Refactor and find a better place for this code
+         */
 
         $params = array(
             'client_id' => $appId,
@@ -86,11 +98,20 @@ class FacebookController extends Controller
 
                 $this->auth->login($user);
 
+                $memberToken = new MemberToken();
+                $memberToken->memberId = $user->id;
+                $memberToken->accessToken = $accessToken;
+                $memberToken->sessionId = Session::getId();
+                $memberToken->save();
+
+                Session::set('foo', 'bar');
+
                 return response()->json([
                     'user' => [
                         'name' => $user->name,
                         'id' => $user->facebookId
                     ],
+                    'token_type' => 'bearer',
                     'access_token' => $accessToken
                 ]);
 

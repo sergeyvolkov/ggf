@@ -49,7 +49,7 @@ module.exports = function(environment) {
     ENV.APP.host = 'http://192.168.10.10';
 
     ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
-    ENV.APP.fingerprintEnabled = true;
+    ENV.APP.fingerprintEnabled = false;
 
     ENV['torii']['providers']['facebook-oauth2']['apiKey'] = '681786761956246';
     ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://192.168.10.10';
@@ -82,7 +82,8 @@ module.exports = function(environment) {
     ENV.APP.fingerprintEnabled = true;
   }
 
-  ENV['simple-auth'] =
+  ENV['simple-auth'] = {
+    crossOriginWhitelist: ['http://192.168.10.10/', 'http://good-gateway-football.herokuapp.com/'],
     authorizer: 'simple-auth-authorizer:oauth2-bearer',
   };
 
