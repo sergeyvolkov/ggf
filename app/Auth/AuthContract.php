@@ -2,9 +2,9 @@
 
 namespace App\Auth;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate;
 
-interface AuthContract extends Guard
+interface AuthContract extends Illuminate\Contracts\Auth\Guard
 {
 
 }
