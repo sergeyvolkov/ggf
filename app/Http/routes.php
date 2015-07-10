@@ -11,9 +11,10 @@
 |
 */
 
-Route::group(['middleware' => 'allow-origin'], function() {
+Route::group(['middleware' => 'cors'], function() {
 
     Route::post('/auth/facebook/token', 'Auth\FacebookController@token');
+    Route::post('/auth/logout', 'AuthController@logout');
 
     Route::resource('tournament', 'TournamentController');
 
@@ -21,7 +22,6 @@ Route::group(['middleware' => 'allow-origin'], function() {
 
     Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
         Route::get('/tournaments', 'API\TournamentController@catalogue');
-
         Route::get('/me', 'API\MemberController@current');
     });
 });
