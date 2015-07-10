@@ -31,7 +31,8 @@ module.exports = function(environment) {
       sessionServiceName: 'session',
       providers: {
         'facebook-oauth2': {
-          apiKey:      '681786761956246'
+          apiKey:      '681549091980013',
+          redirectUri:  'http://good-gateway-football.herokuapp.com'
         }
       }
     }
@@ -50,7 +51,8 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
     ENV.APP.fingerprintEnabled = true;
 
-    ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = ENV.APP.host;
+    ENV['torii']['providers']['facebook-oauth2']['apiKey'] = '681786761956246';
+    ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://192.168.10.10';
   }
 
   if (environment === 'local') {
