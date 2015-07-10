@@ -19,10 +19,11 @@ Route::group(['middleware' => 'allow-origin'], function() {
 
     // API
 
-    Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
-        Route::get('/tournaments', 'API\TournamentController@catalogue');
+    Route::group(['prefix' => 'api/v1', 'middleware' => ['auth.token']], function() {
+        $apiGetMethods = ['get', 'options'];
 
-        Route::get('/me', 'API\MemberController@current');
+        Route::match($apiGetMethods, '/tournaments', 'API\TournamentController@catalogue');
+        Route::match($apiGetMethods, '/me', 'API\MemberController@current');
     });
 });
 
