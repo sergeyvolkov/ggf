@@ -28,7 +28,7 @@ class Member extends Model implements Authenticatable
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [];
 
     /**
      * @var bool

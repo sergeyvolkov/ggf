@@ -17,11 +17,16 @@ Route::group(['middleware' => 'cors'], function() {
     Route::post('/auth/logout', 'AuthController@logout');
 
     Route::resource('tournament', 'TournamentController');
+    Route::resource('team', 'TeamController');
+    Route::resource('member', 'MemberController');
+    Route::resource('match', 'MatchController');
 
     // API
 
     Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
         Route::get('/tournaments', 'API\TournamentController@catalogue');
+        Route::get('/matches', 'API\TournamentController@matches');
+        Route::get('/teams', 'API\TournamentController@teams');
         Route::get('/me', 'API\MemberController@current');
     });
 });

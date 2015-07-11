@@ -6,9 +6,9 @@ export default Ember.Component.extend({
   score: function() {
     let match = this.get('match');
 
-    const MATCH_STATUS_PLANNED = 'planned';
+    const MATCH_STATUS_NOT_STARTED = 'not_started';
 
-    if (match.get('status') === MATCH_STATUS_PLANNED) {
+    if (match.get('status') === MATCH_STATUS_NOT_STARTED) {
       match.set('homeScore', '-');
       match.set('awayScore', '-');
     }

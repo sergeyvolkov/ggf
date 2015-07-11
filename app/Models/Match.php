@@ -6,10 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model
 {
+    protected $table = 'matches';
+
+    protected $fillable = [
+        'tournamentId',
+        'homeTournamentTeamId',
+        'awayTournamentTeamId',
+        'homeScore',
+        'awayScore',
+        'homePenaltyScore',
+        'awayPenaltyScore',
+        'gameType',
+        'resultType',
+        'status',
+    ];
+
+    public $timestamps = true;
+
+
     const GAME_TYPE_GROUP_STAGE = 'group';
     const GAME_TYPE_QUALIFY = 'qualify';
     const GAME_TYPE_FINAL = 'final';
 
+    const RESULT_TYPE_UNKNOWN = 'unknown';
     const RESULT_TYPE_HOME_WIN = 'home';
     const RESULT_TYPE_AWAY_WIN = 'away';
     const RESULT_TYPE_DRAW = 'draw';
@@ -20,12 +39,28 @@ class Match extends Model
     const STATUS_NOT_STARTED = 'not_started';
     const STATUS_FINISHED = 'finished';
 
+    public function tournament()
+    {
+        return $this->belongsTo(Tournament::class, 'tournamentId');
+    }
+
+    public function homeTournamentTeam()
+    {
+        return $this->belongsTo(TournamentTeam::class, 'homeTournamentTeamId');
+    }
+
+    public function awayTournamentTeam()
+    {
+        return $this->belongsTo(TournamentTeam::class, 'awayTournamentTeamId');
+    }
+
     /**
      * @return array
      */
     static public function getAvailableResultTypes()
     {
         return [
+            self::RESULT_TYPE_UNKNOWN,
             self::RESULT_TYPE_HOME_WIN,
             self::RESULT_TYPE_AWAY_WIN,
             self::RESULT_TYPE_DRAW,
