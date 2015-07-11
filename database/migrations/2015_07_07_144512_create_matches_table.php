@@ -8,6 +8,10 @@ class CreateMatchesTable extends Migration
 {
     public function up()
     {
+        Schema::table('tournament_teams', function(Blueprint $table) {
+            $table->increments('id');
+        });
+
         Schema::create('matches', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('tournamentId')->unsigned();
@@ -37,5 +41,9 @@ class CreateMatchesTable extends Migration
     public function down()
     {
         Schema::drop('matches');
+
+        Schema::table('tournament_teams', function(Blueprint $table) {
+            $table->dropColumn('id');
+        });
     }
 }

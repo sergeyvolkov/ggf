@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Team extends Model {
 
 	protected $table = 'teams';
+
+	protected $fillable = ['name','logoPath'];
+
 	public $timestamps = true;
 
 	public function teamMembers()
