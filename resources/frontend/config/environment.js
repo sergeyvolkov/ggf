@@ -49,7 +49,7 @@ module.exports = function(environment) {
     ENV.APP.host = 'http://192.168.10.10';
 
     ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
-    ENV.APP.fingerprintEnabled = false;
+    ENV.APP.fingerprintEnabled = true;
 
     ENV['torii']['providers']['facebook-oauth2']['apiKey'] = '681786761956246';
     ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://192.168.10.10';

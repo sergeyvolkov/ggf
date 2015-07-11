@@ -115,7 +115,7 @@ module.exports = {
       }.bind(this));
   },
 
-  postBuild: function (results) {
+  /*postBuild: function (results) {
 
     this.ui.writeLine(chalk.underline('\n'+this.name));
 
@@ -137,5 +137,5 @@ module.exports = {
     }.bind(this)).finally(function() {
       this.ui.writeLine('');
     }.bind(this));
-  }
+  }*/
 };
