@@ -9,9 +9,12 @@ Router.map(function() {
   //this.resource('index', {path: '/'});
 
   this.resource('tournaments', function() {
-    this.resource('tournament', {path: '/tournament/:tournamentId'});
+    this.resource('tournament', {path: '/tournament/:tournamentId'}, function() {
+      this.route('teams');
+    });
   });
   this.resource('login');
+
 });
 
 export default Router;

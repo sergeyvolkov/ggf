@@ -1,0 +1,18 @@
+Teams
+
+{{#if session.isAuthenticated}}
+    {{ggf-teams.add submit="addTeam"}}
+{{/if}}
+
+<ul>
+{{#each model as |team|}}
+    <li>
+        <img src="/teams-logo/{{dasherize-string team.name}}.png" class="team-logo"> {{team.name}}
+    </li>
+
+{{/each}}
+</ul>
+
+
+
+{{outlet}}
