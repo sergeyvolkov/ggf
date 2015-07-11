@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Auth\Guard;
@@ -28,7 +29,7 @@ class FacebookController extends Controller
     public function token(Guard $auth)
     {
         try {
-            $accessToken = $auth->facebookAuth(Request::get('code'));
+            $accessToken = $auth->facebookAuth(Input::get('code'));
 
             return response()->json([
                 'user' => [

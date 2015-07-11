@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'auth/facebook/token',
-        'auth/logout'
+        'auth/logout',
+        'api/*'
     ];
 }

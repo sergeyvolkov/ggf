@@ -4,19 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TournamentTeam extends Model {
+class TournamentTeam extends Model
+{
 
-	protected $table = 'tournament_teams';
-	public $timestamps = false;
+    protected $table = 'tournament_teams';
 
-	public function tournament()
-	{
-		return $this->belongsTo(Tournament::class, 'tournamentId');
-	}
+    protected $fillable = ['tournamentId','teamId'];
 
-	public function team()
-	{
-		return $this->belongsTo(Team::class, 'teamId');
-	}
+    public $timestamps = false;
+
+    public function tournament()
+    {
+        return $this->belongsTo(Tournament::class, 'tournamentId');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'teamId');
+    }
 
 }

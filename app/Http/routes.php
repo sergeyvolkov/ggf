@@ -27,6 +27,7 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/tournaments', 'API\TournamentController@catalogue');
         Route::get('/matches', 'API\TournamentController@matches');
         Route::get('/teams', 'API\TournamentController@teams');
+        Route::post('/teams', 'API\TournamentController@addTeam');
         Route::get('/me', 'API\MemberController@current');
     });
 });
