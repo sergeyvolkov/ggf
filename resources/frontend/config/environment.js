@@ -17,7 +17,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       namespace: 'api/v1',
-      host: 'http://good-gateway-football.herokuapp.com'
+      host: '//good-gateway-football.herokuapp.com'
     },
     contentSecurityPolicy: {
       'connect-src': "'self' good-gateway-football.herokuapp.com",
@@ -32,7 +32,7 @@ module.exports = function(environment) {
       providers: {
         'facebook-oauth2': {
           apiKey:      '681549091980013',
-          redirectUri:  'http://good-gateway-football.herokuapp.com'
+          redirectUri:  '//good-gateway-football.herokuapp.com'
         }
       }
     }
@@ -83,7 +83,7 @@ module.exports = function(environment) {
   }
 
   ENV['simple-auth'] = {
-    crossOriginWhitelist: ['http://192.168.10.10/', 'http://good-gateway-football.herokuapp.com/'],
+    crossOriginWhitelist: ['http://192.168.10.10/', '//good-gateway-football.herokuapp.com/'],
     authorizer: 'simple-auth-authorizer:oauth2-bearer',
   };
 
