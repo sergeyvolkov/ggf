@@ -1,154 +1,314 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=cyrillic-ext,latin);
+@import url(https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-$colorGrey: #f6f6f6;
-$colorBlack: #2b2b2b;
-$colorYellow: #E9E581;
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.ember-application .mdl-layout__header-row {
+  padding-left: 40px;
+  height: 53px;
+}
+.ember-application .mdl-layout.is-small-screen .mdl-layout__tab-bar-container {
+  display: none;
+}
+.ember-application .mdl-layout.is-small-screen .mdl-layout__header-row {
+  padding-left: 60px;
+}
+.ember-application .mdl-layout.is-small-screen .mdl-layout__header-row h3 {
+  font-size: inherit;
+}
+.ember-application .mdl-layout__tab-bar-button {
+  display: none;
+}
+.ember-application .mdl-layout:not(.is-small-screen) .mdl-layout__drawer-button {
+  display: none;
+}
+.ember-application .mdl-layout__tab-bar-container {
+  overflow: visible;
+  height: 64px;
+}
+.ember-application .mdl-layout__tab-bar {
+  overflow: visible;
+  position: relative;
+  padding: 0;
+  padding-left: 16px;
+  height: 100%;
+  width: 100%;
+}
+.ember-application .mdl-layout__tab-bar .mdl-layout__tab {
+  height: 64px;
+  line-height: 64px;
 
-body {
-  background-color: $colorGrey;
-  color: $colorBlack;
-  font-family: 'Roboto Condensed', sans-serif;
+  &.is-active {
+    color: #fff;
+
+  }
+  &.is-active::after {
+    height: 2px;
+    width: 100%;
+    display: block;
+    content: " ";
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background: #ff4081;
+    background-color: white;
+    height: 4px;
+  }
+}
+.ember-application main > .mdl-layout__tab-panel {
+  padding: 8px;
+  padding-top: 48px;
+}
+.ember-application .mdl-card {
+  height: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.ember-application .mdl-card > * {
+  height: auto;
+}
+.ember-application .mdl-card .mdl-card__supporting-text {
+  margin: 40px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 0;
+  color: inherit;
+  width: calc(100% - 80px);
+}
+.ember-application.ember-application .mdl-card__supporting-text h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.ember-application .mdl-card__actions {
+  margin: 0;
+  padding: 4px 40px;
+  color: inherit;
+}
+.ember-application .mdl-card__actions a {
+  color: #00BCD4;
+  margin: 0;
+}
+.ember-application .mdl-card__actions a:hover,
+.ember-application .mdl-card__actions a:active {
+  color: inherit;
+  background-color: transparent;
+}
+.ember-application .mdl-card__supporting-text + .mdl-card__actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.ember-application #add {
+  position: absolute;
+  right: 40px;
+  top: 36px;
+  z-index: 999;
 }
 
-.col {
-  box-sizing: border-box;
-  float: left;
-  min-height: 1px;
-  padding: 5px;
-
-  // 30% of width
-  &.col-30 {
-    width: 30%;
-  }
-
-  // 70% of width
-  &.col-70 {
-    width: 70%;
-  }
+.ember-application .mdl-layout__content section:not(:last-of-type) {
+  position: relative;
+  margin-bottom: 48px;
 }
-
-table {
-  border-collapse: collapse;
-
-  &.bordered {
-    td {
-      border: 1px solid $colorBlack;
-    }
-  }
-
-  &.striped {
-    tbody tr {
-      &:nth-of-type(odd) {
-        background-color: darken($colorGrey, 10%);
-      }
-      &:nth-of-type(even) {
-       background-color: darken($colorGrey, 2%);
-      }
-    }
-  }
-
-  td {
-    padding: 10px;
-  }
+.ember-application section.section--center {
+  max-width: 1220px;
 }
-
-.centered {
-  text-align: center;
+.ember-application #features section.section--center {
+  max-width: 1080px;
 }
-
-.header {
-  font-size: 3em;
+.ember-application section > header{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
-
-.circle-links {
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  margin: 10px;
-  font-size: 1.5em;
-  line-height: 200px;
-  border: 4px solid $colorYellow;
-  border-radius: 100px;
-  background: $colorYellow;
-  color: $colorBlack;
+.ember-application section > .section__play-btn {
+  min-height: 200px;
+}
+.ember-application section > header > .material-icons {
+  font-size: 3rem;
+}
+.ember-application section > button {
+  position: absolute;
+  z-index: 99;
+  top: 8px;
+  right: 8px;
+}
+.ember-application section .section__circle {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 1;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+}
+.ember-application section .section__text {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+.ember-application section .section__text h5 {
+  font-size: inherit;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+.ember-application section .section__text a {
   text-decoration: none;
-  opacity: .75;
-
-  &:hover {
-    opacity: 1;
-    font-weight: 700;
-  }
+}
+.ember-application section .section__circle-container > .section__circle-container__circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin: 8px 0;
+}
+.ember-application section.section--footer .section__circle--big {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 8px 32px;
+}
+.ember-application .is-small-screen section.section--footer .section__circle--big {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 8px 16px;
+}
+.ember-application section.section--footer {
+  padding: 64px 0;
+  margin: 0 -8px -8px -8px;
+}
+.ember-application section.section--center .section__text:not(:last-child) {
+  border-bottom: 1px solid rgba(0,0,0,.13);
+}
+.ember-application .mdl-card .mdl-card__supporting-text > h3:first-child {
+  margin-bottom: 24px;
+}
+.ember-application .mdl-layout__tab-panel:not(#overview) {
+  background-color: white;
+}
+.ember-application #features section {
+  margin-bottom: 72px;
+}
+.ember-application #features h4, #features h5 {
+  margin-bottom: 16px;
+}
+.ember-application .toc {
+  border-left: 4px solid #C1EEF4;
+  margin: 24px;
+  padding: 0;
+  padding-left: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.ember-application .toc h4 {
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+.ember-application .toc a {
+  color: #4DD0E1;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 28px;
+  display: block;
+}
+.ember-application .mdl-menu__container {
+  z-index: 99;
 }
 
-table.tablescore {
-  td {
-    /* team name column */
-    &:nth-child(2) {
-      width: 150px;
+.ember-application .ggf-tablescore {
+
+
+  &, .mdl-data-table {
+    width: 100%;
+  }
+
+  .ggf-tablescore-team {
+
+    line-height: 24px;
+    & img {
+      height: 24px;
     }
 
-    &:last-child {
-      width: 500px;
+    span {
+      width: 40px;
+      text-align: center;
+      display: block;
+      float: left;
     }
+  }
 
+  .ggf-tablescore-index {
+    width: 24px;
+  }
+
+
+  .match-result {
+    display: block;
+    float: left;
+    color: #fff;
     width: 20px;
-  }
-}
-
-.match-result {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  border: 1px solid $colorBlack;
-
-  &.match-result-not-started {
-    background: #999;
-  }
-
-  &.match-result-win {
-    background: #02C6A3;
-  }
-
-  &.match-result-draw {
-    background: #FFD464;
-  }
-
-  &.match-result-lose {
-    background: #FB6964;
-  }
-}
-
-.matches-list {
-  .match-score {
-    border-right: none;
-    border-left: none;
-  }
-
-  .home-logo {
-    border-right: none;
-  }
-
-  .away-logo {
-    border-left: none;
-  }
-}
-
-.team-logo {
-  max-width: 25px;
-  max-height: 25px;
-  vertical-align: bottom;
-}
-
-.link {
-  color: rgb(0, 0, 238);
-  cursor: pointer;
-  text-decoration: underline;
-
-  &:visited {
-    color: rgb(85, 26, 139);
-  }
-  &:hover {
-    text-decoration: none;
+    height: 20px;
+    border-radius: 12px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 500;
+    margin-right: 5px;
   }
 }

@@ -1,0 +1,38 @@
+<table class="mdl-data-table">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric ggf-tablescore-index">#</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Team">Team</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Matches">M</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Wins">W</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Draws">D</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Loses">L</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Goals Scored">GS</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Goals Againsted">GA</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Goals Difference">GD</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Points">P</th>
+        <th class="mdl-data-table__cell--non-numeric" title="Last matches">Form</th>
+    </tr>
+    </thead>
+    <tbody>
+      {{#each tablescore as |team|}}
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric ggf-tablescore-index">{{team.index}}</td>
+            <td class="mdl-data-table__cell--non-numeric">
+                {{ggf-tablescore.team team=team}}
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.matches}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.wins}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.draws}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.loses}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.goalsScored}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.goalsAgainsted}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.goalsDifference}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{team.points}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ggf-tablescore.last-matches-form form=team.form}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+</table>
+
+{{yield}}

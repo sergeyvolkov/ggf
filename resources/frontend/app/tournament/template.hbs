@@ -1,5 +1,16 @@
-{{#link-to 'tournament.index'}}Info{{/link-to}} | {{#link-to 'tournament.teams'}}Teams{{/link-to}}
+{{#with model as |tournament|}}
 
-<hr>
+<h3>{{tournament.name}}</h3>
+
+<div class="mdl-tabs mdl-js-tabs is-upgraded mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        {{#link-to 'tournament.tablescore' class='mdl-tabs__tab' activeClass='is-active'}}Tablescore{{/link-to}}
+        {{#link-to 'tournament.matches' class='mdl-tabs__tab' activeClass='is-active'}}Matches{{/link-to}}
+        {{#link-to 'tournament.fixtures' class='mdl-tabs__tab' activeClass='is-active'}}Fixtures{{/link-to}}
+        {{#link-to 'tournament.teams' class='mdl-tabs__tab' activeClass='is-active'}}Teams{{/link-to}}
+    </div>
+</div>
+
+{{/with}}
 
 {{outlet}}
