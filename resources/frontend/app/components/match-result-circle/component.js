@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 
   circleColor: function() {
     let result, color;
-console.log(this.get('match.result'));
+
     switch (this.get('match.result')) {
       case 'W': // win
         result = 'win';

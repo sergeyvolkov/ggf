@@ -1,5 +1,5 @@
 <form {{action "submit" on="submit"}}>
-    <p><label>Name {{input type="text" value=name}}</label></p>
+    {{ggf-mdl.textfield value=name name='team' label='Team...'}}
 
-    <button type="submit">Submit</button>
+    {{ggf-mdl.button isPrimary=true text='Add Team'}}
 </form>

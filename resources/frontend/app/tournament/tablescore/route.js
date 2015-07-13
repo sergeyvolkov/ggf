@@ -7,7 +7,6 @@ const {
 
 export default Route.extend({
 
-
   model: function(params) {
     let store = this.store;
     let tournamentId = this.paramsFor('tournament').tournamentId;

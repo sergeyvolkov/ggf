@@ -25,7 +25,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           //console.log('err', err);
         })
         .finally(() => {
-          //console.log('finally saved');
+
+          return new Ember.RSVP.Promise(function (resolve, reject) {
+            this.store.find('tournament', teamRecord.get('tournamentId')).then(function (tournament) {
+              this.store.unloadRecord(tournament);
+
+              this.store.find('tournament', teamRecord.get('tournamentId'))
+                .then(function (tournament) {
+                  resolve(tournament);
+                }.bind(this));
+
+            }.bind(this))
+          }.bind(this)).then(function (tournament) {
+            //console.log('finally saved');
+          });
+
+
         });
     }
   }
