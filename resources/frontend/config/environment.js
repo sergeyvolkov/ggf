@@ -32,7 +32,7 @@ module.exports = function(environment) {
       providers: {
         'facebook-oauth2': {
           apiKey:      '681549091980013',
-          redirectUri:  '//good-gateway-football.herokuapp.com'
+          redirectUri:  'https://good-gateway-football.herokuapp.com'
         }
       }
     }
