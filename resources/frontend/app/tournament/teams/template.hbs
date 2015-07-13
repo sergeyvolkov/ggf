@@ -1,18 +1,25 @@
-Teams
+<h4>Teams</h4>
 
-{{#if session.isAuthenticated}}
-    {{ggf-teams.add submit="addTeam"}}
-{{/if}}
+    <div class="ggf-teams mdl-card mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+            {{#each model as |team|}}
+                <div class="logo section__circle-container mdl-cell mdl-cell--2-col">
+                    <img src="/teams-logo/{{dasherize-string team.name}}.png" style="height: 48px;" class="team-logo">
+                </div>
+                <div class="section__text mdl-cell mdl-cell--10-col">
+                    <h4>{{team.name}}</h4>
 
-<ul>
-{{#each model as |team|}}
-    <li>
-        <img src="/teams-logo/{{dasherize-string team.name}}.png" class="team-logo"> {{team.name}}
-    </li>
+                </div>
+            {{/each}}
+        </div>
+        {{#if session.isAuthenticated}}
+        <div class="mdl-card__actions">
 
-{{/each}}
-</ul>
+            {{ggf-teams.add-team submit="addTeam"}}
 
+        </div>
+        {{/if}}
+    </div>
 
 
 {{outlet}}

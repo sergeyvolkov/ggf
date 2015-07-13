@@ -8,6 +8,8 @@ export default Ember.Component.extend({
       this.sendAction('submit', {
         name: this.get('name')
       });
+
+      this.set('name', '');
     }
   }
 });

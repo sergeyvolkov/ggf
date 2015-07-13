@@ -1,13 +1,15 @@
-<div class="centered">
-  <div class="header">
-    <strong>Good Gateway Football | Tournaments</strong>
-  </div>
+{{#each model as |tournament|}}
 
-  <div class="content">
-    {{#each model as |tournament|}}
-      {{#link-to 'tournament' tournament.id class="circle-links"}}
-        {{tournament.name}}
-      {{/link-to}}
-    {{/each}}
-  </div>
-</div>
+    <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text">
+            <h4>{{tournament.name}}</h4>
+            {{tournament.description}}
+        </div>
+        <div class="mdl-card__actions">
+            {{#link-to 'tournament.tablescore' tournament.id tagName='a' class='mdl-button'}}
+                View
+            {{/link-to}}
+        </div>
+    </div>
+
+{{/each}}

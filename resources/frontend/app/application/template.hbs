@@ -1,11 +1,90 @@
-{{#if session.isAuthenticated}}
-    <div>
-        You are currently authenticated as <em>"{{session.user.name}}"</em> &nbsp;| <a class="link" {{ action 'invalidateSession' }}>Logout</a>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__header-row">
+            <h3>Good Gateway Football</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__tab-bar mdl-color--primary-dark">
+            {{#link-to 'tournaments' tagName='a' activeClass='is-active' class='mdl-layout__tab'}}
+                Tournaments
+            {{/link-to}}
+            {{#link-to 'login' tagName='a' activeClass='is-active' class='mdl-layout__tab'}}
+                Login
+            {{/link-to}}
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Material Design Lite</span>
+        <nav class="mdl-navigation">
+            <a href="#overview" class="mdl-navigation__link">Overview</a>
+            <a href="#features" class="mdl-navigation__link">Features</a>
+            <a href="#features" class="mdl-navigation__link">Details</a>
+            <a href="#features" class="mdl-navigation__link">Technology</a>
+            <a href="#features" class="mdl-navigation__link">FAQ</a>
+        </nav>
     </div>
-{{else}}
-    {{#link-to 'login' class="link" }}Login{{/link-to}}
-{{/if}}
+    <main class="mdl-layout__content">
 
-<hr/>
+        {{outlet}}
 
-{{outlet}}
+        <footer class="mdl-mega-footer">
+            <div class="mdl-mega-footer--middle-section">
+                <div class="mdl-mega-footer--drop-down-section">
+                    <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+                    <h1 class="mdl-mega-footer--heading">Features</h1>
+                    <ul class="mdl-mega-footer--link-list">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="mdl-mega-footer--drop-down-section">
+                    <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+                    <h1 class="mdl-mega-footer--heading">Details</h1>
+                    <ul class="mdl-mega-footer--link-list">
+                        <li><a href="#">Spec</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="mdl-mega-footer--drop-down-section">
+                    <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+                    <h1 class="mdl-mega-footer--heading">Technology</h1>
+                    <ul class="mdl-mega-footer--link-list">
+                        <li><a href="#">How it works</a></li>
+                        <li><a href="#">Patterns</a></li>
+                        <li><a href="#">Usage</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Contracts</a></li>
+                    </ul>
+                </div>
+                <div class="mdl-mega-footer--drop-down-section">
+                    <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+                    <h1 class="mdl-mega-footer--heading">FAQ</h1>
+                    <ul class="mdl-mega-footer--link-list">
+                        <li><a href="#">Questions</a></li>
+                        <li><a href="#">Answers</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mdl-mega-footer--bottom-section">
+                <div class="mdl-logo">
+                    More Information
+                </div>
+                <ul class="mdl-mega-footer--link-list">
+                    <li><a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Privacy and Terms</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+</div>

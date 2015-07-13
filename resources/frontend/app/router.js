@@ -10,7 +10,10 @@ Router.map(function() {
 
   this.resource('tournaments', function() {
     this.resource('tournament', {path: '/tournament/:tournamentId'}, function() {
+      this.route('tablescore');
       this.route('teams');
+      this.route('matches');
+      this.route('fixtures');
     });
   });
   this.resource('login');

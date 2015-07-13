@@ -1,11 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: 'ggf-tablescore',
+
   statistic: function() {
     let teams = this.get('teams'),
-        matches = this.get('matches'),
-        tablescore = {},
-        self = this;
+      matches = this.get('matches'),
+      tablescore = {},
+      self = this;
 
     teams.forEach(function(team) {
       tablescore[team] = self.getBasicStatForTeam(team);
@@ -13,11 +15,11 @@ export default Ember.Component.extend({
 
     matches.forEach(function(match) {
       let homeTeam = match.get('homeTeam'),
-          awayTeam = match.get('awayTeam'),
-          homeScore = +match.get('homeScore'),
-          awayScore = +match.get('awayScore'),
-          homeTeamStats = tablescore[homeTeam],
-          awayTeamStats = tablescore[awayTeam];
+        awayTeam = match.get('awayTeam'),
+        homeScore = +match.get('homeScore'),
+        awayScore = +match.get('awayScore'),
+        homeTeamStats = tablescore[homeTeam],
+        awayTeamStats = tablescore[awayTeam];
 
       if (match.get('status') !== 'finished') {
         return false;
@@ -56,7 +58,7 @@ export default Ember.Component.extend({
 
   tablescore: function() {
     let result = [],
-        statistic = this.get('statistic');
+      statistic = this.get('statistic');
 
     for (let team in statistic) {
       if (!statistic.hasOwnProperty(team)) {

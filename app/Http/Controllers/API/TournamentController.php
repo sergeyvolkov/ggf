@@ -24,6 +24,13 @@ class TournamentController extends Controller
         return $this->response->collection($collection->get(), new TournamentTransformer($this->response), 'tournaments');
     }
 
+    public function find($tournamentId)
+    {
+        $collection = Tournament::with('tournamentTeams.team')->where(['id' => $tournamentId]);
+
+        return $this->response->collection($collection->get(), new TournamentTransformer($this->response), 'tournaments');
+    }
+
     public function matches()
     {
         $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
