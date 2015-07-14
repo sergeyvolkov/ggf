@@ -11,9 +11,9 @@
             {{#link-to 'tournaments' tagName='a' activeClass='is-active' class='mdl-layout__tab'}}
                 Tournaments
             {{/link-to}}
-            {{#link-to 'login' tagName='a' activeClass='is-active' class='mdl-layout__tab'}}
-                Login
-            {{/link-to}}
+
+            {{ggf-profile action="invalidateSession"}}
+
             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
                 <i class="material-icons">add</i>
             </button>

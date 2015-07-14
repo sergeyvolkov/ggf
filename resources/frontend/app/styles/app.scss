@@ -316,3 +316,10 @@ html, body {
     text-align: center;
   }
 }
+
+.ember-application .ggf-profile {
+  .mdl-navigation__link {
+    color: #fff;
+    cursor: pointer;
+  }
+}
