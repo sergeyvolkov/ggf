@@ -12,7 +12,7 @@ return [
      |
      */
     'supportsCredentials' => false,
-    'allowedOrigins' => ['http://localhost:4200', 'http://192.168.10.10', 'http://good-gateway-football.herokuapp.com'],
+    'allowedOrigins' => ['http://localhost:4200', 'http://192.168.10.10', 'https://good-gateway-football.herokuapp.com'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE'],
     'exposedHeaders' => [],
