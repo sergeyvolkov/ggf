@@ -12,7 +12,7 @@ export default Route.extend({
     let tournamentId = this.paramsFor('tournament').tournamentId;
 
     return RSVP.hash({
-      matches: store.find('match', {tournamentId: tournamentId}),
+      matches: store.query('match', {tournamentId: tournamentId}),
       tournament: store.peekAll('tournament').findBy('id', tournamentId)
     });
   },
