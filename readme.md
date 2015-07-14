@@ -1,6 +1,6 @@
 # Good Gateway Football
 
-[https://good-gateway-football.herokuapp.com](Demo)
+[Demo](https://good-gateway-football.herokuapp.com)
 
 ## Setup development environment with Homestead (per-project installation)
 
