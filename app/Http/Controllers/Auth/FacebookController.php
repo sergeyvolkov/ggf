@@ -47,6 +47,6 @@ class FacebookController extends Controller
             );
         }
 
-        return response('Unauthorized.', 401);
+        return response('Bad request.', 400);
     }
 }
