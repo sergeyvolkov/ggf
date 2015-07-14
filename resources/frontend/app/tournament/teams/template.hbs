@@ -1,15 +1,20 @@
 <h4>Teams</h4>
 
-    <div class="ggf-teams mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+    <div class="ggf-teams mdl-cell--12-col">
+        <div class="mdl-grid">
             {{#each model as |team|}}
-                <div class="logo section__circle-container mdl-cell mdl-cell--2-col">
-                    <img src="/teams-logo/{{dasherize-string team.name}}.png" style="height: 48px;" class="team-logo">
+            <div class="mdl-cell mdl-cell--4-col">
+                <div class="mdl-card mdl-shadow--2dp demo-card-event">
+                    <div class="mdl-card__title mdl-card--expand">
+                        <h2 class="mdl-card__title-text">{{team.name}}</h2>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            View Team
+                        </a>
+                    </div>
                 </div>
-                <div class="section__text mdl-cell mdl-cell--10-col">
-                    <h4>{{team.name}}</h4>
-
-                </div>
+            </div>
             {{/each}}
         </div>
         {{#if session.isAuthenticated}}

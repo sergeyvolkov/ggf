@@ -315,6 +315,23 @@ html, body {
   .logo {
     text-align: center;
   }
+
+  .mdl-card {
+    background: #fff;
+    width: 100%;
+
+    & > .mdl-card__title {
+      background: url('../teams-logo/liverpool.png') bottom right 15% no-repeat;
+      background-size: 80px;
+    }
+  }
+}
+
+.ember-application {
+  .mdl-card.ggf-notification {
+    width: 60%;
+    min-height: 160px;
+  }
 }
 
 .ember-application .ggf-profile {
