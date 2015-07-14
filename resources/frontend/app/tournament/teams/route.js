@@ -3,7 +3,7 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
-  model(params) {
+  model() {
     this.store.unloadAll('team');
 
     return this.store.filter('team', {tournamentId: this.paramsFor('tournament').tournamentId}, function (tournament) {
@@ -22,7 +22,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
       teamRecord.save()
         .catch((err) => {
-          //console.log('err', err);
+          // @todo Show error message
+          console.log('[ERR]', err);
         })
         .finally(() => {
 
@@ -33,14 +34,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
               this.store.find('tournament', teamRecord.get('tournamentId'))
                 .then(function (tournament) {
                   resolve(tournament);
-                }.bind(this));
+                }.bind(this))
+                .catch(function(err) {
+                  reject(err);
+                });
 
-            }.bind(this))
-          }.bind(this)).then(function (tournament) {
-            //console.log('finally saved');
-          });
-
-
+            }.bind(this));
+          }.bind(this));
         });
     }
   }

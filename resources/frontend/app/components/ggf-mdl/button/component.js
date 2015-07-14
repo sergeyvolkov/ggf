@@ -1,7 +1,5 @@
 import Ember from 'ember';
 
-import MdlButtonComponent from 'ember-material-lite/components/mdl-button';
-
 import RippleSupport from 'ember-material-lite/mixins/ripple-support';
 import layout from 'ember-material-lite/templates/components/mdl-button';
 import computed from 'ember-new-computed';

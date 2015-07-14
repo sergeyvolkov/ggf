@@ -7,7 +7,7 @@ const {
 
 export default Route.extend({
 
-  model: function(params) {
+  model: function() {
     let store = this.store;
     let tournamentId = this.paramsFor('tournament').tournamentId;
 
@@ -17,7 +17,7 @@ export default Route.extend({
     });
   },
 
-  setupController (controller, model, transition) {
+  setupController (controller, model) {
     this._super(controller, model);
 
     controller.set('tournament', model.tournament);
