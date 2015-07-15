@@ -344,3 +344,12 @@ html, body {
     cursor: pointer;
   }
 }
+
+.ember-application .ggf-settings {
+  & .mdl-textfield__input {
+    font-family: 'Roboto', 'Helvetica', sans-serif
+  }
+  & .mdl-textfield {
+    width: 100%;
+  }
+}

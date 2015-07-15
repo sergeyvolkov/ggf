@@ -9,5 +9,8 @@ export default DS.RESTAdapter.extend({
   },
   shouldBackgroundReloadAll: function() {
     return false;
+  },
+  shouldBackgroundReloadRecord: function() {
+    return false;
   }
 });

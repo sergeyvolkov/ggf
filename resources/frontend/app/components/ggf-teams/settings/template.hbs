@@ -1,0 +1,12 @@
+<form {{action "save" on="submit"}} class="ggf-notification mdl-card mdl-shadow--2dp mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-cell mdl-cell--middle mdl-cell--12-col">
+        <div class="mdl-card__supporting-text">
+            {{ggf-mdl.textfield value=settingsName name='name' label='Name...' disabled=(not session.isAuthenticated)}}
+
+            {{ggf-mdl.textarea value=settingsDescription name='description' label='Desription...' disabled=(not session.isAuthenticated)}}
+            {{#if session.isAuthenticated}}
+                {{ggf-mdl.button text='Save'}}
+            {{/if}}
+        </div>
+    </div>
+</form>

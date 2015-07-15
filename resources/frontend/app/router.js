@@ -14,6 +14,7 @@ Router.map(function() {
       this.route('teams');
       this.route('matches');
       this.route('fixtures');
+      this.route('settings');
     });
   });
   this.resource('login');

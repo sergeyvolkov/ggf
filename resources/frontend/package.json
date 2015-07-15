@@ -43,6 +43,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-material-lite": "0.0.5",
+    "ember-truth-helpers": "1.0.0",
     "fs-extra": "^0.21.0",
     "path": "^0.11.14",
     "rsvp": "^3.0.18",
