@@ -8,6 +8,9 @@
         {{#link-to 'tournament.matches' class='mdl-tabs__tab' activeClass='is-active'}}Matches{{/link-to}}
         {{#link-to 'tournament.fixtures' class='mdl-tabs__tab' activeClass='is-active'}}Fixtures{{/link-to}}
         {{#link-to 'tournament.teams' class='mdl-tabs__tab' activeClass='is-active'}}Teams{{/link-to}}
+        {{#if session.isAuthenticated}}
+            {{#link-to 'tournament.settings' class='mdl-tabs__tab' activeClass='is-active'}}Settings{{/link-to}}
+        {{/if}}
     </div>
 </div>
 

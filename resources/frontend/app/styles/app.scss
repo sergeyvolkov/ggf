@@ -87,9 +87,6 @@ html, body {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-.ember-application .mdl-card > * {
-  height: auto;
-}
 .ember-application .mdl-card .mdl-card__supporting-text {
   margin: 40px;
   -webkit-box-flex: 1;
@@ -325,6 +322,13 @@ html, body {
       background-size: 80px;
     }
   }
+
+  .ggf-menu-button {
+    position: absolute;
+    z-index: 99;
+    top: 8px;
+    right: 8px;
+  }
 }
 
 .ember-application {
@@ -338,5 +342,14 @@ html, body {
   .mdl-navigation__link {
     color: #fff;
     cursor: pointer;
+  }
+}
+
+.ember-application .ggf-settings {
+  & .mdl-textfield__input {
+    font-family: 'Roboto', 'Helvetica', sans-serif
+  }
+  & .mdl-textfield {
+    width: 100%;
   }
 }

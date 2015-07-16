@@ -23,7 +23,6 @@ class Match extends Model
 
     public $timestamps = true;
 
-
     const GAME_TYPE_GROUP_STAGE = 'group';
     const GAME_TYPE_QUALIFY = 'qualify';
     const GAME_TYPE_FINAL = 'final';

@@ -26,6 +26,8 @@ Route::group(['middleware' => 'cors'], function() {
     Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
         Route::get('/tournaments', 'API\TournamentController@catalogue');
         Route::get('/tournaments/{tournamentId}', 'API\TournamentController@find');
+        Route::put('/tournaments/{tournamentId}', 'API\TournamentController@update');
+
         Route::get('/matches', 'API\TournamentController@matches');
         Route::get('/teams', 'API\TournamentController@teams');
         Route::post('/teams', 'API\TournamentController@addTeam');
