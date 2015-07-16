@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return this.store.filter('league', {id: params.leagueId}, function (league) {
-      return !league.get('isNew');
+    return this.store.find('league', params.id, function (league) {
+      return league.get('isNew');
     });
   },
 
