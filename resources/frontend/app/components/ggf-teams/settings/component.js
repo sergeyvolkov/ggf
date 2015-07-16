@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   name: '',
   description: '',
+  type: '',
 
   settingsName: Ember.computed.oneWay('name'),
   settingsDescription: Ember.computed.oneWay('description'),
@@ -13,6 +14,7 @@ export default Ember.Component.extend({
 
       this.sendAction('submit', {
         name: this.get('settingsName'),
+        type: this.get('type'),
         description: this.get('settingsDescription'),
       })
       //

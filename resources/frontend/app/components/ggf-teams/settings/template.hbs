@@ -4,6 +4,13 @@
             {{ggf-mdl.textfield value=settingsName name='name' label='Name...' disabled=(not session.isAuthenticated)}}
 
             {{ggf-mdl.textarea value=settingsDescription name='description' label='Desription...' disabled=(not session.isAuthenticated)}}
+
+            <div class="mdl-textfield">
+                {{ggf-mdl.radio label='League' name='type' groupValue=type value='league'}}
+                {{ggf-mdl.radio label='Knock Out' disabled=true name='type' groupValue=type value='knock_out'}}
+                {{ggf-mdl.radio label='Multistage' disabled=true name='type' groupValue=type value='multistage'}}
+            </div>
+
             {{#if session.isAuthenticated}}
                 {{ggf-mdl.button text='Save'}}
             {{/if}}
