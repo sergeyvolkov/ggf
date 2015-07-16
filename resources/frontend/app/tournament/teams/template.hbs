@@ -4,20 +4,18 @@
         <div class="mdl-grid">
             {{#each model as |team|}}
             <div class="mdl-cell mdl-cell--4-col">
-                <div class="mdl-card mdl-shadow--2dp demo-card-event">
-                    <div class="mdl-card__title mdl-card--expand">
-                        <h2 class="mdl-card__title-text">{{team.name}}</h2>
-                    </div>
+
+                {{#ggf-card title=team.name logoPath=team.logoPath}}
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        {{#link-to 'tournament.team' team class='mdl-button mdl-button--colored'}}
                             View Team
-                        </a>
+                        {{/link-to}}
                     </div>
 
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon ggf-menu-button">
+                    <button class="mdl-button mdl-button--icon ggf-menu-button">
                         <i class="material-icons">more_vert</i>
                     </button>
-                </div>
+                {{/ggf-card}}
             </div>
 
             {{/each}}

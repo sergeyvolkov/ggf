@@ -6,7 +6,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   model() {
     this.store.unloadAll('team');
 
-    return this.store.filter('team', {tournamentId: this.paramsFor('tournament').tournamentId}, function (tournament) {
+    return this.store.filter('team', {tournamentId: this.paramsFor('tournament').id}, function (tournament) {
       return !tournament.get('isNew');
     });
   },
@@ -17,7 +17,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
       let teamRecord = store.createRecord('team', {
         name: team.name,
-        tournamentId: this.paramsFor('tournament').tournamentId
+        tournamentId: this.paramsFor('tournament').id
       });
 
       teamRecord.save()

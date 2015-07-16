@@ -9,7 +9,7 @@ export default Route.extend({
 
   model: function() {
     let store = this.store;
-    let tournamentId = this.paramsFor('tournament').tournamentId;
+    let tournamentId = this.paramsFor('tournament').id;
 
     return RSVP.hash({
       matches: store.query('match', {tournamentId: tournamentId}),
