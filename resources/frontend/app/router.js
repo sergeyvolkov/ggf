@@ -18,6 +18,10 @@ Router.map(function() {
     });
   });
 
+  this.resource('leagues', function() {
+    this.route('add');
+    this.route('view', {path: '/:leagueId'});
+  });
 });
 
 export default Router;

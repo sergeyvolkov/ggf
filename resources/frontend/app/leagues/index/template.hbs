@@ -1,0 +1,25 @@
+{{#with model as |leagues|}}
+
+<div class="ggf-leagues mdl-cell--12-col">
+    <div class="mdl-grid">
+        {{#each leagues as |league|}}
+            <div class="mdl-cell mdl-cell--4-col">
+                {{#ggf-card title=league.name}}
+                    <div class="mdl-card__actions mdl-card--border">
+                        {{#link-to 'leagues.view' league class='mdl-button mdl-button--colored'}}
+                            View League
+                        {{/link-to}}
+                    </div>
+
+                    <button class="mdl-button mdl-button--icon ggf-menu-button">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+                {{/ggf-card}}
+            </div>
+        {{else}}
+                Sorry, nobody is here.
+        {{/each}}
+    </div>
+</div>
+
+{{/with}}
