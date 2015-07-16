@@ -1,25 +1,21 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  name: '',
-  description: '',
-  type: '',
+  tournament: null,
 
-  settingsName: Ember.computed.oneWay('name'),
-  settingsDescription: Ember.computed.oneWay('description'),
-
+  name: Ember.computed.oneWay('tournament.name'),
+  description: Ember.computed.oneWay('tournament.description'),
+  type: Ember.computed.alias('tournament.type'),
+  membersType: Ember.computed.alias('tournament.membersType'),
 
   actions: {
     save() {
-
       this.sendAction('submit', {
-        name: this.get('settingsName'),
+        name: this.get('name'),
         type: this.get('type'),
-        description: this.get('settingsDescription'),
-      })
-      //
-      //this.set('name', '');
-      //this.set('description', '');
+        membersType: this.get('membersType'),
+        description: this.get('description'),
+      });
     }
   }
 });

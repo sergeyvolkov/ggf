@@ -63,6 +63,8 @@ class TournamentController extends Controller
         $tournament = Tournament::findOrFail($tournamentId);
         $tournament->update([
             'name' => Input::get('tournament.name'),
+            'type' => Input::get('tournament.type'),
+            'membersType' => Input::get('tournament.membersType'),
             'description' => Input::get('tournament.description')
         ]);
 
