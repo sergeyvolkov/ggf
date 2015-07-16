@@ -103,7 +103,6 @@ html, body {
 }
 .ember-application .mdl-card__actions {
   margin: 0;
-  padding: 4px 40px;
   color: inherit;
 }
 .ember-application .mdl-card__actions a {
@@ -308,18 +307,18 @@ html, body {
   }
 }
 
-.ember-application .ggf-teams {
-  .logo {
-    text-align: center;
-  }
-
-  .mdl-card {
+.ember-application .ggf-card {
+  & {
     background: #fff;
     width: 100%;
 
     & > .mdl-card__title {
-      background: url('../teams-logo/liverpool.png') bottom right 15% no-repeat;
+      background: none bottom 50% right 15% no-repeat;
       background-size: 80px;
+    }
+
+    .mdl-card__title-text {
+      width: 60%;
     }
   }
 
@@ -340,7 +339,7 @@ html, body {
 
 .ember-application .ggf-profile {
   .mdl-navigation__link {
-    color: #fff;
+    color: rgba(255,255,255,.6);
     cursor: pointer;
   }
 }

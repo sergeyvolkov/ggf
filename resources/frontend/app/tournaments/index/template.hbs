@@ -1,15 +1,17 @@
 {{#each model as |tournament|}}
 
-    <div class="mdl-card mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text">
-            <h4>{{tournament.name}}</h4>
-            {{tournament.description}}
-        </div>
-        <div class="mdl-card__actions">
-            {{#link-to 'tournament.tablescore' tournament.id tagName='a' class='mdl-button'}}
-                View
-            {{/link-to}}
-        </div>
+    <div class="mdl-cell mdl-cell--12-col">
+        {{#ggf-card title=tournament.name logoPath=tournament.name}}
+            <div class="mdl-card__actions mdl-card--border">
+                {{#link-to 'tournament.tablescore' tournament class='mdl-button mdl-button--colored'}}
+                    View Tournament
+                {{/link-to}}
+            </div>
+
+            <button class="mdl-button mdl-button--icon ggf-menu-button">
+                <i class="material-icons">more_vert</i>
+            </button>
+        {{/ggf-card}}
     </div>
 
 {{/each}}

@@ -24,10 +24,14 @@ Route::group(['middleware' => 'cors'], function() {
     // API
 
     Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
+        Route::get('/leagues', 'API\LeagueController@catalogue');
+
         Route::get('/tournaments', 'API\TournamentController@catalogue');
         Route::get('/tournaments/{tournamentId}', 'API\TournamentController@find');
         Route::put('/tournaments/{tournamentId}', 'API\TournamentController@update');
 
+        Route::get('/teams/{teamId}', 'API\TeamController@find');
+        
         Route::get('/matches', 'API\TournamentController@matches');
         Route::get('/teams', 'API\TournamentController@teams');
         Route::post('/teams', 'API\TournamentController@addTeam');
