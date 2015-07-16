@@ -12,6 +12,7 @@ Router.map(function() {
     this.resource('tournament', {path: '/tournament/:tournamentId'}, function() {
       this.route('tablescore');
       this.route('teams');
+      this.route('team', {path: '/team/:team_id'})
       this.route('matches');
       this.route('fixtures');
       this.route('settings');
@@ -20,7 +21,7 @@ Router.map(function() {
 
   this.resource('leagues', function() {
     this.route('add');
-    this.route('view', {path: '/:leagueId'});
+    this.route('view', {path: '/:id'});
   });
 });
 
