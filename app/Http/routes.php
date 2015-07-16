@@ -30,6 +30,8 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/tournaments/{tournamentId}', 'API\TournamentController@find');
         Route::put('/tournaments/{tournamentId}', 'API\TournamentController@update');
 
+        Route::get('/teams/{teamId}', 'API\TeamController@find');
+        
         Route::get('/matches', 'API\TournamentController@matches');
         Route::get('/teams', 'API\TournamentController@teams');
         Route::post('/teams', 'API\TournamentController@addTeam');
