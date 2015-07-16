@@ -6,13 +6,11 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  //this.resource('index', {path: '/'});
-
   this.resource('tournaments', function() {
     this.resource('tournament', {path: '/tournament/:id'}, function() {
       this.route('tablescore');
       this.route('teams');
-      this.route('team', {path: '/team/:team_id'})
+      this.route('team', {path: '/team/:team_id'});
       this.route('matches');
       this.route('fixtures');
       this.route('settings');

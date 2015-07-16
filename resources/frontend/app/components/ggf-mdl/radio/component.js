@@ -26,7 +26,7 @@ export default Ember.Component.extend(RippleSupport, {
 
   isChecked: Ember.computed('checked', 'value', 'groupValue', function() {
     if (this.get('groupValue')) {
-      return this.get('groupValue') === this.get('value')
+      return this.get('groupValue') === this.get('value');
     } else {
       return this.get('checked');
     }

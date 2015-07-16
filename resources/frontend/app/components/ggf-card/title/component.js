@@ -2,8 +2,7 @@ import Ember from 'ember';
 
 const {
   computed,
-  getWithDefault,
-  get: get
+  getWithDefault
 } = Ember;
 
 const { escapeExpression } = Ember.Handlebars.Utils;
