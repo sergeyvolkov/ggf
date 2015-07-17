@@ -1,4 +1,4 @@
-<form {{action "save" on="submit"}} class="ggf-notification mdl-card mdl-shadow--2dp mdl-grid mdl-grid--no-spacing">
+<form {{action "save" on="submit"}} class="ggf-card mdl-card mdl-shadow--2dp mdl-grid mdl-grid--no-spacing">
     <div class="mdl-cell mdl-cell--middle mdl-cell--12-col">
         <div class="mdl-card__supporting-text">
             {{ggf-mdl.textfield value=name name='name' label='Name...' disabled=(not session.isAuthenticated)}}
