@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\CreateLeague;
 use App\Models\League;
 use App\Transformers\LeagueTransformer;
 use Illuminate\Support\Facades\Request;
@@ -15,14 +16,15 @@ class LeagueController extends Controller
         return $this->response->collection(League::all(), new LeagueTransformer($this->response), 'leagues');
     }
 
-    // @todo This is tmp code just to make it works
-    public function addLeague()
+    /**
+     * Create new league
+     *
+     * @param CreateLeague $request
+     * @return array
+     */
+    public function store(CreateLeague $request)
     {
-        $league = League::firstOrNew([
-            'name' => Input::get('league.name'),
-            'logoPath' => Input::get('league.logoPath')
-        ]);
-        $league->save();
+        $league = League::create($request->input('league'));
 
         return $this->response->collection(League::where(['id' => $league->id])->get(), new LeagueTransformer(), 'leagues');
     }

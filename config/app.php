@@ -143,6 +143,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SessionServiceProvider::class,
+        App\Providers\ValidatorServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
 
         /* Vendor Service Providers */
