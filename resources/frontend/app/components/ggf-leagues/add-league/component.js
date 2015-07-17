@@ -12,9 +12,6 @@ export default Ember.Component.extend({
         name: this.get('name'),
         logoPath: this.get('logoPath'),
       });
-
-      this.set('name', '');
-      this.set('logoPath', '');
     }
   }
 });
