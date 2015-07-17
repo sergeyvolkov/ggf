@@ -5,6 +5,5 @@ export default Ember.Route.extend({
     return this.store.find('league', params.id, function (league) {
       return league.get('isNew');
     });
-  },
-
+  }
 });
