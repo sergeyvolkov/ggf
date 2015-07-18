@@ -1,5 +1,25 @@
-<form {{action "submit" on="submit"}}>
-    {{ggf-mdl.textfield value=name name='team' label='Team...'}}
+{{#if search}}
+    <div class="mdl-card__title mdl-card--expand">
+        {{select-2
+            value=team
+            minimumInputLength=3
+            multiple=false
+            query="queryOptions"
+            placeholder="Choose team"
+        }}
 
-    {{ggf-mdl.button isPrimary=true text='Add Team'}}
-</form>
+        {{ggf-card.button action="undo" icon="undo"}}
+    </div>
+
+{{else}}
+    {{ggf-card.title title=title logoPath=logoPath}}
+{{/if}}
+
+{{#if search}}
+    <div class="mdl-card__actions mdl-card--border">
+        {{ggf-mdl.button text='Add Team' action="submit"}}
+
+    </div>
+{{else}}
+    {{ggf-mdl.button text='Add Team' action="search"}}
+{{/if}}

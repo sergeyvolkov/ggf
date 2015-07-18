@@ -4,19 +4,27 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   model() {
+    const store = this.store;
+    const tournamentId = this.paramsFor('tournament').id;
+
     this.store.unloadAll('team');
 
-    return this.store.filter('team', {tournamentId: this.paramsFor('tournament').id}, function (tournament) {
-      return !tournament.get('isNew');
+    return Ember.RSVP.hash({
+      tournamentId: tournamentId,
+      teams: store.filter('team', {tournamentId: tournamentId}, function (tournament) {
+        return !tournament.get('isNew');
+      })
     });
   },
 
   actions: {
+
     addTeam(team) {
+
       const store = this.store;
 
       let teamRecord = store.createRecord('team', {
-        name: team.name,
+        teamId: team.team.id,
         tournamentId: this.paramsFor('tournament').id
       });
 
