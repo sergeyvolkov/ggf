@@ -10,7 +10,7 @@ use App\Transformers\TournamentTransformer;
 use App\Transformers\MatchTransformer;
 use App\Transformers\TournamentTeamTransformer;
 
-use App\Http\Requests;
+use App\Http\Requests\Tournament\Create as CreateTournament;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
@@ -23,7 +23,7 @@ class TournamentController extends Controller
     {
         $this->response = $response;
 
-        $this->middleware('auth', ['only' => ['update', 'addTeam']]);
+        $this->middleware('auth', ['only' => ['update']]);
     }
 
     public function catalogue()
@@ -48,11 +48,18 @@ class TournamentController extends Controller
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
     }
 
-    public function teams()
-    {
-        $collection = TournamentTeam::with('Team')->where(['tournamentId' => Input::get('tournamentId')]);
 
-        return $this->response->collection($collection->get(), new TournamentTeamTransformer(), 'teams');
+    /**
+     * Create new tournament
+     *
+     * @param CreateTournament $request
+     * @return array
+     */
+    public function store(CreateTournament $request)
+    {
+        $tournament = Tournament::create($request->input('tournament'));
+
+        return $this->response->collection(Tournament::where(['id' => $tournament->id])->get(), new TournamentTransformer($this->response), 'tournaments');
     }
 
     public function update($tournamentId)
@@ -69,24 +76,5 @@ class TournamentController extends Controller
         ]);
 
         return $this->response->collection(Tournament::where(['id' => $tournamentId])->get(), new TournamentTransformer(), 'tournaments');
-    }
-
-    // @todo This is tmp code just to make it works
-    public function addTeam()
-    {
-        $tournament = Tournament::findOrFail(Input::get('team.tournamentId'));
-
-        $team = Team::firstOrNew([
-            'name' => Input::get('team.name')
-        ]);
-        $team->logoPath = '';
-        $team->save();
-
-        $tournamentTeam = TournamentTeam::create([
-            'teamId' => $team->id,
-            'tournamentId' => $tournament->id
-        ]);
-
-        return $this->response->collection(TournamentTeam::where(['id' => $tournamentTeam->id])->get(), new TournamentTeamTransformer(), 'teams');
     }
 }

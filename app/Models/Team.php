@@ -14,12 +14,12 @@ class Team extends Model {
 
 	public function teamMembers()
 	{
-		return $this->hasMany('TeamMember');
+		return $this->hasMany(Member::class, 'teamId');
 	}
 
 	public function tournamentTeams()
 	{
-		return $this->hasMany('TournamentTeam');
+		return $this->hasMany(TournamentTeam::class, 'teamId');
 	}
 
 }

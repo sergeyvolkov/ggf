@@ -8,6 +8,7 @@ const {
 export default Model.extend({
   name:         attr('string'),
   logoPath:     attr('string'),
+  teamId:       attr('number'),
   tournamentId: attr('number')
 
   //tournamentId: belongsTo('tournament')

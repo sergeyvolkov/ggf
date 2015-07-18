@@ -1,0 +1,13 @@
+<h4>Add League</h4>
+
+<form {{action "submit" on="submit"}} class="ggf-card mdl-card mdl-shadow--2dp mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-cell mdl-cell--middle mdl-cell--12-col">
+        <div class="mdl-card__supporting-text">
+            {{ggf-mdl.textfield value=name name='name' label='Name...'}}
+
+            {{ggf-mdl.textfield value=logoPath name='logoPath' label='Logo Path...'}}
+
+            {{ggf-mdl.button text='Save'}}
+        </div>
+    </div>
+</form>

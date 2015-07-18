@@ -86,21 +86,24 @@ html, body {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+
+  .mdl-card__supporting-text {
+    margin: 40px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding: 0;
+    color: inherit;
+    width: calc(100% - 80px);
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
 }
-.ember-application .mdl-card .mdl-card__supporting-text {
-  margin: 40px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0;
-  color: inherit;
-  width: calc(100% - 80px);
-}
-.ember-application.ember-application .mdl-card__supporting-text h4 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
+
 .ember-application .mdl-card__actions {
   margin: 0;
   color: inherit;
@@ -328,6 +331,17 @@ html, body {
     top: 8px;
     right: 8px;
   }
+
+  & .mdl-textfield__input {
+    font-family: 'Roboto', 'Helvetica', sans-serif
+  }
+  & .mdl-textfield {
+    width: 100%;
+  }
+
+  .input-md {
+    width: 75%;
+  }
 }
 
 .ember-application {
@@ -341,14 +355,5 @@ html, body {
   .mdl-navigation__link {
     color: rgba(255,255,255,.6);
     cursor: pointer;
-  }
-}
-
-.ember-application .ggf-settings {
-  & .mdl-textfield__input {
-    font-family: 'Roboto', 'Helvetica', sans-serif
-  }
-  & .mdl-textfield {
-    width: 100%;
   }
 }
