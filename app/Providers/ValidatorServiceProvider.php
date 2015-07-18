@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Validation\TeamAddedValidator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -13,9 +14,12 @@ class ValidatorServiceProvider extends ServiceProvider
     public function boot()
     {
 
-
         $this->app['validator']->resolver(function ($translator, $data, $rules, $messages) {
             return new AssetExistsValidator($translator, $data, $rules, $messages);
+        });
+
+        $this->app['validator']->resolver(function ($translator, $data, $rules, $messages) {
+            return new TeamAddedValidator($translator, $data, $rules, $messages);
         });
     }
 
