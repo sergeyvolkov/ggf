@@ -19,7 +19,10 @@ export default Ember.Route.extend({
       tournament.membersType = 'single';
 
       const newTournament = this.store.createRecord('tournament', tournament);
-      newTournament.save();
+      newTournament.save().then( () => {
+        this.transitionTo('tournament.teams', newTournament.id);
+      });
+
     }
   }
 });
