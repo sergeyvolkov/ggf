@@ -8,7 +8,7 @@ class Tournament extends Model {
 
 	protected $table = 'tournaments';
 
-	protected $fillable = ['name', 'description', 'type', 'membersType'];
+	protected $fillable = ['name', 'description', 'status', 'type', 'membersType'];
 
 	public $timestamps = true;
 
