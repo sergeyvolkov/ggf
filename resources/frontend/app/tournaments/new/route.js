@@ -14,7 +14,12 @@ export default Ember.Route.extend({
 
   actions: {
     saveTournament(tournament) {
-      this.store.createRecord('tournament', tournament);
+      // @todo fix ggf-mdl.radio button
+      tournament.type = 'league';
+      tournament.membersType = 'single';
+
+      const newTournament = this.store.createRecord('tournament', tournament);
+      newTournament.save();
     }
   }
 });
