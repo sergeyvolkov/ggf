@@ -7,6 +7,8 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.resource('tournaments', function() {
+    this.route('new');
+
     this.resource('tournament', {path: '/tournament/:id'}, function() {
       this.route('tablescore');
       this.route('teams');
