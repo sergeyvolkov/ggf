@@ -11,5 +11,5 @@ export default Model.extend({
   type:         attr('string'),
   status:       attr('string'),
   membersType:  attr('string'),
-  teams:        attr('', {defaultValue: []})
+  teams:        DS.hasMany('teams', {async: false})
 });

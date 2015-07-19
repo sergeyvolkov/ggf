@@ -10,6 +10,4 @@ export default Model.extend({
   logoPath:     attr('string'),
   teamId:       attr('number'),
   tournamentId: attr('number')
-
-  //tournamentId: belongsTo('tournament')
 });
