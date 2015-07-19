@@ -19,6 +19,10 @@ class Tournament extends Model {
 	const TYPE_KNOCK_OUT = 'knock_out';
 	const TYPE_MULTISTAGE = 'multistage';
 
+	const STATUS_DRAFT = 'draft';
+	const STATUS_STARTED = 'started';
+	const STATUS_COMPLETED = 'completed';
+
 	public function tournamentTeams()
 	{
 		return $this->hasMany(TournamentTeam::class, 'tournamentId');
@@ -44,6 +48,18 @@ class Tournament extends Model {
 			self::TYPE_LEAGUE,
 			self::TYPE_KNOCK_OUT,
 			self::TYPE_MULTISTAGE
+		];
+	}
+
+	/**
+	 * @return array
+	 */
+	static public function getAvailableStatuses()
+	{
+		return [
+			self::STATUS_DRAFT,
+			self::STATUS_STARTED,
+			self::STATUS_COMPLETED
 		];
 	}
 }
