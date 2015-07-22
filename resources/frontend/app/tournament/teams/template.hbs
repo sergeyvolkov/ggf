@@ -20,8 +20,7 @@
 {{#if session.isAuthenticated}}
   <div class="row">
     <div class="col12">
-      {{!-- add ggf-teams.add-team component --}}
-      {{!-- {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}} --}}
+      {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
     </div>
   </div>
 {{/if}}

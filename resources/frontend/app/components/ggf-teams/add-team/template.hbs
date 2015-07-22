@@ -1,25 +1,30 @@
 {{#if search}}
-    <div class="mdl-card__title mdl-card--expand">
-        {{select-2
-            value=team
-            minimumInputLength=3
-            multiple=false
-            query="queryOptions"
-            placeholder="Choose team"
-        }}
 
-        {{ggf-card.button action="undo" icon="undo"}}
-    </div>
+  {{select-2
+    value=team
+    minimumInputLength=3
+    multiple=false
+    query="queryOptions"
+    placeholder="Choose team"
+  }}
+
+  {{md-btn
+    text='Undo'
+    action='undo'
+  }}
 
 {{else}}
-    {{ggf-card.title title=title logoPath=logoPath}}
+  {{title}}
 {{/if}}
 
 {{#if search}}
-    <div class="mdl-card__actions mdl-card--border">
-        {{ggf-mdl.button text='Add Team' action="submit"}}
-
-    </div>
+  {{md-btn
+    text='Add team'
+    action='submit'
+  }}
 {{else}}
-    {{ggf-mdl.button text='Add Team' action="search"}}
+  {{md-btn
+    text='Add team'
+    action='search'
+  }}
 {{/if}}
