@@ -1,8 +1,10 @@
+{{#with model.tournament as |tournament| }}
+
 <h4>Teams</h4>
 
     <div class="ggf-teams mdl-cell--12-col">
         <div class="mdl-grid">
-            {{#each model.teams as |team|}}
+            {{#each tournament.teams as |team|}}
             <div class="mdl-cell mdl-cell--4-col">
 
                 {{#ggf-card title=team.name logoPath=team.logoPath}}
@@ -21,7 +23,7 @@
             {{/each}}
             {{#if session.isAuthenticated}}
                 <div class="mdl-cell mdl-cell--4-col">
-                    {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
+                    {{ggf-teams.add-team submit="addTeam" query="queryOptions"}}
                 </div>
             {{/if}}
         </div>
@@ -29,3 +31,5 @@
 
 
 {{outlet}}
+
+{{/with}}

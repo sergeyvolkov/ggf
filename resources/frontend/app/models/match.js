@@ -6,5 +6,5 @@ export default DS.Model.extend({
   homeScore:    DS.attr('number'),
   awayScore:    DS.attr('number'),
   status:       DS.attr('string'),
-  tournamentId: DS.belongsTo('tournament')
+  tournamentId: DS.attr('number')
 });

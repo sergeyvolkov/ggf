@@ -1,9 +1,15 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-  name:         DS.attr('string'),
-  description:  DS.attr('string'),
-  type:         DS.attr('string'),
-  membersType:  DS.attr('string'),
-  teams:        DS.attr('', {defaultValue: []})
+const {
+  Model,
+  attr
+} = DS;
+
+export default Model.extend({
+  name:         attr('string'),
+  description:  attr('string'),
+  type:         attr('string'),
+  status:       attr('string'),
+  membersType:  attr('string'),
+  teams:        DS.hasMany('teams', {async: false})
 });

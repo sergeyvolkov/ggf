@@ -24,7 +24,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
       // @todo update with plain AJAX and then save record?
       return new Ember.RSVP.Promise((resolve, reject) => {
-        store.find('tournament', this.paramsFor('tournament').tournamentId).then((tournament) => {
+        store.find('tournament', this.paramsFor('tournament').id).then((tournament) => {
+
+          // update `oneWay` binded attributes
           tournament.set('name', params.name);
           tournament.set('description', params.description);
 

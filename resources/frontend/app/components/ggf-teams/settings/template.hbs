@@ -16,6 +16,12 @@
                 {{ggf-mdl.radio label='Double' name='type' groupValue=membersType value='double'}}
             </div>
 
+            <div class="mdl-textfield">
+                {{ggf-mdl.radio label='Started' name='status' groupValue=status value='started'}}
+                {{ggf-mdl.radio label='Draft' name='status' groupValue=status value='draft'}}
+                {{ggf-mdl.radio label='Completed' name='status' groupValue=status value='completed'}}
+            </div>
+
             {{#if session.isAuthenticated}}
                 {{ggf-mdl.button text='Save'}}
             {{/if}}

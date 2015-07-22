@@ -12,15 +12,21 @@ export default Route.extend({
     let tournamentId = this.paramsFor('tournament').id;
 
     return RSVP.hash({
+      tournament: this.modelFor('tournament'),
       matches: store.query('match', {tournamentId: tournamentId}),
-      tournament: store.peekAll('tournament').findBy('id', tournamentId)
+      teams: store.query('team', {tournamentId: tournamentId}),
+    }).then((hash) => {
+
+      hash.tournament.set('matches', hash.matches);
+      hash.tournament.set('teams', hash.teams);
+
+      return hash.tournament;
     });
   },
 
   setupController (controller, model) {
     this._super(controller, model);
 
-    controller.set('tournament', model.tournament);
-    controller.set('matches', model.matches);
+    controller.set('tournament', model);
   }
 });

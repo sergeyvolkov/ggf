@@ -145,6 +145,7 @@ return [
         App\Providers\SessionServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
+        App\Providers\TournamentServiceProvider::class,
 
         /* Vendor Service Providers */
 
