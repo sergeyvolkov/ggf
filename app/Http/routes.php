@@ -26,6 +26,7 @@ Route::group(['middleware' => 'cors'], function() {
     Route::group(['prefix' => 'api/v1', 'middleware' => []], function() {
         Route::get('/leagues', 'API\LeagueController@catalogue');
         Route::post('/leagues', 'API\LeagueController@store');
+        Route::get('/leagueTeams', 'API\LeagueController@teams');
 
         Route::get('/tournaments', 'API\TournamentController@catalogue');
         Route::post('/tournaments', 'API\TournamentController@store');

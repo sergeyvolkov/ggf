@@ -3,7 +3,7 @@
 {{#each model as |tournament|}}
 
     <div class="mdl-cell mdl-cell--12-col">
-        {{#ggf-card title=tournament.name logoPath=tournament.name}}
+        {{#ggf-card title=tournament.name logoPath=tournament.logoPath}}
             <div class="mdl-card__actions mdl-card--border">
                 {{#link-to 'tournament.tablescore' tournament class='mdl-button mdl-button--colored'}}
                     View Tournament

@@ -19,7 +19,7 @@ export default Ember.Component.extend({
   style: computed('logoPath', function() {
     const logoPath = getWithDefault(this, 'logoPath', 'transparent');
     const escapedCSS = escapeExpression(`background-image: url(${logoPath});`);
-
+console.log('esca', escapedCSS);
     return new SafeString(escapedCSS);
   }).readOnly()
 });

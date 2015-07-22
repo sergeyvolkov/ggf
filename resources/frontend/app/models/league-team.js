@@ -8,5 +8,5 @@ const {
 export default Model.extend({
   name:         attr('string'),
   logoPath:     attr('string'),
-  teams: DS.hasMany('league-team', {async: false})
+  leagueId:     attr('number'),
 });
