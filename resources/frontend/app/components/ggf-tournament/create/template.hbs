@@ -1,0 +1,33 @@
+{{md-input
+  value=name
+  label='Tournament name'
+}}
+
+{{md-input
+  value=description
+  label='Tournament description'
+}}
+
+{{#md-radios
+  selection=type
+}}
+  {{md-radio value='league' name='League'}}
+  {{md-radio value='knock-out' name='Knock Out' disabled=true}}
+  {{md-radio value='multistage' name='Multistage' disabled=true}}
+{{/md-radios}}
+
+<br>
+
+{{#md-radios
+  selection=membersType
+}}
+  {{md-radio value='single' name='Single'}}
+  {{md-radio value='double' name='Double'}}
+{{/md-radios}}
+
+{{md-btn-submit
+  icon='mdi-content-send'
+  iconPosition='right'
+  text='Create tournament'
+  action='saveTournament'
+}}
