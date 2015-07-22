@@ -5,7 +5,7 @@ namespace App\Transformers;
 use App\Models\Team;
 use League\Fractal\TransformerAbstract;
 
-class TeamTransformer extends TransformerAbstract
+class TeamSearchTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [];
 
@@ -13,8 +13,7 @@ class TeamTransformer extends TransformerAbstract
     {
         return [
             'id' => $team->id,
-            'leagueId' => $team->leagueId,
-            'name' => $team->name,
+            'text' => $team->name,
             'logoPath' => $team->logoPath,
             'updated_at' => $team->updated_at->format('F d, Y')
         ];
