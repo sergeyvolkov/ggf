@@ -1,0 +1,13 @@
+{{#md-table content=tablescore as |team|}}
+  {{md-table-col row=team key='index' header='#'}}
+  {{md-table-col row=team key='name' header='Name'}}
+  {{md-table-col row=team key='matches' header='M'}}
+  {{md-table-col row=team key='wins' header='W'}}
+  {{md-table-col row=team key='draws' header='D'}}
+  {{md-table-col row=team key='loses' header='L'}}
+  {{md-table-col row=team key='goalsScored' header='GS'}}
+  {{md-table-col row=team key='goalsAgainsted' header='GA'}}
+  {{md-table-col row=team key='goalsDifference' header='GD'}}
+  {{md-table-col row=team key='points' header='P'}}
+  {{ggf-tablescore.last-matches-form form=team.form}}
+{{/md-table}}
