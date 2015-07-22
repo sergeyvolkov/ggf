@@ -9,6 +9,8 @@ export default Ember.Component.extend({
   actions: {
     saveTournament() {
       const params = this.getProperties('name', 'description', 'type', 'membersType');
+
+      this.sendAction('create', params);
     }
   }
 });
