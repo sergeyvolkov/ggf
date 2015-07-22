@@ -1,9 +1,0 @@
-{{#if session.isAuthenticated}}
-    <span class="mdl-layout__tab mdl-navigation__link" {{ action 'invalidateSession' }}>
-        Logout
-    </span>
-{{else}}
-    <span class="mdl-layout__tab mdl-navigation__link" {{ action 'facebookAuth' }}>
-        Login
-    </span>
-{{/if}}

@@ -7,8 +7,7 @@
     {{link-to 'Leagues' 'leagues'}}
   {{/link-to}}
 
-  {{!-- Fixed markup for this element --}}
-  {{ggf-profile action="invalidateSession"}}
+  {{ggf-auth-button logout='invalidateSession' login='authenticate'}}
 {{/md-navbar}}
 
 <div class="container">
