@@ -1,19 +1,32 @@
-{{#with model as |tournament|}}
-
-<h3>{{tournament.name}}</h3>
-
-<div class="mdl-tabs mdl-js-tabs is-upgraded mdl-js-ripple-effect">
-    <div class="mdl-tabs__tab-bar">
-        {{#link-to 'tournament.tablescore' class='mdl-tabs__tab' activeClass='is-active'}}Tablescore{{/link-to}}
-        {{#link-to 'tournament.matches' class='mdl-tabs__tab' activeClass='is-active'}}Matches{{/link-to}}
-        {{#link-to 'tournament.fixtures' class='mdl-tabs__tab' activeClass='is-active'}}Fixtures{{/link-to}}
-        {{#link-to 'tournament.teams' class='mdl-tabs__tab' activeClass='is-active'}}Teams{{/link-to}}
-        {{#if session.isAuthenticated}}
-            {{#link-to 'tournament.settings' class='mdl-tabs__tab' activeClass='is-active'}}Settings{{/link-to}}
-        {{/if}}
-    </div>
+<div class="row">
+  <div class="col md12">
+    <h3>{{model.name}}</h3>
+  </div>
 </div>
 
-{{/with}}
+{{#md-tabs classNames='center'}}
+  {{#link-to 'tournament.tablescore'}}
+    {{md-tab value='tablescore' title='Tablescore'}}
+  {{/link-to}}
+
+  {{#link-to 'tournament.matches'}}
+    {{md-tab value='matches' title='Matches'}}
+  {{/link-to}}
+
+  {{#link-to 'tournament.fixtures'}}
+    {{md-tab value='fixtures' title='Fixtures'}}
+  {{/link-to}}
+
+  {{#link-to 'tournament.teams'}}
+    {{md-tab value='teams' title='Teams'}}
+  {{/link-to}}
+
+  {{#if session.isAuthenticated}}
+    {{#link-to 'tournament.settings'}}
+      {{md-tab value='settings' title='Settings'}}
+    {{/link-to}}
+  {{/if}}
+
+{{/md-tabs}}
 
 {{outlet}}
