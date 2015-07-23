@@ -1,34 +1,28 @@
 {{#with model.teams as |teams| }}
-<div class="row">
-    <div class="col12">
-        <h4>Teams</h4>
+    <div class="row">
+        {{#each teams as |team|}}
+            <div class="col s12 m6 l4">
+                {{#md-card
+                    title=team.name
+                    titleClass="orange-text"
+                }}
+                    {{#md-card-content}}
+                        <img src="{{team.logoPath}}"/>
+                    {{/md-card-content}}
+                    {{#md-card-action}}
+                        {{#link-to 'tournament.team' team}}View team{{/link-to}}
+                    {{/md-card-action}}
 
-        <div class="row">
-            {{#each teams as |team|}}
-                <div class="col s12 m6 l4">
-                    {{#md-card
-                        title=team.name
-                        titleClass="orange-text"
-                    }}
-                        {{#md-card-content}}
-                            <img src="{{team.logoPath}}"/>
-                        {{/md-card-content}}
-                        {{#md-card-action}}
-                            {{#link-to 'tournament.team' team}}View team{{/link-to}}
-                        {{/md-card-action}}
+                {{/md-card}}
+            </div>
+        {{/each}}
 
-                    {{/md-card}}
-                </div>
-            {{/each}}
-
-            {{#if session.isAuthenticated}}
-                <div class="col s12 m6 l4">
-                    {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
-                </div>
-            {{/if}}
-        </div>
+        {{#if session.isAuthenticated}}
+            <div class="col s12 m6 l4">
+                {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
+            </div>
+        {{/if}}
     </div>
-</div>
 {{/with}}
 
 {{outlet}}
