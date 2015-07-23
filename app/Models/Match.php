@@ -17,6 +17,7 @@ class Match extends Model
         'homePenaltyScore',
         'awayPenaltyScore',
         'gameType',
+        'round',
         'resultType',
         'status',
     ];

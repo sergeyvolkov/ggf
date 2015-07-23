@@ -17,10 +17,6 @@ class ValidatorServiceProvider extends ServiceProvider
         $this->app['validator']->resolver(function ($translator, $data, $rules, $messages) {
             return new AssetExistsValidator($translator, $data, $rules, $messages);
         });
-
-        $this->app['validator']->resolver(function ($translator, $data, $rules, $messages) {
-            return new TeamAddedValidator($translator, $data, $rules, $messages);
-        });
     }
 
     public function register()

@@ -4,9 +4,9 @@
     <div class="mdl-grid">
         {{#each leagues as |league|}}
             <div class="mdl-cell mdl-cell--4-col">
-                {{#ggf-card title=league.name}}
+                {{#ggf-card title=league.name logoPath=league.logoPath}}
                     <div class="mdl-card__actions mdl-card--border">
-                        {{#link-to 'leagues.view' league class='mdl-button mdl-button--colored'}}
+                        {{#link-to 'league' league class='mdl-button mdl-button--colored'}}
                             View League
                         {{/link-to}}
                     </div>

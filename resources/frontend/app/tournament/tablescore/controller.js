@@ -6,12 +6,12 @@ export default Ember.Controller.extend({
 
   teamsResults: function() {
     // @todo need to merge with tablescore
-    let matches = this.get('matches'),
+    let matches = this.get('tournament.matches'),
         teams = this.get('tournament.teams'),
         matchesForTeam = {};
 
     teams.forEach(function(team) {
-      matchesForTeam[team] = [];
+      matchesForTeam[team.get('name')] = [];
     });
 
     matches.forEach(function(match) {

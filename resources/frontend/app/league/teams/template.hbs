@@ -1,0 +1,25 @@
+<h4>Teams</h4>
+
+{{#with model.teams as |teams| }}
+<div class="ggf-teams mdl-cell--12-col">
+    <div class="mdl-grid">
+        {{#each teams as |team|}}
+            <div class="mdl-cell mdl-cell--4-col">
+
+                {{#ggf-card title=team.name logoPath=team.logoPath}}
+                    <div class="mdl-card__actions mdl-card--border">
+                        <span class='mdl-button mdl-button--colored'>
+                            View Team
+                        </span>
+                    </div>
+
+                    <button class="mdl-button mdl-button--icon ggf-menu-button">
+                        <i class="material-icons">more_vert</i>
+                    </button>
+                {{/ggf-card}}
+            </div>
+
+        {{/each}}
+    </div>
+</div>
+{{/with}}

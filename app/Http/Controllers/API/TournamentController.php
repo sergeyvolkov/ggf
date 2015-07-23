@@ -71,6 +71,7 @@ class TournamentController extends Controller
         $tournament->update([
             'name' => Input::get('tournament.name'),
             'type' => Input::get('tournament.type'),
+            'status' => Input::get('tournament.status'),
             'membersType' => Input::get('tournament.membersType'),
             'description' => Input::get('tournament.description')
         ]);

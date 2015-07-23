@@ -13,7 +13,8 @@ class TeamTransformer extends TransformerAbstract
     {
         return [
             'id' => $team->id,
-            'text' => $team->name,
+            'leagueId' => $team->leagueId,
+            'name' => $team->name,
             'logoPath' => $team->logoPath,
             'updated_at' => $team->updated_at->format('F d, Y')
         ];

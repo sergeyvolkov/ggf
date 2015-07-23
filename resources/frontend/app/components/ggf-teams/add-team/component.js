@@ -11,8 +11,6 @@ export default Component.extend({
   search: false,
 
   team: null,
-  tournamentId: '',
-  logoPath: '',
 
   classNames: ['ggf-card mdl-card mdl-shadow--2dp demo-card-event'],
 
@@ -21,8 +19,6 @@ export default Component.extend({
   ],
 
   isDirty: Ember.computed.alias('search'),
-
-  teams: null,
 
   actions: {
     queryOptions: function (query, promise) {
@@ -33,21 +29,7 @@ export default Component.extend({
         type: 'GET',
         data: {term: query.term},
         success: (result) => {
-          let teams = Ember.A([
-            {
-              id: "1",
-              text: "Liverpool",
-            }, {
-              id: "2",
-              text: "Chelsea",
-            }
-          ]);
-
-          console.log('teams', result);
-
-          this.teams = result.teams;
-
-          promise.resolve(this.teams);
+          promise.resolve(result.teams);
         }
       });
     },
@@ -65,8 +47,9 @@ export default Component.extend({
 
     submit() {
       this.sendAction('submit', {
-        team: this.get('team'),
-        tournamentId: this.get('tournamentId')
+        teamId: this.get('team').id,
+        name: this.get('team').text,
+        logoPath: this.get('team').logoPath
       });
 
       this.set('team', null);

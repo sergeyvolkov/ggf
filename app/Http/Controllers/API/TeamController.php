@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Team;
 use App\Models\TournamentTeam;
-use App\Transformers\TeamTransformer;
+use App\Transformers\TeamSearchTransformer;
 use App\Transformers\TournamentTeamTransformer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
@@ -27,7 +27,7 @@ class TeamController extends Controller
 
         return $this->response->collection(
             $collection,
-            new TeamTransformer(),
+            new TeamSearchTransformer(),
             'teams'
         );
     }

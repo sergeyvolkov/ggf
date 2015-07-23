@@ -10,7 +10,7 @@ export default Ember.Component.extend({
       self = this;
 
     teams.forEach(function(team) {
-      tablescore[team] = self.getBasicStatForTeam(team);
+      tablescore[team.get('name')] = self.getBasicStatForTeam(team.get('name'));
     });
 
     matches.forEach(function(match) {

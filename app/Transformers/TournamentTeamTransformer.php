@@ -16,6 +16,7 @@ class TournamentTeamTransformer extends TransformerAbstract
             'name' => $tournamentTeam->team->name,
             'logoPath' => $tournamentTeam->team->logoPath,
             'tournamentId' => $tournamentTeam->tournamentId,
+            'teamId' => $tournamentTeam->team->id,
             'updated_at' => $tournamentTeam->team->updated_at->format('F d, Y')
         ];
     }

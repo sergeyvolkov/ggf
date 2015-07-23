@@ -1,54 +1,47 @@
 import Ember from 'ember';
-
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+const {
+  Route,
+  RSVP
+} = Ember;
+
+export default Route.extend(ApplicationRouteMixin, {
   model() {
-    const store = this.store;
-    const tournamentId = this.paramsFor('tournament').id;
 
-    this.store.unloadAll('team');
+    let store = this.store;
+    let tournamentId = this.paramsFor('tournament').id;
 
-    return Ember.RSVP.hash({
-      tournamentId: tournamentId,
-      teams: store.filter('team', {tournamentId: tournamentId}, function (tournament) {
-        return !tournament.get('isNew');
-      })
+    return RSVP.hash({
+      tournament: this.modelFor('tournament'),
+      teams: store.query('team', {tournamentId: tournamentId}),
+    }).then((hash) => {
+
+      hash.tournament.set('teams', hash.teams);
+
+      return hash;
     });
   },
 
   actions: {
 
     addTeam(team) {
+      const tournament = this.modelFor('tournament');
 
-      const store = this.store;
+      team.tournamentId = tournament.get('id');
 
-      let teamRecord = store.createRecord('team', {
-        teamId: team.team.id,
-        tournamentId: this.paramsFor('tournament').id
-      });
+      let teamRecord = tournament.get('teams').createRecord(team);
 
-      teamRecord.save()
+      teamRecord
+        .save()
         .catch((err) => {
           // @todo Show error message
           console.log('[ERR]', err);
+
+          teamRecord.rollback();
         })
         .finally(() => {
-
-          return new Ember.RSVP.Promise(function (resolve, reject) {
-            this.store.find('tournament', teamRecord.get('tournamentId')).then(function (tournament) {
-              this.store.unloadRecord(tournament);
-
-              this.store.find('tournament', teamRecord.get('tournamentId'))
-                .then(function (tournament) {
-                  resolve(tournament);
-                }.bind(this))
-                .catch(function(err) {
-                  reject(err);
-                });
-
-            }.bind(this));
-          }.bind(this));
+          // @todo Show success message
         });
     }
   }

@@ -12,12 +12,13 @@ class TournamentTransformer extends TransformerAbstract
         $teams = [];
 
         foreach ($tournament->tournamentTeams as $tournamentTeam) {
-            $teams[] = $tournamentTeam->team->name;
+            $teams[] = $tournamentTeam->team->id;
         }
 
         return [
             'id' => $tournament->id,
             'name' => $tournament->name,
+            'status' => $tournament->status,
             'type' => $tournament->type,
             'membersType' => $tournament->membersType,
             'teams' => $teams,

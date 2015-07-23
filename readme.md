@@ -46,3 +46,17 @@
 
 
 7. Finally, browse [http://192.168.10.10](http://192.168.10.10), you should see the main page of application.
+
+
+## Testing
+
+Add new database to the particular list in Homestead.yaml:
+```
+databases:
+    - homestead
+    - homestead_test
+```
+Reload vagrant and run `phpunit`:
+```
+vendor/bin/phpunit
+```

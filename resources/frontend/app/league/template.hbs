@@ -1,0 +1,13 @@
+{{#with model as |league|}}
+
+    <h3>{{league.name}}</h3>
+
+    <div class="mdl-tabs mdl-js-tabs is-upgraded mdl-js-ripple-effect">
+        <div class="mdl-tabs__tab-bar">
+            {{#link-to 'league' class='mdl-tabs__tab' activeClass='is-active'}}Teams{{/link-to}}
+        </div>
+    </div>
+
+{{/with}}
+
+{{outlet}}
