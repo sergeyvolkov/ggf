@@ -19,7 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    saveSettings (params) {
+    save (params) {
       const store = this.store;
 
       // @todo update with plain AJAX and then save record?

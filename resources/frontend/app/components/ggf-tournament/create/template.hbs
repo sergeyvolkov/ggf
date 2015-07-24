@@ -1,33 +1,55 @@
-{{md-input
-  value=name
-  label='Tournament name'
-}}
+<div class="row">
+    <div class="input-field col s12">
+        {{md-input
+            value=name
+            label='Tournament name'
+        }}
+    </div>
 
-{{md-input
-  value=description
-  label='Tournament description'
-}}
+    <div class="input-field col s12">
+        {{md-input
+            value=description
+            label='Tournament description'
+        }}
+    </div>
 
-{{#md-radios
-  selection=type
-}}
-  {{md-radio value='league' name='League'}}
-  {{md-radio value='knock-out' name='Knock Out' disabled=true}}
-  {{md-radio value='multistage' name='Multistage' disabled=true}}
-{{/md-radios}}
+    <div class="input-field col s12">
+        {{#md-radios
+            selection=type
+        }}
+            <p>{{md-radio value='league' name='League'}}</p>
+            <p>{{md-radio value='knock-out' name='Knock Out' disabled=true}}</p>
+            <p>{{md-radio value='multistage' name='Multistage' disabled=true}}</p>
+        {{/md-radios}}
+    </div>
 
-<br>
+    <div class="input-field col s12">
+        {{#md-radios
+            selection=membersType
+        }}
+            <p>{{md-radio value='single' name='Single'}}</p>
+            <p>{{md-radio value='double' name='Double'}}</p>
+        {{/md-radios}}
+    </div>
 
-{{#md-radios
-  selection=membersType
-}}
-  {{md-radio value='single' name='Single'}}
-  {{md-radio value='double' name='Double'}}
-{{/md-radios}}
+    {{#if tournament.id}}
+    <div class="input-field col s12">
+        {{#md-radios
+            selection=status
+        }}
+            <p>{{md-radio value='started' name='Started'}}</p>
+            <p>{{md-radio value='draft' name='Draft'}}</p>
+            <p>{{md-radio value='completed' name='Completed'}}</p>
+        {{/md-radios}}
+    </div>
+    {{/if}}
 
-{{md-btn-submit
-  icon='mdi-content-send'
-  iconPosition='right'
-  text='Create tournament'
-  action='saveTournament'
-}}
+    <div class="input-field col s12">
+        {{md-btn-submit
+            icon='mdi-content-send'
+            iconPosition='right'
+            text='Create'
+            action='saveTournament'
+        }}
+    </div>
+</div>

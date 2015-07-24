@@ -10,14 +10,16 @@ export default Ember.Component.extend({
   membersType: Ember.computed.alias('tournament.membersType'),
 
   actions: {
+    create() {
+      const params = this.getProperties('name', 'description', 'type', 'membersType');
+
+      this.sendAction('submit', params);
+    },
+
     save() {
-      this.sendAction('submit', {
-        name: this.get('name'),
-        type: this.get('type'),
-        status: this.get('status'),
-        membersType: this.get('membersType'),
-        description: this.get('description'),
-      });
+      const params = this.getProperties('name', 'description', 'type', 'membersType', 'status');
+
+      this.sendAction('submit', params);
     }
   }
 });

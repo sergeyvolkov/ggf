@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   membersType:  'single', // single or double
 
   actions: {
-    saveTournament() {
+    create() {
       const params = this.getProperties('name', 'description', 'type', 'membersType');
 
       this.sendAction('create', params);
