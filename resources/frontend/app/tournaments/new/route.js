@@ -8,16 +8,6 @@ export default Ember.Route.extend({
     });
   },
 
-  deactivate() {
-    const store = this.store;
-
-    store.filter('tournament', (tournament) => {
-      if (tournament.get('isNew')) {
-        store.deleteRecord(tournament);
-      }
-    });
-  },
-
   actions: {
     save(tournament) {
       let newTournament = this.store.createRecord('tournament', tournament);
