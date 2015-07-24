@@ -1,13 +1,15 @@
 {{#md-table content=tablescore as |team|}}
-  {{md-table-col row=team key='index' header='#'}}
-  {{md-table-col row=team key='name' header='Name'}}
-  {{md-table-col row=team key='matches' header='M'}}
-  {{md-table-col row=team key='wins' header='W'}}
-  {{md-table-col row=team key='draws' header='D'}}
-  {{md-table-col row=team key='loses' header='L'}}
-  {{md-table-col row=team key='goalsScored' header='GS'}}
-  {{md-table-col row=team key='goalsAgainsted' header='GA'}}
-  {{md-table-col row=team key='goalsDifference' header='GD'}}
-  {{md-table-col row=team key='points' header='P'}}
-  {{ggf-tablescore.last-matches-form form=team.form}}
+    {{md-table-col row=team valueBindingPath='index' header='#'}}
+    {{#md-table-col _value='' valueBindingPath='name' header='Name'}}
+        {{team.name}}
+    {{/md-table-col}}
+    {{md-table-col row=team valueBindingPath='matches' header='M'}}
+    {{md-table-col row=team valueBindingPath='wins' header='W'}}
+    {{md-table-col row=team valueBindingPath='draws' header='D'}}
+    {{md-table-col row=team valueBindingPath='loses' header='L'}}
+    {{md-table-col row=team valueBindingPath='goalsScored' header='GS'}}
+    {{md-table-col row=team valueBindingPath='goalsAgainsted' header='GA'}}
+    {{md-table-col row=team valueBindingPath='goalsDifference' header='GD'}}
+    {{md-table-col row=team valueBindingPath='points' header='P'}}
+
 {{/md-table}}
