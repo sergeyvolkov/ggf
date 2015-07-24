@@ -1,5 +1,6 @@
-{{#with model.teams as |teams| }}
-    <div class="row">
+
+<div class="row">
+    {{#with model.teams as |teams| }}
         {{#each teams as |team|}}
             <div class="col s12 m6 l4">
                 {{#md-card
@@ -16,13 +17,12 @@
                 {{/md-card}}
             </div>
         {{/each}}
-
-        {{#if session.isAuthenticated}}
-            <div class="col s12 m6 l4">
-                {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
-            </div>
-        {{/if}}
-    </div>
-{{/with}}
+    {{/with}}
+    {{#if session.isAuthenticated}}
+        <div class="col s12 m6 l4">
+            {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
+        </div>
+    {{/if}}
+</div>
 
 {{outlet}}
