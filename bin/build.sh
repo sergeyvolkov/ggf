@@ -14,3 +14,4 @@ rm $DIR/../public/assets -rf
 cp -r dist/assets $DIR/../public
 cp -r dist/font $DIR/../public
 cp -r dist/teams-logo $DIR/../public
+cp -r dist/leagues-logo $DIR/../public
