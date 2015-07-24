@@ -57,7 +57,10 @@ class TournamentController extends Controller
      */
     public function store(CreateTournament $request)
     {
-        $tournament = Tournament::create($request->input('tournament'));
+        $input = $request->input('tournament');
+        $input['status'] = Tournament::STATUS_DRAFT;
+
+        $tournament = Tournament::create($input);
 
         return $this->response->collection(Tournament::where(['id' => $tournament->id])->get(), new TournamentTransformer($this->response), 'tournaments');
     }
