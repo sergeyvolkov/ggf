@@ -31,12 +31,18 @@ class DrawLeagueTest extends TestCase
          */
         $tournament = Factory::create('App\Models\Tournament');
 
-        Factory::times($teamsAmount)->create('App\Models\Team')->each(function($team, $key) use ($tournament) {
-            $tournament->tournamentTeams()->create([
-                'teamId' => $team->id,
-                'tournamentId' => $tournament->id,
-            ]);
-        });
+        /**
+         * @var $tournament Tournament
+         */
+        $league = Factory::create('App\Models\League');
+
+        Factory::times($teamsAmount)->create('App\Models\Team', ['leagueId' => $league->id])
+            ->each(function($team, $key) use ($tournament) {
+                $tournament->tournamentTeams()->create([
+                    'teamId' => $team->id,
+                    'tournamentId' => $tournament->id,
+                ]);
+            });
 
         $tournament->status = Tournament::STATUS_STARTED;
         $tournament->save();
