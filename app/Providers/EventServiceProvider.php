@@ -15,6 +15,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\TournamentWasStarted' => [
             'App\Listeners\Tournament\DrawLeague',
+        ],
+        'App\Events\TournamentWasReset' => [
+            'App\Listeners\Tournament\Reset',
         ]
     ];
 

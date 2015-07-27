@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Sorskod\Larasponse\Larasponse;
 use App\Http\Requests\Tournament\AddTeam;
+use Symfony\Component\Process\Exception\LogicException;
 
 
 class TournamentTeamsController extends Controller
@@ -27,6 +28,12 @@ class TournamentTeamsController extends Controller
 
     public function add(AddTeam $request)
     {
+        $tournament = Tournament::findOrFail($request->input('team.tournamentId'));
+
+        if (Tournament::STATUS_DRAFT !== $tournament->status) {
+            throw new LogicException('Team can be assigned only to tournament with draft status.');
+        }
+
         $team = TournamentTeam::create($request->input('team'));
 
         return $this->response->collection(TournamentTeam::where(['id' => $team->id])->get(), new TournamentTeamTransformer(), 'teams');

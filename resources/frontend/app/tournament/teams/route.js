@@ -8,19 +8,14 @@ const {
 
 export default Route.extend(ApplicationRouteMixin, {
   model() {
+    let tournament = this.modelFor('tournament');
 
-    let store = this.store;
-    let tournamentId = this.paramsFor('tournament').id;
+    return this.store.query('team', {tournamentId: tournament.get('id')})
+      .then((teams) => {
+        tournament.set('teams', teams);
 
-    return RSVP.hash({
-      tournament: this.modelFor('tournament'),
-      teams: store.query('team', {tournamentId: tournamentId}),
-    }).then((hash) => {
-
-      hash.tournament.set('teams', hash.teams);
-
-      return hash;
-    });
+        return tournament;
+      });
   },
 
   actions: {

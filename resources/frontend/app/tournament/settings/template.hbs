@@ -1,11 +1,5 @@
 {{#with model.tournament as |tournament|}}
 
-    <div class="ggf-settings mdl-cell--12-col">
-
-        <h4>Settings</h4>
-
-        {{ggf-teams.settings tournament=tournament submit="saveSettings"}}
-
-    </div>
+    {{ggf-tournament.settings tournament=tournament submit="save"}}
 
 {{/with}}

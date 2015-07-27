@@ -6,7 +6,7 @@ var envConfig = require('./config/environment')(process.env.EMBER_ENV);
 
 var app = new EmberApp({
   fingerprint: {
-    exclude: ['teams-logo'],
+    exclude: ['teams-logo', 'leagues-logo'],
     enabled: envConfig.APP.fingerprintEnabled || false
   }
 });
@@ -23,9 +23,5 @@ var app = new EmberApp({
 // modules that you would like to import into your application
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
-
-
-// include material design lite
-app.import(app.bowerDirectory + '/material-design-lite/material.min.css');
 
 module.exports = app.toTree();

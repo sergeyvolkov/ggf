@@ -56,7 +56,7 @@ export default Ember.Component.extend({
     return tablescore;
   }.property(),
 
-  tablescore: function() {
+  tablescore: Ember.computed('statistic', function() {
     let result = [],
       statistic = this.get('statistic');
 
@@ -72,7 +72,7 @@ export default Ember.Component.extend({
     result = this.orderedTeams(result);
 
     return result;
-  }.property(),
+  }),
 
   getBasicStatForTeam: function(team) {
     return {

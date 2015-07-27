@@ -1,35 +1,30 @@
-{{#with model.tournament as |tournament| }}
 
-<h4>Teams</h4>
+<div class="row">
+    {{#with model.teams as |teams| }}
+        {{#each teams as |team|}}
+            <div class="col s12 m6 l4">
+                {{#md-card
+                    title=team.name
+                    titleClass="orange-text"
+                }}
+                    {{#md-card-content}}
+                        <img src="{{team.logoPath}}"/>
+                    {{/md-card-content}}
+                    {{#md-card-action}}
+                        {{#link-to 'tournament.team' team}}View team{{/link-to}}
+                    {{/md-card-action}}
 
-    <div class="ggf-teams mdl-cell--12-col">
-        <div class="mdl-grid">
-            {{#each tournament.teams as |team|}}
-            <div class="mdl-cell mdl-cell--4-col">
-
-                {{#ggf-card title=team.name logoPath=team.logoPath}}
-                    <div class="mdl-card__actions mdl-card--border">
-                        {{#link-to 'tournament.team' team class='mdl-button mdl-button--colored'}}
-                            View Team
-                        {{/link-to}}
-                    </div>
-
-                    <button class="mdl-button mdl-button--icon ggf-menu-button">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                {{/ggf-card}}
+                {{/md-card}}
             </div>
-
-            {{/each}}
-            {{#if session.isAuthenticated}}
-                <div class="mdl-cell mdl-cell--4-col">
-                    {{ggf-teams.add-team submit="addTeam" query="queryOptions"}}
-                </div>
-            {{/if}}
-        </div>
-    </div>
-
+        {{/each}}
+    {{/with}}
+    {{#if session.isAuthenticated}}
+        {{#if model.isDraft}}
+            <div class="col s12 m6 l4">
+                {{ggf-teams.add-team tournamentId=model.tournamentId submit="addTeam" query="queryOptions"}}
+            </div>
+        {{/if}}
+    {{/if}}
+</div>
 
 {{outlet}}
-
-{{/with}}

@@ -1,25 +1,26 @@
 {{#with model as |leagues|}}
 
-<div class="ggf-leagues mdl-cell--12-col">
-    <div class="mdl-grid">
-        {{#each leagues as |league|}}
-            <div class="mdl-cell mdl-cell--4-col">
-                {{#ggf-card title=league.name logoPath=league.logoPath}}
-                    <div class="mdl-card__actions mdl-card--border">
-                        {{#link-to 'league' league class='mdl-button mdl-button--colored'}}
-                            View League
-                        {{/link-to}}
-                    </div>
+    <div class="row">
+        <div class="col12">
+            <div class="row">
+                {{#each leagues as |league|}}
+                    <div class="col s12 m6 l4">
+                        {{#md-card
+                            title=league.name
+                            titleClass="orange-text"
+                        }}
+                            {{#md-card-content}}
+                                <img src="{{league.logoPath}}"/>
+                            {{/md-card-content}}
+                            {{#md-card-action}}
+                                {{#link-to 'league' league}}View league{{/link-to}}
+                            {{/md-card-action}}
 
-                    <button class="mdl-button mdl-button--icon ggf-menu-button">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                {{/ggf-card}}
+                        {{/md-card}}
+                    </div>
+                {{/each}}
             </div>
-        {{else}}
-                Sorry, nobody is here.
-        {{/each}}
+        </div>
     </div>
-</div>
 
 {{/with}}

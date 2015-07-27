@@ -4,13 +4,6 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
 
-    /**
-     * This will prevent default behaviour (reload page)
-     */
-    sessionInvalidationSucceeded: function() {
-      this.transitionTo('index');
-    },
-
     authenticate: function(provider) {
       this.get('session').authenticate('authenticator:torii-oauth2', {
         torii: this.get('torii'),

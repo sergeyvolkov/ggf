@@ -2,8 +2,9 @@
 
 namespace App\Observers;
 
-use App\Models\Tournament;
+use App\Events\TournamentWasReset;
 use App\Events\TournamentWasStarted;
+use App\Models\Tournament;
 use Illuminate\Support\Facades\Log;
 
 class TournamentObserver
@@ -12,12 +13,18 @@ class TournamentObserver
     {
         $dirtyStatus = array_get($model->getDirty(), 'status');
 
-        Log::debug('Tournament ' . $model->name . ' was started');
-
         if (Tournament::STATUS_STARTED === $dirtyStatus
             && 1 > $model->matches()->getResults()->count()
         ) {
+            Log::debug('Tournament ' . $model->name . ' was started');
+
             event(new TournamentWasStarted($model));
+        }
+
+        if (Tournament::STATUS_DRAFT === $dirtyStatus) {
+            Log::debug('Tournament ' . $model->name . ' was reset');
+
+            event(new TournamentWasReset($model));
         }
     }
 }

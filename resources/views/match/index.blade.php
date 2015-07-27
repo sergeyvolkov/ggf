@@ -53,6 +53,10 @@
                 {!! Form::label('gameType', 'GameType:') !!}
                 {!! Form::text('gameType', 'group', ['class' => 'form-control']) !!}
             </div>
+            <div class="form-group">
+                {!! Form::label('round', 'Round:') !!}
+                {!! Form::text('round', null, ['class' => 'form-control']) !!}
+            </div>
 
             <div class="form-group">
                 {!! Form::submit('Create', ['class' => 'form-control btn btn-primary']) !!}

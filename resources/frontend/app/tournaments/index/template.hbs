@@ -1,19 +1,26 @@
-{{#link-to 'tournaments.new'}}Add new tournament{{/link-to}}
+{{#link-to 'tournaments.new'}}
+  {{md-btn
+    text='Create new tournament'
+    icon='mdi-content-add-box'
+    class='indigo'
+  }}
+{{/link-to}}
 
 {{#each model as |tournament|}}
 
-    <div class="mdl-cell mdl-cell--12-col">
-        {{#ggf-card title=tournament.name logoPath=tournament.logoPath}}
-            <div class="mdl-card__actions mdl-card--border">
-                {{#link-to 'tournament.tablescore' tournament class='mdl-button mdl-button--colored'}}
-                    View Tournament
-                {{/link-to}}
-            </div>
+  {{#md-card
+    title=tournament.name
+    titleClass="orange-text"
+  }}
 
-            <button class="mdl-button mdl-button--icon ggf-menu-button">
-                <i class="material-icons">more_vert</i>
-            </button>
-        {{/ggf-card}}
-    </div>
+    {{#md-card-content}}
+      {{tournament.description}}
+    {{/md-card-content}}
+
+    {{#md-card-action}}
+      {{#link-to 'tournament.tablescore' tournament}}View tournament{{/link-to}}
+    {{/md-card-action}}
+
+  {{/md-card}}
 
 {{/each}}

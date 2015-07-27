@@ -1,24 +1,17 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  setupController(controller) {
-    const newTournament = {
-      name: '',
-      description: '',
-      type: '',
-      membersType: ''
-    };
-
-    controller.set('tournament', newTournament);
+  model() {
+    return this.store.createRecord('tournament', {
+      'type': 'league',
+      'membersType': 'single'
+    });
   },
 
   actions: {
-    saveTournament(tournament) {
-      // @todo fix ggf-mdl.radio button
-      tournament.type = 'league';
-      tournament.membersType = 'single';
+    save(tournament) {
+      let newTournament = this.store.createRecord('tournament', tournament);
 
-      const newTournament = this.store.createRecord('tournament', tournament);
       newTournament.save().then( () => {
         this.transitionTo('tournament.teams', newTournament.id);
       });

@@ -1,0 +1,15 @@
+{{#md-table content=tablescore as |team|}}
+    {{md-table-col row=team valueBindingPath='index' header='#'}}
+    {{#md-table-col _value='' valueBindingPath='name' header='Name'}}
+        {{team.name}}
+    {{/md-table-col}}
+    {{md-table-col row=team valueBindingPath='matches' header='M'}}
+    {{md-table-col row=team valueBindingPath='wins' header='W'}}
+    {{md-table-col row=team valueBindingPath='draws' header='D'}}
+    {{md-table-col row=team valueBindingPath='loses' header='L'}}
+    {{md-table-col row=team valueBindingPath='goalsScored' header='GS'}}
+    {{md-table-col row=team valueBindingPath='goalsAgainsted' header='GA'}}
+    {{md-table-col row=team valueBindingPath='goalsDifference' header='GD'}}
+    {{md-table-col row=team valueBindingPath='points' header='P'}}
+
+{{/md-table}}
