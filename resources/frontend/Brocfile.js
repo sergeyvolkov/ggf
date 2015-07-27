@@ -6,7 +6,7 @@ var envConfig = require('./config/environment')(process.env.EMBER_ENV);
 
 var app = new EmberApp({
   fingerprint: {
-    exclude: ['teams-logo'],
+    exclude: ['teams-logo', 'leagues-logo'],
     enabled: envConfig.APP.fingerprintEnabled || false
   }
 });

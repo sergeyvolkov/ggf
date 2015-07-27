@@ -9,3 +9,5 @@ resources/views/app.blade.php
 public/assets
 public/build
 public/teams-logo
+public/leagues-logo
+public/font
