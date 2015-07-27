@@ -8,7 +8,7 @@ class Team extends Model {
 
 	protected $table = 'teams';
 
-	protected $fillable = ['name','logoPath'];
+	protected $fillable = ['name','logoPath', 'leagueId'];
 
 	public $timestamps = true;
 
