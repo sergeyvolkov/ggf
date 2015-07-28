@@ -3,7 +3,8 @@ import DS from 'ember-data';
 
 const {
   Model,
-  attr
+  attr,
+  hasMany
 } = DS;
 
 
@@ -17,8 +18,9 @@ export default Model.extend({
   type:         attr('string'),
   status:       attr('string'),
   membersType:  attr('string'),
-  teams:        DS.hasMany('teams', {async: false}),
-  matches:      DS.hasMany('matches', {async: false}),
+  teams:        hasMany('teams', {async: false}),
+  matches:      hasMany('matches', {async: false}),
+  tablescore:   hasMany('tablescore', {async: false}),
 
   isDraft: computed('status', function () {
     return this.get('status') === 'draft';
