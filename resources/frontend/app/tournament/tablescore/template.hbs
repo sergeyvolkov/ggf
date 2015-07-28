@@ -1,7 +1,11 @@
 <div class="row">
-  <div class="col s12">
-    {{ggf-tournament.tablescore matches=tournament.matches teams=tournament.teams teamsResults=teamsResults}}
-  </div>
+{{#if tournament.isDraft }}
+    {{ggf-tournament.complete-setup tournament=tournament}}
+{{else}}
+    <div class="col s12">
+        {{ggf-tournament.tablescore matches=tournament.matches teams=tournament.teams tablescore=tournament.tablescore}}
+    </div>
+{{/if}}
 </div>
 
 {{outlet}}

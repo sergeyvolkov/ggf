@@ -1,7 +1,14 @@
 import Ember from 'ember';
-
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+const {
+  RSVP
+  } = Ember;
 
+export default Ember.Route.extend(ApplicationRouteMixin, {
+  model() {
+    return RSVP.hash({
+      tournament: this.modelFor('tournament')
+    });
+  }
 });

@@ -1,0 +1,11 @@
+table {
+  th.centered,
+  td.centered {
+    text-align: center;
+  }
+
+  th.min,
+  td.min {
+    max-width: 20px;
+  }
+}
