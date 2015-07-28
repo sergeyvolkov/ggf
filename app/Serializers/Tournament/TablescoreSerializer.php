@@ -22,7 +22,7 @@ class TablescoreSerializer
 
             $defaultTeamData = [
                 'matches' => 0,
-                'rank' => 0,
+                'position' => 0,
                 'wins' => 0,
                 'draws' => 0,
                 'losts' => 0,
@@ -87,12 +87,33 @@ class TablescoreSerializer
 
         });
 
+        // sort by points and goal difference
         $tablescore = $tablescore->sort(function($a, $b) {
             if ($b['points'] === $a['points']) {
                 return $b['goalsDifference'] - $a['goalsDifference'];
             }
 
             return $b['points'] - $a['points'];
+        });
+
+        $previousRow = null;
+        $position = 1;
+        $tablescore = $tablescore->map(function($row) use (&$previousRow, &$position) {
+            if ($previousRow
+                && $previousRow['points'] > 0
+                && $previousRow['points'] == $row['points']
+                && $previousRow['goalsDifference'] == $row['goalsDifference']
+            ) {
+                $row['position'] = $previousRow['position'];
+            } else {
+                $row['position'] = $position;
+            }
+
+            $position++;
+
+            $previousRow = $row;
+
+            return $row;
         });
 
         return $tablescore;

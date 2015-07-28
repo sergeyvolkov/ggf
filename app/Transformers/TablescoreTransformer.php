@@ -14,9 +14,10 @@ class TablescoreTransformer extends TransformerAbstract
     public function transform($teamRank)
     {
         return [
-            'teamId' => $teamRank['teamId'],
+            'id' => $teamRank['teamId'],
+            'position' => array_get($teamRank, 'position', 0),
+            'team' => $teamRank['teamId'],
             'matches' => array_get($teamRank, 'matches', 0),
-            'rank' => array_get($teamRank, 'rank', 0),
             'wins' => array_get($teamRank, 'wins', 0),
             'draws' => array_get($teamRank, 'draws', 0),
             'losts' => array_get($teamRank, 'losts', 0),
