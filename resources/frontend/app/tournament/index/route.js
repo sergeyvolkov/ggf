@@ -12,5 +12,7 @@ export default Ember.Route.extend({
 
     controller.set('tournament', tournament);
     controller.set('matches', model);
+
+    this._super(controller, model, transition);
   }
 });

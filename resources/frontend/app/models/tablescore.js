@@ -8,7 +8,6 @@ const {
 
 export default Model.extend({
   position: attr('number'),
-  team: attr('number'),
   matches: attr('number'),
   wins: attr('number'),
   draws: attr('number'),
