@@ -10,10 +10,16 @@ export default Ember.Route.extend({
 
   actions: {
     save(tournament) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+
       let newTournament = this.store.createRecord('tournament', tournament);
 
-      newTournament.save().then( () => {
+      newTournament.save().then(() => {
+        flashMessages.success('Tournament has been created');
+
         this.transitionTo('tournament.teams', newTournament.id);
+      }).catch(() => {
+        flashMessages.danger('Unable to create tournament');
       });
 
     }

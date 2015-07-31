@@ -1,6 +1,7 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
+
   var ENV = {
     modulePrefix: 'ggf',
     environment: environment,
@@ -36,10 +37,17 @@ module.exports = function(environment) {
       sessionServiceName: 'session',
       providers: {
         'facebook-oauth2': {
-          apiKey:      '681549091980013',
-          redirectUri:  'https://good-gateway-football.herokuapp.com'
+          apiKey: '681549091980013',
+          redirectUri: 'https://good-gateway-football.herokuapp.com'
         }
       }
+    },
+
+    flashMessageDefaults: {
+      timeout: 5000,
+      extendedTimeout: 0,
+      priority: 200,
+      showProgress: true,
     }
   };
 
@@ -70,7 +78,7 @@ module.exports = function(environment) {
     ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://localhost:4200';
   }
 
-    if (environment === 'test') {
+  if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -93,8 +101,8 @@ module.exports = function(environment) {
   };
 
   ENV['simple-auth-oauth2'] = {
-    serverTokenEndpoint: ENV.APP.host+'/auth/facebook/token',
-    serverTokenRevocationEndpoint: ENV.APP.host+'/auth/logout'
+    serverTokenEndpoint: ENV.APP.host + '/auth/facebook/token',
+    serverTokenRevocationEndpoint: ENV.APP.host + '/auth/logout'
   }
 
   return ENV;
