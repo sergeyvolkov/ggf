@@ -1,17 +1,11 @@
 <div class="row">
-  <div class="col12">
-    <h4>Matches</h4>
-  </div>
+  {{#if tournament.isDraft }}
+    {{ggf-tournament.complete-setup}}
+  {{else}}
+    <div class="col s12">
+      {{ggf-tournament.matches-list matches=model title='Matches'}}
+    </div>
+  {{/if}}
 </div>
 
-{{#if isDraft}}
-
-  {{ggf-tournament.complete-setup}}
-
-{{else}}
-
-  <div class="col12">
-    {{ggf-tournament.matches-list matches=model}}
-  </div>
-
-{{/if}}
+{{outlet}}
