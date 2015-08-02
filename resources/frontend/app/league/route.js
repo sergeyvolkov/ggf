@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 const {
-  Route,
-  RSVP
+  Route
 } = Ember;
 
 export default Route.extend({

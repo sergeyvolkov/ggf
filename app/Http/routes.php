@@ -40,6 +40,7 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/teams/{teamId}', 'API\TeamController@find');
 
         Route::get('/matches', 'API\TournamentController@matches');
+        Route::get('/tablescores', 'API\TournamentController@tablescore');
         Route::get('/me', 'API\MemberController@current');
     });
 });

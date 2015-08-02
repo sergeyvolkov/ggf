@@ -2,8 +2,7 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 const {
-  Route,
-  RSVP
+  Route
 } = Ember;
 
 export default Route.extend(ApplicationRouteMixin, {
@@ -21,6 +20,7 @@ export default Route.extend(ApplicationRouteMixin, {
   actions: {
 
     addTeam(team) {
+      const flashMessages = Ember.get(this, 'flashMessages');
       const tournament = this.modelFor('tournament');
 
       team.tournamentId = tournament.get('id');
@@ -29,15 +29,14 @@ export default Route.extend(ApplicationRouteMixin, {
 
       teamRecord
         .save()
-        .catch((err) => {
-          // @todo Show error message
-          console.log('[ERR]', err);
+        .catch(() => {
+            flashMessages.success('Unable to add team');
 
-          teamRecord.rollback();
+            teamRecord.rollback();
         })
         .finally(() => {
-          // @todo Show success message
-        });
+            flashMessages.success('Team has been added');
+          });
     }
   }
 });

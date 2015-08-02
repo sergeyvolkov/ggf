@@ -2,7 +2,7 @@
     <div class="col s12">
         <h3>{{model.name}}</h3>
 
-        {{#md-tabs}}
+        {{#md-tabs selected=selectedTab}}
             {{#link-to 'tournament.tablescore'}}
                 {{md-tab value='tablescore' title='Tablescore'}}
             {{/link-to}}

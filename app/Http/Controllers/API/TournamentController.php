@@ -6,14 +6,17 @@ use App\Models\Match;
 use App\Models\Team;
 use App\Models\Tournament;
 use App\Models\TournamentTeam;
+use App\Serializers\Tournament\TablescoreSerializer;
 use App\Transformers\TournamentTransformer;
 use App\Transformers\MatchTransformer;
-use App\Transformers\TournamentTeamTransformer;
+use App\Transformers\TablescoreTransformer;
 
 use App\Http\Requests\Tournament\Create as CreateTournament;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
+use League\Fractal\Manager;
 use Sorskod\Larasponse\Larasponse;
 
 
@@ -49,6 +52,20 @@ class TournamentController extends Controller
             ]);
 
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
+    }
+
+    public function tablescore()
+    {
+        $serializer = new TablescoreSerializer();
+
+        $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
+            ->where(['tournamentId' => Input::get('tournamentId')]);
+
+        return $this->response->collection(
+            $serializer->collection($collection->get()),
+            new TablescoreTransformer(),
+            'tablescore'
+        );
     }
 
 

@@ -3,16 +3,16 @@ import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixi
 
 const {
   RSVP
-} = Ember;
+  } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
-  model: function() {
+  model: function () {
     let store = this.store;
     let tournamentId = this.paramsFor('tournament').id;
 
     return RSVP.hash({
-      tournament: store.find('tournament', tournamentId, function(tournament) {
+      tournament: store.find('tournament', tournamentId, function (tournament) {
         return !tournament.get('isDirty');
       })
     });
@@ -20,6 +20,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     save (params) {
+      const flashMessages = Ember.get(this, 'flashMessages');
       const store = this.store;
 
       // @todo update with plain AJAX and then save record?
@@ -33,9 +34,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           tournament.save()
             .then(() => {
               resolve();
+              flashMessages.success('Tournament has been saved');
+
             })
             .catch((err) => {
               tournament.rollbackAttributes();
+
+              flashMessages.danger('Unable to save tournament');
+
 
               reject(err);
             });

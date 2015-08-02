@@ -39,6 +39,9 @@ class Match extends Model
     const STATUS_NOT_STARTED = 'not_started';
     const STATUS_FINISHED = 'finished';
 
+    const POINTS_WIN = 3;
+    const POINTS_DRAW = 1;
+
     public function tournament()
     {
         return $this->belongsTo(Tournament::class, 'tournamentId');
