@@ -5,5 +5,9 @@ export default Ember.Route.extend({
     const store = this.store;
 
     return store.find('tournament', params.id);
+  },
+
+  setupController(controller, model) {
+    controller.set('status', model.get('status'));
   }
 });
