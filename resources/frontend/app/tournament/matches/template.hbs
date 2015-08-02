@@ -2,7 +2,7 @@
   <div class="col12">
     <h4>Matches</h4>
 
-    {{#if (eq tournamentStatus 'draft')}}
+    {{#if isDraft}}
 
       {{ggf-tournament.complete-setup tournament=model.tournament}}
 

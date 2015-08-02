@@ -10,8 +10,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   setupController(controller, model) {
     this._super(controller, model);
 
-    const tournamentStatus = this.controllerFor('tournament').get('status');
-    controller.set('tournamentStatus', tournamentStatus);
+    const isDraft = this.modelFor('tournament').get('isDraft');
+    controller.set('isDraft', isDraft);
   },
 
   actions: {
