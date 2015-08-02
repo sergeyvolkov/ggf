@@ -4,7 +4,7 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
   model() {
     const tournamentId = this.modelFor('tournament').get('id');
-    return this.store.find('match', {tournamentId, status: 'started'});
+    return this.store.find('match', {tournamentId, status: 'finished'});
   },
 
   setupController(controller, model) {
