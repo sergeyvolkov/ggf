@@ -43,7 +43,10 @@ class TournamentController extends Controller
     public function matches()
     {
         $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
-            ->where(['tournamentId' => Input::get('tournamentId')]);
+            ->where([
+                'tournamentId' => Input::get('tournamentId'),
+                'status'       => Input::get('status', 'not_started')
+            ]);
 
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
     }
