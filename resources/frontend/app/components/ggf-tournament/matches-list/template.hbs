@@ -1,5 +1,7 @@
-<tbody>
-  {{#each matches as |match|}}
-    {{ggf-tournament.match match=match}}
-  {{/each}}
-</tbody>
+{{#md-table content=matches class='striped centered' as |match|}}
+  {{md-table-col row=match valueBindingPath='id'}}
+  {{md-table-col row=match valueBindingPath='homeTeam' header='Home Team'}}
+  {{md-table-col row=match valueBindingPath='homeScore'}}
+  {{md-table-col row=match valueBindingPath='awayScore'}}
+  {{md-table-col row=match valueBindingPath='awayTeam' header='Away Team'}}
+{{/md-table}}
