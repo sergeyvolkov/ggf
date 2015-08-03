@@ -1,0 +1,14 @@
+{{#md-card
+    title=tournament.name
+    titleClass="orange-text"
+}}
+
+  {{#md-card-content}}
+    {{tournament.description}}
+  {{/md-card-content}}
+
+  {{#md-card-action}}
+    {{#link-to 'tournament.tablescore' tournament}}View tournament{{/link-to}}
+  {{/md-card-action}}
+
+{{/md-card}}

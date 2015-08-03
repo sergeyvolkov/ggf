@@ -1,26 +1,21 @@
-{{#link-to 'tournaments.new'}}
-  {{md-btn
-    text='Create new tournament'
-    icon='mdi-content-add-box'
-    class='indigo'
-  }}
-{{/link-to}}
+<div class="row">
+  <div class="col s12">
+    {{#link-to 'tournaments.new'}}
+      {{md-btn
+      text='Create new tournament'
+      icon='mdi-content-add-box'
+      class='indigo'
+      }}
+    {{/link-to}}
+  </div>
+</div>
 
-{{#each model as |tournament|}}
+<div class="row">
+  {{#each model as |tournament|}}
+    <div class="col s12 m6 l4">
 
-  {{#md-card
-    title=tournament.name
-    titleClass="orange-text"
-  }}
+      {{ggf-tournament.card tournament=tournament}}
 
-    {{#md-card-content}}
-      {{tournament.description}}
-    {{/md-card-content}}
-
-    {{#md-card-action}}
-      {{#link-to 'tournament.tablescore' tournament}}View tournament{{/link-to}}
-    {{/md-card-action}}
-
-  {{/md-card}}
-
-{{/each}}
+    </div>
+  {{/each}}
+</div>
