@@ -1,21 +1,21 @@
 {{#md-navbar name='Good Gateway Football' class='indigo'}}
-    {{#link-to 'tournaments' tagName='li'}}
-        {{link-to 'Tournaments' 'tournament'}}
-    {{/link-to}}
+  {{#link-to 'tournaments' tagName='li'}}
+    {{link-to 'Tournaments' 'tournament'}}
+  {{/link-to}}
 
-    {{#link-to 'leagues' tagName='li'}}
-        {{link-to 'Leagues' 'leagues'}}
-    {{/link-to}}
+  {{#link-to 'leagues' tagName='li'}}
+    {{link-to 'Leagues' 'leagues'}}
+  {{/link-to}}
 
-    {{ggf-auth-button logout='invalidateSession' login='authenticate'}}
+  {{ggf-auth-button logout='invalidateSession' login='authenticate'}}
 {{/md-navbar}}
 
 <div class="container">
-    <div id="toast-container">
-        {{#each flashMessages.queue as |flash|}}
-            {{flash-message flash=flash class='toast'}}
-        {{/each}}
-    </div>
+  <div id="toast-container">
+    {{#each flashMessages.queue as |flash|}}
+      {{flash-message flash=flash class='toast'}}
+    {{/each}}
+  </div>
 
-    {{outlet}}
+  {{outlet}}
 </div>
