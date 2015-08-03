@@ -4,6 +4,7 @@ module.exports = function (environment) {
 
   var ENV = {
     modulePrefix: 'ggf',
+    podModulePrefix: 'ggf/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'hash',
