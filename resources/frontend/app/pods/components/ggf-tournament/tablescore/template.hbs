@@ -1,15 +1,15 @@
-{{#md-table class='bordered' content=tablescore as |row|}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='position' header='#'}}
-    {{#md-table-col _value='' valueBindingPath='name' header='Name'}}
+{{#md-table class='bordered center' content=tablescore as |row|}}
+    {{md-table-col row=row valueBindingPath='position' header='#'}}
+    {{#md-table-col row=row valueBindingPath='name' header='Name'}}
         {{ggf-tournament.tablescore.team team=row.team}}
     {{/md-table-col}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='matches' header='M'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='wins' header='W'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='draws' header='D'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='losts' header='L'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='goalsScored' header='GS'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='goalsAgainsted' header='GA'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='goalsDifference' header='GD'}}
-    {{md-table-col headerView='centered-column-header' class='centered min' row=row valueBindingPath='points' header='P'}}
+    {{md-table-col row=row valueBindingPath='matches' header='M'}}
+    {{md-table-col row=row valueBindingPath='wins' header='W'}}
+    {{md-table-col row=row valueBindingPath='draws' header='D'}}
+    {{md-table-col row=row valueBindingPath='losts' header='L'}}
+    {{md-table-col row=row valueBindingPath='goalsScored' header='GS'}}
+    {{md-table-col row=row valueBindingPath='goalsAgainsted' header='GA'}}
+    {{md-table-col row=row valueBindingPath='goalsDifference' header='GD'}}
+    {{md-table-col row=row valueBindingPath='points' header='P'}}
 
 {{/md-table}}
