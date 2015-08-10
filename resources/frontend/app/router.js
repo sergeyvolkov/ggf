@@ -12,7 +12,7 @@ Router.map(function() {
     this.resource('tournament', {path: '/tournament/:id'}, function() {
       this.route('tablescore');
       this.route('teams');
-      this.route('team', {path: '/team/:team_id'});
+      this.route('team', {path: '/team/:id'});
       this.route('matches');
       this.route('fixtures');
       this.route('settings');

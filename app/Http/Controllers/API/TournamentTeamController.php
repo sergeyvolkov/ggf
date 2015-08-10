@@ -16,7 +16,7 @@ use App\Http\Requests\Tournament\AddTeam;
 use Symfony\Component\Process\Exception\LogicException;
 
 
-class TournamentTeamsController extends Controller
+class TournamentTeamController extends Controller
 {
 
     public function catalogue()

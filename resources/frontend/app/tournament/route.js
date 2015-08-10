@@ -15,7 +15,10 @@ export default Ember.Route.extend({
 
   currentPathChanged(applicationContoller) {
     let currentTournamentsRoute = applicationContoller.get('currentPath').split('.')[2];
+    let tabList = ['tablescore', 'matches', 'fixtures', 'teams', 'settings'];
 
-    this.controllerFor('tournament').set('selectedTab', currentTournamentsRoute);
+    if (0 <= tabList.indexOf(currentTournamentsRoute)) {
+      this.controllerFor('tournament').set('selectedTab', currentTournamentsRoute);
+    }
   }
 });

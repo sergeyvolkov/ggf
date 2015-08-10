@@ -1,3 +1,16 @@
 {{#with model as |team|}}
-    <h4>{{team.name}}</h4>
+
+    <div class="ggf-tournament-team row">
+        <h3>{{team.name}}</h3>
+        <div class="col m8">
+            <h4>Matches</h4>
+        </div>
+        <div class="col m4">
+            <div class="collection">
+                {{#each team.teamMembers as |item| }}
+                    {{ggf-tournament.team-member member=item}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
 {{/with}}

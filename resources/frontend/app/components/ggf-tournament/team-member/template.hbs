@@ -1,0 +1,9 @@
+<i class="circle blue mdi-action-account-box"></i>
+{{#if member}}
+    <span class="title">{{member.name}}</span>
+{{else}}
+    <span class="title">Invite</span>
+{{/if}}
+{{#link-to item.route class='secondary-content'}}
+    <i class="mdi-content-clear"></i>
+{{/link-to}}
