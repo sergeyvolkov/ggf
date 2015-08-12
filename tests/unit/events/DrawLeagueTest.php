@@ -73,6 +73,10 @@ class DrawLeagueTest extends TestCase
     {
         return [
             [
+                'teamsAmount' => 2,
+                'matchesCount' => 2,
+            ],
+            [
                 'teamsAmount' => 3,
                 'matchesCount' => 6,
             ],

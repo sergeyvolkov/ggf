@@ -117,6 +117,7 @@ class DrawLeague
         $this->rounds = array_merge($this->rounds, $this->drawBergerTable());
 
         $this->saveRounds();
+
     }
 
     /**
@@ -126,28 +127,29 @@ class DrawLeague
      */
     protected function drawBergerTable()
     {
+        $teams = $this->teams->toArray();
         $table = [];
         for ( $i=0; $i<$this->teamsCount-1; $i++) {
             $table[$i] = [];
 
             if (!$this->isOdd) {
                 $table[$i][] = [
-                    'homeTournamentTeamId' => $this->teams[0]['id'],
-                    'homeTeamName'         => $this->teams[0]['name'],
-                    'awayTournamentTeamId' => $this->teams[$this->teamsCount - 1]['id'],
-                    'awayTeamName'         => $this->teams[$this->teamsCount - 1]['name'],
+                    'homeTournamentTeamId' => $teams[0]['id'],
+                    'homeTeamName'         => $teams[0]['name'],
+                    'awayTournamentTeamId' => $teams[$this->teamsCount - 1]['id'],
+                    'awayTeamName'         => $teams[$this->teamsCount - 1]['name'],
                 ];
             }
 
             for ( $j=1; $j<$this->pairCnt; $j++) {
                 $table[$i][] =  [
-                        'homeTournamentTeamId' => $this->teams[$j]['id'],
-                        'homeTeamName'         => $this->teams[$j]['name'],
-                        'awayTournamentTeamId' => $this->teams[$this->teamsCount - 1 - $j]['id'],
-                        'awayTeamName'         => $this->teams[$this->teamsCount - 1 - $j]['name'],
+                        'homeTournamentTeamId' => $teams[$j]['id'],
+                        'homeTeamName'         => $teams[$j]['name'],
+                        'awayTournamentTeamId' => $teams[$this->teamsCount - 1 - $j]['id'],
+                        'awayTeamName'         => $teams[$this->teamsCount - 1 - $j]['name'],
                     ];
             }
-            $this->teams->push($this->teams->shift());
+            array_push($teams,array_shift($teams));
         }
 
         return $table;
