@@ -1,0 +1,20 @@
+{{#unless member.hasDirtyAttributes}}
+    {{ggf-teams.member-avatar}}
+
+    <span class="title">{{member.name}}</span>
+
+    <label class='secondary-content' {{action 'clear'}}>
+        <i class="mdi-content-clear"></i>
+    </label>
+{{else}}
+    {{select-2
+        value=selected
+        minimumInputLength=0
+        searchEnabled=false
+        typeaheadSearchingText="Fetching current members..."
+        typeaheadNoMatchesText="No available members found"
+        multiple=false
+        query="queryOptions"
+        placeholder="Choose member"
+    }}
+{{/unless}}

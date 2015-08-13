@@ -40,9 +40,13 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/teams/{teamId}', 'API\TeamController@find');
 
         Route::get('/teamMembers', 'API\TeamMemberController@catalogue');
+        Route::post('/teamMembers', 'API\TeamMemberController@assign');
+        Route::delete('/teamMembers/{teamMemberId}', 'API\TeamMemberController@remove');
+        Route::get('/teamMembers/search', 'API\TeamMemberController@search');
 
         Route::get('/matches', 'API\TournamentController@matches');
         Route::get('/tablescores', 'API\TournamentController@tablescore');
+
         Route::get('/me', 'API\MemberController@current');
     });
 });

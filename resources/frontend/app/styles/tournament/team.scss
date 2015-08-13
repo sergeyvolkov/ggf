@@ -5,10 +5,19 @@
 
     span {
       line-height: 2.8em;
+
+      &.select2-chosen {
+        line-height: 1.6em;
+      }
     }
 
     .secondary-content {
       top: 20px;
+    }
+
+    .select2-container {
+      width: 100%;
+      top: 9px;
     }
   }
 }

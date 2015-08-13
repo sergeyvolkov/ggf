@@ -9,5 +9,6 @@ const {
 export default Model.extend({
   name: attr('string'),
   teamId: attr('number'),
+  memberId: attr('number'),
   team: belongsTo('team', {async: false})
 });

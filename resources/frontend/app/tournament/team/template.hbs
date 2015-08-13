@@ -6,11 +6,7 @@
             <h4>Matches</h4>
         </div>
         <div class="col m4">
-            <div class="collection">
-                {{#each team.teamMembers as |item| }}
-                    {{ggf-tournament.team-member member=item}}
-                {{/each}}
-            </div>
+            {{ggf-teams.members-list team=model assign='assignMember' remove='removeMember'}}
         </div>
     </div>
 {{/with}}

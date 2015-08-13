@@ -4,7 +4,7 @@ import Ember from 'ember';
 const {
   Route,
   RSVP
-  } = Ember;
+} = Ember;
 
 export default Route.extend({
 
@@ -16,9 +16,33 @@ export default Route.extend({
     });
   },
 
+  actions: {
+    assignMember(member) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+
+      return member.save().then(() => {
+        this.currentModel.get('teamMembers').addObject(member);
+
+        flashMessages.success(member.get('name')+' has been assigned to the team');
+      }).catch(() => {
+        flashMessages.danger('Unable to assign member');
+      });
+    },
+
+    removeMember(member) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+
+      return member.destroyRecord().then(() => {
+        flashMessages.success(member.get('name')+' has been removed from the team');
+      }).catch(() => {
+        flashMessages.danger('Unable to assign member');
+      });
+    }
+  },
+
   model: function (params) {
     const store = this.store;
-    const teamId = params['id'];
+    const teamId = params.id;
 
     return RSVP.hash({
       team: store.find('team', teamId),
@@ -26,28 +50,7 @@ export default Route.extend({
       teamMembers: store.query('team-member', {teamId: teamId})
     }).then((hash) => {
 
-      let max = 0;
-      let length = hash.teamMembers.get('length');
-
-      switch (hash.tournament.get('membersType')) {
-        case 'single':
-          max = 1;
-          break;
-        case 'double':
-          max = 2;
-          break;
-      }
-
       hash.team.set('teamMembers', hash.teamMembers);
-
-      for (let i = length; i < max; i++) {
-        hash.team.get('teamMembers').pushObject(
-          store.createRecord('team-member', {
-            'name': null,
-            'teamId': null
-          })
-        );
-      }
 
       return hash.team;
     });

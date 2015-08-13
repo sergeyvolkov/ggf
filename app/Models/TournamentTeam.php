@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class TournamentTeam extends Model
 {
@@ -23,4 +24,8 @@ class TournamentTeam extends Model
         return $this->belongsTo(Team::class, 'teamId');
     }
 
+    public function teamMembers()
+    {
+        return $this->hasMany(TeamMember::class, 'tournamentTeamId', 'teamId');
+    }
 }

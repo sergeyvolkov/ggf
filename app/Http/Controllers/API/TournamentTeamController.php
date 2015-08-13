@@ -28,7 +28,7 @@ class TournamentTeamController extends Controller
 
     public function add(AddTeam $request)
     {
-        $tournament = Tournament::findOrFail($request->input('team.tournamentId'));
+        $tournament = Tournament::findOrFail($request->input('team.tournament'));
 
         if (Tournament::STATUS_DRAFT !== $tournament->status) {
             throw new LogicException('Team can be assigned only to tournament with draft status.');
