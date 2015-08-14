@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SeriaATimSeeder extends Seeder
+class LigaBBVASeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,176 +11,176 @@ class SeriaATimSeeder extends Seeder
      */
     public function run()
     {
-        if (\App\Models\League::where(['name' => 'Seria A TIM'])->count() > 0) {
+        if (\App\Models\League::where(['name' => 'Liga BBVA'])->count() > 0) {
             return false;
         }
 
         $league = \App\Models\League::firstOrNew([
-            'name' => 'Seria A TIM',
-            'logoPath' => 'leagues-logo/seriaa-tim.png'
+            'name' => 'Liga BBVA',
+            'logoPath' => 'leagues-logo/liga-bbva.png'
         ]);
         $league->save();
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'AC Milan',
-            'logoPath' => 'teams-logo/milan.png',
+            'name' => 'Athletic Club',
+            'logoPath' => 'teams-logo/athletic.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'AS Roma',
-            'logoPath' => 'teams-logo/roma.png',
+            'name' => 'Atlético Madrid',
+            'logoPath' => 'teams-logo/atletico.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Atalanta',
-            'logoPath' => 'teams-logo/atalanta.png',
+            'name' => 'Celta de Vigo',
+            'logoPath' => 'teams-logo/celta.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Bologna',
-            'logoPath' => 'teams-logo/bologna.png',
+            'name' => 'Deportivo La Coruña',
+            'logoPath' => 'teams-logo/deportivo.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Carpi',
-            'logoPath' => 'teams-logo/carpi.png',
+            'name' => 'Eibar',
+            'logoPath' => 'teams-logo/eibar.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Chievo',
-            'logoPath' => 'teams-logo/chievo.png',
+            'name' => 'FC Barcelona',
+            'logoPath' => 'teams-logo/barcelona.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Empoli',
-            'logoPath' => 'teams-logo/empoli.png',
+            'name' => 'Getafe CF',
+            'logoPath' => 'teams-logo/getafe.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Frosinone',
-            'logoPath' => 'teams-logo/frosinone.png',
+            'name' => 'Granada CF',
+            'logoPath' => 'teams-logo/granada.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Fiorentina',
-            'logoPath' => 'teams-logo/fiorentina.png',
+            'name' => 'Las Palmas',
+            'logoPath' => 'teams-logo/las-palmas.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Genoa',
-            'logoPath' => 'teams-logo/genoa.png',
+            'name' => 'Levante UD',
+            'logoPath' => 'teams-logo/levante.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Hellas Verona',
-            'logoPath' => 'teams-logo/verona.png',
+            'name' => 'Málaga CF',
+            'logoPath' => 'teams-logo/malaga.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Inter',
-            'logoPath' => 'teams-logo/inter.png',
+            'name' => 'Rayo Vallecano',
+            'logoPath' => 'teams-logo/rayo.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Juventus',
-            'logoPath' => 'teams-logo/juventus.png',
+            'name' => 'RCD Espanyol',
+            'logoPath' => 'teams-logo/espanyol.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Lazio',
-            'logoPath' => 'teams-logo/lazio.png',
+            'name' => 'Real Betis',
+            'logoPath' => 'teams-logo/betis.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Napoli',
-            'logoPath' => 'teams-logo/napoli.png',
+            'name' => 'Real Madrid CF',
+            'logoPath' => 'teams-logo/real-madrid.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Palermo',
-            'logoPath' => 'teams-logo/palermo.png',
+            'name' => 'Real Sociedad',
+            'logoPath' => 'teams-logo/sociedad.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Sampdoria',
-            'logoPath' => 'teams-logo/sampdoria.png',
+            'name' => 'Sevilla FC',
+            'logoPath' => 'teams-logo/sevilla.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Sassuolo',
-            'logoPath' => 'teams-logo/sassuolo.png',
+            'name' => 'Sporting Gijón',
+            'logoPath' => 'teams-logo/sporting.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Torino',
-            'logoPath' => 'teams-logo/torino.png',
+            'name' => 'Valencia',
+            'logoPath' => 'teams-logo/valencia.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
+
 
         DB::table('teams')->insert([
             'leagueId' => $league->id,
-            'name' => 'Udinese',
-            'logoPath' => 'teams-logo/udinese.png',
+            'name' => 'Villarreal CF',
+            'logoPath' => 'teams-logo/villarreal.png',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
-
 
     }
 }
