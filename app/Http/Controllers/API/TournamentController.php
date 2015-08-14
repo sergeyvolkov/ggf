@@ -47,11 +47,23 @@ class TournamentController extends Controller
 
     public function matches()
     {
+        $teamId = Input::get('teamId');
+        $status = Input::get('status');
+
         $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
-            ->where([
-                'tournamentId' => Input::get('tournamentId'),
-                'status'       => Input::get('status', 'not_started')
-            ])->orderBy('round')->orderBy('id');
+            ->where('tournamentId', Input::get('tournamentId'))
+            ->orderBy('round')->orderBy('id');
+
+        if ($status) {
+            $collection->where('status', $status);
+        }
+
+        if ($teamId) {
+            $collection->where(function($query) use ($teamId) {
+                $query->where('homeTournamentTeamId', $teamId)
+                    ->orWhere('awayTournamentTeamId', $teamId);
+            });
+        }
 
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
     }
