@@ -19,13 +19,18 @@ export default Component.extend({
     let selected = component.get('selected');
     let team = component.get('team');
 
+    if (!selected) {
+      return false;
+    }
+
     member.setProperties({
       'memberId': selected.id,
       'teamId': team.get('id'),
-      'name': selected.name,
+      'name': selected.name
     });
 
     component.sendAction('assign', member);
+    component.set('selected', null);
   }),
 
   actions: {

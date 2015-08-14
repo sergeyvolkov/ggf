@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\Team\AssignTeamMember;
+use App\Http\Requests\Team\RemoveTeamMember;
 use App\Models\Member;
 use App\Models\TeamMember;
 use App\Transformers\TeamMemberSearchTransformer;
@@ -36,30 +37,23 @@ class TeamMemberController extends Controller
         return $this->response->collection(TeamMember::where($attributes)->get(), new TeamMemberTransformer(), 'teamMembers');
     }
 
-    public function remove($teamMemberId)
+    public function remove($teamMemberId, RemoveTeamMember $request)
     {
         return TeamMember::where(['id' => $teamMemberId])->delete();
     }
 
     public function search()
     {
-        Event::listen('illuminate.query', function($query) {
-            (new Dumper())->dump($query);
-        });
-
         $tournamentId = Input::get('tournamentId');
 
         $collection = Member::with(['teamMembers', 'tournamentTeams'])->get();
+        $collection = $collection->filter(function($member) use ($tournamentId) {
+            $team = $member->tournamentTeams->first(function($key, $tournamentTeam) use ($tournamentId) {
+                return $tournamentTeam->tournamentId == $tournamentId;
+            });
 
-        dd($collection->last());
-//
-//        $collection = $collection->filter(function($member) use ($tournamentId) {
-//            $team = $member->tournamentTeams->first(function($key, $tournamentTeam) use ($tournamentId) {
-//                return $tournamentTeam->tournamentId == $tournamentId;
-//            });
-//
-//            return is_null($team);
-//        });
+            return is_null($team);
+        });
 
         return $this->response->collection(
             $collection,

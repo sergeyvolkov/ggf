@@ -1,11 +1,9 @@
 import Ember from 'ember';
-import config from '../../../config/environment';
 
 const {
   Component,
   A,
-  computed,
-  observer
+  computed
 } = Ember;
 
 export default Component.extend({
@@ -15,7 +13,7 @@ export default Component.extend({
 
   team: null,
 
-  emptyList: new A,
+  emptyList: new A(),
 
   actions: {
     assign: function(member) {
@@ -23,7 +21,7 @@ export default Component.extend({
     },
     remove: function(member) {
       this.sendAction('remove', member);
-    },
+    }
   },
 
   list: computed('team.teamMembers.@length', {

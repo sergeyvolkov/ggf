@@ -25,7 +25,9 @@ export default Route.extend({
 
         flashMessages.success(member.get('name')+' has been assigned to the team');
       }).catch(() => {
-        flashMessages.danger('Unable to assign member');
+        member.rollback();
+
+        flashMessages.danger('Unable to assign member to the team');
       });
     },
 
@@ -35,7 +37,9 @@ export default Route.extend({
       return member.destroyRecord().then(() => {
         flashMessages.success(member.get('name')+' has been removed from the team');
       }).catch(() => {
-        flashMessages.danger('Unable to assign member');
+        member.rollback();
+
+        flashMessages.danger('Unable to remove member from the team');
       });
     }
   },
