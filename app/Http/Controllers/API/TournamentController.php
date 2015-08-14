@@ -51,7 +51,7 @@ class TournamentController extends Controller
             ->where([
                 'tournamentId' => Input::get('tournamentId'),
                 'status'       => Input::get('status', 'not_started')
-            ]);
+            ])->orderBy('round')->orderBy('id');
 
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
     }
