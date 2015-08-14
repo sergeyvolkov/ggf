@@ -8,8 +8,8 @@ const {
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model: function () {
-    let store = this.store;
-    let tournamentId = this.paramsFor('tournament').tournamentId;
+    const store = this.store;
+    const tournamentId = this.modelFor('tournament').get('id');
 
     return RSVP.hash({
       tournament: store.find('tournament', tournamentId, function (tournament) {
@@ -24,7 +24,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       const store = this.store;
 
       return new Ember.RSVP.Promise((resolve, reject) => {
-        store.find('tournament', this.paramsFor('tournament').tournamentId).then((tournament) => {
+        store.find('tournament', this.currentModel.tournament.get('id')).then((tournament) => {
 
           // update `oneWay` binded attributes
           tournament.set('name', params.name);

@@ -51,7 +51,7 @@ export default Route.extend({
     return RSVP.hash({
       team: store.find('team', teamId),
       tournament: this.modelFor('tournament'),
-      teamMembers: store.query('team-member', {teamId: teamId})
+      teamMembers: store.query('team-member', {teamId})
     }).then((hash) => {
 
       hash.team.set('teamMembers', hash.teamMembers);
