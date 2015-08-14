@@ -47,15 +47,16 @@ export default Route.extend({
   model: function (params) {
     const store = this.store;
     const teamId = params.id;
+    const tournament = this.modelFor('tournament');
 
     return RSVP.hash({
       team: store.find('team', teamId),
-      tournament: this.modelFor('tournament'),
+      matches: store.query('match', {tournamentId: tournament.get('id'), teamId}),
       teamMembers: store.query('team-member', {teamId})
     }).then((hash) => {
       hash.team.set('teamMembers', hash.teamMembers);
 
-      return hash.team;
+      return hash;
     });
   }
 });

@@ -5,7 +5,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   model() {
     const tournamentId = this.modelFor('tournament').get('id');
 
-    return this.store.find('match', {tournamentId, status: 'not_started'});
+    return this.store.query('match', {tournamentId, status: 'not_started'});
   },
 
   setupController(controller, model) {
