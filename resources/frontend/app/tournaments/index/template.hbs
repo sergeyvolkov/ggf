@@ -1,10 +1,14 @@
-{{#link-to 'tournaments.new'}}
-  {{md-btn
-    text='Create new tournament'
-    icon='mdi-content-add-box'
-    class='indigo'
-  }}
-{{/link-to}}
+{{#if session.isAuthenticated }}
+
+  {{#link-to 'tournaments.new'}}
+    {{md-btn
+      text='Create new tournament'
+      icon='mdi-content-add-box'
+      class='indigo'
+    }}
+  {{/link-to}}
+
+{{/if}}
 
 {{#each model as |tournament|}}
 
