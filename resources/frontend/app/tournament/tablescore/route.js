@@ -8,14 +8,14 @@ const {
 export default Route.extend({
 
   model: function() {
-    let store = this.store;
-    let tournamentId = this.paramsFor('tournament').id;
+    const store = this.store;
+    const tournamentId = this.modelFor('tournament').get('id');
 
     return RSVP.hash({
       tournament: this.modelFor('tournament'),
-      tablescore: store.query('tablescore', {tournamentId: tournamentId}),
-      matches: store.query('match', {tournamentId: tournamentId}),
-      teams: store.query('team', {tournamentId: tournamentId}),
+      tablescore: store.query('tablescore', {tournamentId}),
+      matches: store.query('match', {tournamentId}),
+      teams: store.query('team', {tournamentId}),
     }).then((hash) => {
 
       hash.tournament.set('tablescore', hash.tablescore);

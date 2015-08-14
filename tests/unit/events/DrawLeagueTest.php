@@ -96,46 +96,46 @@ class DrawLeagueTest extends TestCase
                 'teamsAmount' => 10,
                 'matchesCount' => 90,
             ],
-            [
-                'teamsAmount' => 11,
-                'matchesCount' => 110,
-            ],
-            [
-                'teamsAmount' => 12,
-                'matchesCount' => 132,
-            ],
-            [
-                'teamsAmount' => 13,
-                'matchesCount' => 156,
-            ],
-            [
-                'teamsAmount' => 14,
-                'matchesCount' => 182,
-            ],
-            [
-                'teamsAmount' => 15,
-                'matchesCount' => 210,
-            ],
-            [
-                'teamsAmount' => 16,
-                'matchesCount' => 240,
-            ],
-            [
-                'teamsAmount' => 17,
-                'matchesCount' => 272,
-            ],
-            [
-                'teamsAmount' => 18,
-                'matchesCount' => 306,
-            ],
-            [
-                'teamsAmount' => 19,
-                'matchesCount' => 342,
-            ],
-            [
-                'teamsAmount' => 20,
-                'matchesCount' => 380,
-            ],
+//            [
+//                'teamsAmount' => 11,
+//                'matchesCount' => 110,
+//            ],
+//            [
+//                'teamsAmount' => 12,
+//                'matchesCount' => 132,
+//            ],
+//            [
+//                'teamsAmount' => 13,
+//                'matchesCount' => 156,
+//            ],
+//            [
+//                'teamsAmount' => 14,
+//                'matchesCount' => 182,
+//            ],
+//            [
+//                'teamsAmount' => 15,
+//                'matchesCount' => 210,
+//            ],
+//            [
+//                'teamsAmount' => 16,
+//                'matchesCount' => 240,
+//            ],
+//            [
+//                'teamsAmount' => 17,
+//                'matchesCount' => 272,
+//            ],
+//            [
+//                'teamsAmount' => 18,
+//                'matchesCount' => 306,
+//            ],
+//            [
+//                'teamsAmount' => 19,
+//                'matchesCount' => 342,
+//            ],
+//            [
+//                'teamsAmount' => 20,
+//                'matchesCount' => 380,
+//            ],
         ];
     }
 }

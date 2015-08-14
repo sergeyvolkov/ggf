@@ -1,7 +1,6 @@
 
 <div class="row">
-    {{#with model.teams as |teams| }}
-        {{#each teams as |team|}}
+        {{#each model.teams as |team|}}
             <div class="col s12 m6 l4">
                 {{#md-card
                     title=team.name
@@ -11,13 +10,12 @@
                         <img src="{{team.logoPath}}"/>
                     {{/md-card-content}}
                     {{#md-card-action}}
-                        {{#link-to 'tournament.team' team}}View team{{/link-to}}
+                        {{#link-to 'tournament.team' model team }}View team{{/link-to}}
                     {{/md-card-action}}
 
                 {{/md-card}}
             </div>
         {{/each}}
-    {{/with}}
     {{#if session.isAuthenticated}}
         {{#if model.isDraft}}
             <div class="col s12 m6 l4">

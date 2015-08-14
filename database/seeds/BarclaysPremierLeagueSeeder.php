@@ -11,6 +11,10 @@ class BarclaysPremierLeagueSeeder extends Seeder
      */
     public function run()
     {
+        if (\App\Models\League::where(['name' => 'Barclays Premier League'])->count() > 0) {
+            return false;
+        }
+
         $league = \App\Models\League::firstOrNew([
             'name' => 'Barclays Premier League',
             'logoPath' => 'leagues-logo/barclays-premier-league.png'

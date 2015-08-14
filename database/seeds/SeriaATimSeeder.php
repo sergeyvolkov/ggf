@@ -11,6 +11,10 @@ class SeriaATimSeeder extends Seeder
      */
     public function run()
     {
+        if (\App\Models\League::where(['name' => 'Seria A TIM'])->count() > 0) {
+            return false;
+        }
+
         $league = \App\Models\League::firstOrNew([
             'name' => 'Seria A TIM',
             'logoPath' => 'leagues-logo/seriaa-tim.png'
