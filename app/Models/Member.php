@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\TeamMember;
+
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class Member extends Model implements Authenticatable
@@ -35,12 +36,28 @@ class Member extends Model implements Authenticatable
      */
     public $timestamps = true;
 
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function teamMembers()
     {
-        return $this->hasMany('TeamMember');
+        return $this->hasMany(TeamMember::class, 'memberId');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function tournamentTeams()
+    {
+        return $this->hasManyThrough(
+            TournamentTeam::class,
+            TeamMember::class,
+            'memberId',
+            'id'
+        );
     }
 
     /**

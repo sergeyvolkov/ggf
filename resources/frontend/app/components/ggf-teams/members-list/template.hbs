@@ -1,0 +1,7 @@
+{{#each list as |item| }}
+    {{ggf-teams.members-list-item member=item team=team remove='remove' assign='assign' }}
+{{/each}}
+
+{{#each emptyList as |item| }}
+    {{ggf-teams.members-list-item member=item team=team remove='remove' assign='assign' }}
+{{/each}}

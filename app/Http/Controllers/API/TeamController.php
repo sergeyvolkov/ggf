@@ -16,7 +16,7 @@ class TeamController extends Controller
 {
     public function find($teamId)
     {
-        $collection = TournamentTeam::with('Team')->where(['id' => $teamId]);
+        $collection = TournamentTeam::where(['id' => $teamId]);
 
         return $this->response->collection($collection->get(), new TournamentTeamTransformer(), 'teams');
     }
