@@ -2,6 +2,7 @@
 
 {{#md-table content=matchesList class='striped centered' as |match|}}
   {{md-table-col row=match valueBindingPath='id'}}
+  {{md-table-col row=match valueBindingPath='round'}}
   {{md-table-col row=match valueBindingPath='homeTeam' header='Home Team'}}
   {{md-table-col row=match valueBindingPath='score' header='Score'}}
   {{md-table-col row=match valueBindingPath='awayTeam' header='Away Team'}}
