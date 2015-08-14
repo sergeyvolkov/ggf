@@ -11,6 +11,6 @@ class TournamentTeamObserver
 {
     public function saving(TournamentTeam $model)
     {
-        Log::info('Hahahaha');
+        
     }
 }
