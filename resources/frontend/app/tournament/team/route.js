@@ -53,7 +53,6 @@ export default Route.extend({
       tournament: this.modelFor('tournament'),
       teamMembers: store.query('team-member', {teamId})
     }).then((hash) => {
-
       hash.team.set('teamMembers', hash.teamMembers);
 
       return hash.team;
