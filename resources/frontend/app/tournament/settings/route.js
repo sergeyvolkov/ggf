@@ -9,7 +9,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model: function () {
     let store = this.store;
-    let tournamentId = this.paramsFor('tournament').id;
+    let tournamentId = this.paramsFor('tournament').tournamentId;
 
     return RSVP.hash({
       tournament: store.find('tournament', tournamentId, function (tournament) {
@@ -23,9 +23,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       const flashMessages = Ember.get(this, 'flashMessages');
       const store = this.store;
 
-      // @todo update with plain AJAX and then save record?
       return new Ember.RSVP.Promise((resolve, reject) => {
-        store.find('tournament', this.paramsFor('tournament').id).then((tournament) => {
+        store.find('tournament', this.paramsFor('tournament').tournamentId).then((tournament) => {
 
           // update `oneWay` binded attributes
           tournament.set('name', params.name);
