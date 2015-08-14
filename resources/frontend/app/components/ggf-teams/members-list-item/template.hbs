@@ -1,0 +1,23 @@
+{{#if member.name}}
+    {{ggf-teams.member-avatar}}
+
+    <span class="title">{{member.name}}</span>
+
+    {{#if session.isAuthenticated}}
+        <label class='secondary-content' {{action 'clear'}}>
+            <i class="mdi-content-clear"></i>
+        </label>
+    {{/if}}
+{{else}}
+    {{select-2
+        enabled=session.isAuthenticated
+        value=selected
+        minimumInputLength=0
+        searchEnabled=false
+        typeaheadSearchingText="Fetching available members..."
+        typeaheadNoMatchesText="No available members found"
+        multiple=false
+        query="queryOptions"
+        placeholder="Choose member"
+    }}
+{{/if}}
