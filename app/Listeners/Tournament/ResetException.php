@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Tournament;
 
-class DrawLeagueException extends \Exception
+class ResetException extends \Exception
 {
 
 }

@@ -1,16 +1,19 @@
-{{#link-to 'tournaments.new'}}
-  {{md-btn
-    text='Create new tournament'
-    icon='mdi-content-add-box'
-    class='indigo'
-  }}
-{{/link-to}}
+{{#if session.isAuthenticated }}
+
+  {{#link-to 'tournaments.new'}}
+    {{md-btn
+      text='Create new tournament'
+      icon='mdi-content-add-box'
+      class='indigo'
+    }}
+  {{/link-to}}
+
+{{/if}}
 
 {{#each model as |tournament|}}
 
   {{#md-card
     title=tournament.name
-    titleClass="orange-text"
   }}
 
     {{#md-card-content}}
@@ -18,7 +21,7 @@
     {{/md-card-content}}
 
     {{#md-card-action}}
-      {{#link-to 'tournament.tablescore' tournament}}View tournament{{/link-to}}
+      {{#link-to 'tournament.tablescore' tournament.id}}View tournament{{/link-to}}
     {{/md-card-action}}
 
   {{/md-card}}

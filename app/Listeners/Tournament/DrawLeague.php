@@ -45,11 +45,6 @@ class DrawLeague
     protected $pairCnt;
 
     /**
-     * @var Collection
-     */
-    protected $season;
-
-    /**
      * Create the event listener.
      *
      * @return void

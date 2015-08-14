@@ -13,8 +13,11 @@ class MatchTransformer extends TransformerAbstract
     {
         return [
             'id' => $match->id,
+            'round' => $match->round,
             'homeTeam' => $match->homeTournamentTeam->team->name,
+            'homeTeamId' => $match->homeTournamentTeamId,
             'awayTeam' => $match->awayTournamentTeam->team->name,
+            'awayTeamId' => $match->awayTournamentTeamId,
             'homeScore' => $match->homeScore,
             'awayScore' => $match->awayScore,
             'tournamentId' => $match->tournamentId,

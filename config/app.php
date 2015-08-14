@@ -145,12 +145,13 @@ return [
         App\Providers\SessionServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
-        App\Providers\TournamentServiceProvider::class,
+        App\Providers\EloquentServiceProvider::class,
 
         /* Vendor Service Providers */
 
         Sorskod\Larasponse\LarasponseServiceProvider::class,
-        Barryvdh\Cors\ServiceProvider::class
+        Barryvdh\Cors\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
 
     ],
 
