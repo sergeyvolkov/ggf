@@ -2,6 +2,8 @@
 
 [Demo](https://good-gateway-football.herokuapp.com)
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/sergeyvolkov/ggf?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Setup development environment with Homestead (per-project installation)
 
 1. Clone project
