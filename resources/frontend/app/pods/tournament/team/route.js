@@ -21,8 +21,6 @@ export default Route.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
 
       return member.save().then(() => {
-        this.currentModel.get('teamMembers').addObject(member);
-
         flashMessages.success(member.get('name')+' has been assigned to the team');
       }).catch(() => {
         member.rollback();
