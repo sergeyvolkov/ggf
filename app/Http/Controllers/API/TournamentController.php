@@ -13,7 +13,9 @@ use App\Transformers\TablescoreTransformer;
 
 use App\Http\Requests\Tournament\Create as CreateTournament;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Debug\Dumper;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use League\Fractal\Manager;
@@ -45,11 +47,23 @@ class TournamentController extends Controller
 
     public function matches()
     {
+        $teamId = Input::get('teamId');
+        $status = Input::get('status');
+
         $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
-            ->where([
-                'tournamentId' => Input::get('tournamentId'),
-                'status'       => Input::get('status', 'not_started')
-            ]);
+            ->where('tournamentId', Input::get('tournamentId'))
+            ->orderBy('round')->orderBy('id');
+
+        if ($status) {
+            $collection->where('status', $status);
+        }
+
+        if ($teamId) {
+            $collection->where(function($query) use ($teamId) {
+                $query->where('homeTournamentTeamId', $teamId)
+                    ->orWhere('awayTournamentTeamId', $teamId);
+            });
+        }
 
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
     }

@@ -71,12 +71,14 @@ class TablescoreSerializer
                     case Match::RESULT_TYPE_AWAY_WIN:
                         $awayTeam['wins']++;
                         $homeTeam['losts']++;
+                        $awayTeam['points'] += Match::POINTS_WIN;
 
                         break;
                     case Match::RESULT_TYPE_DRAW:
                         $homeTeam['draws']++;
-                        $homeTeam['points'] += Match::POINTS_WIN;
-                        $awayTeam['points'] += Match::POINTS_WIN;
+                        $awayTeam['draws']++;
+                        $homeTeam['points'] += Match::POINTS_DRAW;
+                        $awayTeam['points'] += Match::POINTS_DRAW;
 
                         break;
                 }

@@ -1,3 +1,17 @@
-{{#with model as |team|}}
-  <h4>{{team.name}}</h4>
-{{/with}}
+<div class="ggf-tournament-team row">
+  {{#with model.team as |team| }}
+    <h3>{{team.name}}</h3>
+  {{/with}}
+
+  <div class="col m8">
+    {{#with model.matches as |matches| }}
+      {{ggf-tournament.matches-list matches=matches title='Matches'}}
+    {{/with}}
+  </div>
+  <div class="col m4">
+    <h4>Members</h4>
+    {{#with model.team as |team| }}
+      {{ggf-teams.members-list team=team assign='assignMember' remove='removeMember'}}
+    {{/with}}
+  </div>
+</div>

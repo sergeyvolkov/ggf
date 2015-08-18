@@ -1,6 +1,6 @@
 {
     "name": "ggg/ggf",
-    "version": "0.8.0",
+    "version": "0.9.4",
     "description": "Good Gateway Football",
     "keywords": ["football", "fifa"],
     "license": "MIT",
@@ -18,7 +18,8 @@
         "barryvdh/laravel-ide-helper": "^2.0@dev",
         "guzzlehttp/guzzle": "^6.0@dev",
         "barryvdh/laravel-cors": "^0.7.0@dev",
-        "laracasts/testdummy": "dev-master"
+        "laracasts/testdummy": "dev-master",
+        "barryvdh/laravel-debugbar": "^2.1@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

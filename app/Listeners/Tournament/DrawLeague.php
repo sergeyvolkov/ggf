@@ -15,7 +15,7 @@ class DrawLeague
     protected $tournament;
 
     /**
-     * @var Collection
+     * @var Array
      */
     protected $teams;
 
@@ -45,18 +45,13 @@ class DrawLeague
     protected $pairCnt;
 
     /**
-     * @var Collection
-     */
-    protected $season;
-
-    /**
      * Create the event listener.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->teams = new Collection();
+        $this->teams = [];
     }
 
 
@@ -68,13 +63,13 @@ class DrawLeague
             $team->team->homeMatchesAmount = 0;
             $team->team->wasPulledOut = false;
             $team->team->pulledOut = false;
-            $this->teams->push([
+            array_push($this->teams,[
                 'id' => $team->id,
                 'name' => $team->team->name
             ]);
         }
 
-        $this->teamsCount =  $this->teams->count();
+        $this->teamsCount =  count($this->teams);
         $this->isOddTeamsCnt();
         $this->setPairCnt();
     }
@@ -89,7 +84,7 @@ class DrawLeague
     {
         $this->setTournament($event->tournament);
 
-        if (Tournament::MIN_TEAMS_AMOUNT > $this->teams->count()) {
+        if (Tournament::MIN_TEAMS_AMOUNT > count($this->teams)) {
             throw new \UnexpectedValueException('Tournament should have at least 2 teams.');
         }
 
@@ -111,12 +106,9 @@ class DrawLeague
     protected function draw()
     {
 
-        $this->rounds = $this->drawBergerTable();
-        $this->teams = $this->teams->reverse();
+        $table = $this->drawBergerTable();
 
-        $this->rounds = array_merge($this->rounds, $this->drawBergerTable());
-
-        $this->saveRounds();
+        $this->saveRounds($table);
     }
 
     /**
@@ -126,30 +118,43 @@ class DrawLeague
      */
     protected function drawBergerTable()
     {
+        $a = [];
         $table = [];
-        for ( $i=0; $i<$this->teamsCount-1; $i++) {
-            $table[$i] = [];
 
-            if (!$this->isOdd) {
-                $table[$i][] = [
-                    'homeTournamentTeamId' => $this->teams[0]['id'],
-                    'homeTeamName'         => $this->teams[0]['name'],
-                    'awayTournamentTeamId' => $this->teams[$this->teamsCount - 1]['id'],
-                    'awayTeamName'         => $this->teams[$this->teamsCount - 1]['name'],
-                ];
-            }
-
-            for ( $j=1; $j<$this->pairCnt; $j++) {
-                $table[$i][] =  [
-                        'homeTournamentTeamId' => $this->teams[$j]['id'],
-                        'homeTeamName'         => $this->teams[$j]['name'],
-                        'awayTournamentTeamId' => $this->teams[$this->teamsCount - 1 - $j]['id'],
-                        'awayTeamName'         => $this->teams[$this->teamsCount - 1 - $j]['name'],
-                    ];
-            }
-            $this->teams->push($this->teams->shift());
+        for ( $i=1; $i<$this->teamsCount; $i++) {
+            $a[] = $i;
         }
 
+        for ( $i=0; $i<$this->teamsCount-1; $i++) {
+            $table[$i] = [];
+            if (!$this->isOdd) {
+                $table[$i][] = [$a[0],$this->teamsCount];
+            }
+            for ( $j=1; $j<$this->pairCnt; $j++) {
+                $table[$i][] = [$a[$j],$a[$this->teamsCount-1-$j]];
+            }
+            array_push($a,array_shift($a));
+        }
+
+        $table = $this->addReversMarches($table);
+
+        return $table;
+    }
+
+    /**
+     * @name addReversMarches
+     * @param $table
+     * @return array
+     */
+    protected function addReversMarches($table)
+    {
+        foreach ($table as $day) {
+            $nDay = [];
+            foreach ($day as $match) {
+                $nDay[] =  [$match[1], $match[0]];
+            }
+            $table[] = $nDay;
+        }
         return $table;
     }
 
@@ -176,14 +181,14 @@ class DrawLeague
     /**
      * @name saveRounds
      */
-    protected function saveRounds()
+    protected function saveRounds($table)
     {
-        foreach ($this->rounds as $key => $round) {
+        foreach ($table as $key => $round) {
             foreach ($round as $match) {
                 Match::create([
                     'tournamentId' => $this->tournament->id,
-                    'homeTournamentTeamId' => $match['homeTournamentTeamId'],
-                    'awayTournamentTeamId' => $match['awayTournamentTeamId'],
+                    'homeTournamentTeamId' => $this->teams[$match[0] - 1]['id'],
+                    'awayTournamentTeamId' => $this->teams[$match[1] - 1]['id'],
                     'homeScore' => 0,
                     'awayScore' => 0,
                     'homePenaltyScore' => 0,

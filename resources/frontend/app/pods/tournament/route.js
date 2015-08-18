@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   model(params) {
     const store = this.store;
 
-    return store.find('tournament', params.id);
+    return store.find('tournament', params.tournamentId);
   },
 
   setupController(controller, model, transition) {
@@ -17,7 +17,10 @@ export default Ember.Route.extend({
 
   currentPathChanged(applicationContoller) {
     let currentTournamentsRoute = applicationContoller.get('currentPath').split('.')[2];
+    let tabList = ['tablescore', 'matches', 'fixtures', 'teams', 'settings'];
 
-    this.controllerFor('tournament').set('selectedTab', currentTournamentsRoute);
+    if (0 <= tabList.indexOf(currentTournamentsRoute)) {
+      this.controllerFor('tournament').set('selectedTab', currentTournamentsRoute);
+    }
   }
 });
