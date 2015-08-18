@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col s12">
+    <h3>{{model.name}}</h3>
+
+    {{#md-tabs selected=selectedTab}}
+      {{#link-to 'tournament.tablescore'}}
+        {{md-tab value='tablescore' title='Tablescore'}}
+      {{/link-to}}
+
+      {{#link-to 'tournament.matches'}}
+        {{md-tab value='matches' title='Matches'}}
+      {{/link-to}}
+
+      {{#link-to 'tournament.fixtures'}}
+        {{md-tab value='fixtures' title='Fixtures'}}
+      {{/link-to}}
+
+      {{#link-to 'tournament.teams'}}
+        {{md-tab value='teams' title='Teams'}}
+      {{/link-to}}
+
+      {{#if session.isAuthenticated}}
+        {{#link-to 'tournament.settings'}}
+          {{md-tab value='settings' title='Settings'}}
+        {{/link-to}}
+      {{/if}}
+
+    {{/md-tabs}}
+
+    {{outlet}}
+  </div>
+</div>

@@ -1,11 +1,6 @@
 import DS from 'ember-data';
 
-const {
-  Model,
-  hasMany,
-  belongsTo,
-  attr
-} = DS;
+const { Model, hasMany, belongsTo, attr } = DS;
 
 export default Model.extend({
   name: attr('string'),

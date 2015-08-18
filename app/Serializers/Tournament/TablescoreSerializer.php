@@ -36,6 +36,7 @@ class TablescoreSerializer
                 $homeTeam = array_merge(
                     [
                         'teamId' => $match->homeTournamentTeam->id,
+                        'name' => $match->homeTournamentTeam->team->name,
                     ],
                     $defaultTeamData
                 );
@@ -45,6 +46,7 @@ class TablescoreSerializer
                 $awayTeam = array_merge(
                     [
                         'teamId' => $match->awayTournamentTeam->id,
+                        'name' => $match->awayTournamentTeam->team->name,
                     ],
                     $defaultTeamData
                 );
@@ -89,6 +91,7 @@ class TablescoreSerializer
 
         });
 
+
         // sort by points and goal difference
         $tablescore = $tablescore->sort(function($a, $b) {
             if ($b['points'] === $a['points']) {
@@ -117,6 +120,11 @@ class TablescoreSerializer
 
             return $row;
         });
+
+        // alphabetical sort for teams on the same position
+        $tablescore = $tablescore->sortBy(function($team) {
+            return $team['position'] . '-' . $team['name'];
+        }, SORT_NUMERIC);
 
         return $tablescore;
     }

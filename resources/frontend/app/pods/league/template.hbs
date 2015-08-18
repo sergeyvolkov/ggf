@@ -1,0 +1,15 @@
+{{#with model as |league|}}
+  <div class="row">
+    <div class="col md12">
+      <h3>{{league.name}}</h3>
+
+      {{#md-tabs}}
+        {{#link-to 'league.teams'}}
+          {{md-tab value='teams' title='Teams'}}
+        {{/link-to}}
+      {{/md-tabs}}
+
+      {{outlet}}
+    </div>
+  </div>
+{{/with}}
