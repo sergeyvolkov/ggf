@@ -63,13 +63,15 @@ class DrawLeague
             $team->team->homeMatchesAmount = 0;
             $team->team->wasPulledOut = false;
             $team->team->pulledOut = false;
-            array_push($this->teams,[
+            array_push($this->teams, [
                 'id' => $team->id,
                 'name' => $team->team->name
             ]);
         }
 
-        $this->teamsCount =  count($this->teams);
+        shuffle($this->teams);
+
+        $this->teamsCount = count($this->teams);
         $this->isOddTeamsCnt();
         $this->setPairCnt();
     }
@@ -105,7 +107,6 @@ class DrawLeague
      */
     protected function draw()
     {
-
         $table = $this->drawBergerTable();
 
         $this->saveRounds($table);
@@ -121,19 +122,19 @@ class DrawLeague
         $a = [];
         $table = [];
 
-        for ( $i=1; $i<$this->teamsCount; $i++) {
+        for ($i = 1; $i < $this->teamsCount; $i++) {
             $a[] = $i;
         }
 
-        for ( $i=0; $i<$this->teamsCount-1; $i++) {
+        for ($i = 0; $i < $this->teamsCount - 1; $i++) {
             $table[$i] = [];
             if (!$this->isOdd) {
-                $table[$i][] = [$a[0],$this->teamsCount];
+                $table[$i][] = [$a[0], $this->teamsCount];
             }
-            for ( $j=1; $j<$this->pairCnt; $j++) {
-                $table[$i][] = [$a[$j],$a[$this->teamsCount-1-$j]];
+            for ($j = 1; $j < $this->pairCnt; $j++) {
+                $table[$i][] = [$a[$j], $a[$this->teamsCount - 1 - $j]];
             }
-            array_push($a,array_shift($a));
+            array_push($a, array_shift($a));
         }
 
         $table = $this->addReversMarches($table);
@@ -148,13 +149,16 @@ class DrawLeague
      */
     protected function addReversMarches($table)
     {
-        foreach ($table as $day) {
+        for ($i = count($table) - 1; $i >= 0; $i--) {
+            $day = $table[$i];
+
             $nDay = [];
             foreach ($day as $match) {
-                $nDay[] =  [$match[1], $match[0]];
+                $nDay[] = [$match[1], $match[0]];
             }
             $table[] = $nDay;
         }
+
         return $table;
     }
 
@@ -164,8 +168,8 @@ class DrawLeague
      */
     protected function isOddTeamsCnt()
     {
-        if ($this->teamsCount%2 != 0) {
-            $this->isOdd =  true;
+        if ($this->teamsCount % 2 != 0) {
+            $this->isOdd = true;
             $this->teamsCount++;
         }
     }
@@ -175,7 +179,7 @@ class DrawLeague
      */
     protected function setPairCnt()
     {
-        $this->pairCnt = intval($this->teamsCount/2);
+        $this->pairCnt = intval($this->teamsCount / 2);
     }
 
     /**
