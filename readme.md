@@ -1,6 +1,6 @@
 # Good Gateway Football
 
-[Demo](https://good-gateway-football.herokuapp.com)
+<a href="https://good-gateway-football.herokuapp.com" target="_blank">Demo</a>
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/sergeyvolkov/ggf?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
