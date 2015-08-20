@@ -38,6 +38,7 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/teams/search', 'API\TeamController@search');
 
         Route::get('/teams/{teamId}', 'API\TeamController@find');
+        Route::delete('/teams/{teamId}', 'API\TeamController@remove');
 
         Route::get('/teamMembers', 'API\TeamMemberController@catalogue');
         Route::post('/teamMembers', 'API\TeamMemberController@assign');

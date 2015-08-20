@@ -1,0 +1,44 @@
+{{#if removeState }}
+
+  {{#md-card
+    title='Are you sure?'
+  }}
+
+    {{#md-card-content}}
+      <img src="{{team.logoPath}}"/>
+    {{/md-card-content}}
+    {{#md-card-action}}
+      <a href="#" {{ action "confirmRemove" team }}>Confirm</a>
+      <a href="#" {{ action "toggleRemoveState" }} class="undo">Undo</a>
+    {{/md-card-action}}
+
+  {{/md-card}}
+
+{{else}}
+
+
+  {{#md-card
+    title=team.name
+  }}
+
+    {{#md-card-content}}
+      <img src="{{team.logoPath}}"/>
+    {{/md-card-content}}
+    {{#md-card-action}}
+      {{#link-to 'tournament.team' team.id}}View team{{/link-to}}
+
+      {{#if isMenuAllowed }}
+        {{#ggf-reveal-menu belowOrigin=true constrainWidth=false}}
+
+          <li>
+            <a href="#" {{ action 'toggleRemoveState' }}>Remove team</a>
+          </li>
+
+        {{/ggf-reveal-menu}}
+      {{/if}}
+
+    {{/md-card-action}}
+
+  {{/md-card}}
+
+{{/if}}
