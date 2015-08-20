@@ -36,13 +36,13 @@ class CreateForeignKeys extends Migration {
 			$table->dropForeign('team_members_memberId_foreign');
 		});
 		Schema::table('team_members', function(Blueprint $table) {
-			$table->dropForeign('team_members_teamId_foreign');
+			$table->dropForeign('team_members_teamid_foreign');
 		});
 		Schema::table('tournament_teams', function(Blueprint $table) {
-			$table->dropForeign('tournament_teams_teamId_foreign');
+			$table->dropForeign('tournament_teams_teamid_foreign');
 		});
 		Schema::table('tournament_teams', function(Blueprint $table) {
-			$table->dropForeign('tournament_teams_tournamentId_foreign');
+			$table->dropForeign('tournament_teams_tournamentid_foreign');
 		});
 	}
 }

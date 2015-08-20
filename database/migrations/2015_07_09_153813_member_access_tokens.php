@@ -13,7 +13,7 @@ class MemberAccessTokens extends Migration
     public function up()
     {
         Schema::create('member_tokens', function (Blueprint $table) {
-            $table->integer('memberId');
+            $table->increments('memberId');
             $table->string('accessToken');
             $table->string('sessionId');
             $table->timestamps();
@@ -36,7 +36,7 @@ class MemberAccessTokens extends Migration
     public function down()
     {
         Schema::table('member_tokens', function(Blueprint $table) {
-            $table->dropForeign('member_tokens_memberId_foreign');
+            $table->dropForeign('member_tokens_memberid_foreign');
         });
 
         Schema::drop('member_tokens');
