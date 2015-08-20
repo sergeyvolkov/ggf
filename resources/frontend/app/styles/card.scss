@@ -1,6 +1,9 @@
 .card {
+  position: inherit;
+
   .card-content {
     height: 128px;
+    position: relative;
     img {
       position: absolute;
       height: 104px;
@@ -16,10 +19,11 @@
     }
   }
 
-  .card-action a {
-    margin: 0;
-  }
+  .card-action {
+    a {
 
+    }
+  }
 
   .search-action {
     text-align: center;
@@ -35,7 +39,23 @@
     }
 
     .undo {
-      float:right;
+      float: right;
+    }
+  }
+
+  & .card-action .reveal-menu {
+    background: none;
+    float: right;
+    margin: -0.5em -0.5em 0 0;
+    box-shadow: none;
+    transition: box-shadow .25s;
+
+    i {
+      color: $card-link-color;
+    }
+    
+    .dropdown-content {
+      width: 80px;
     }
   }
 }
