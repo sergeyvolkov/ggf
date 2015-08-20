@@ -3,13 +3,12 @@
     <h3>{{team.name}}</h3>
   {{/with}}
 
-  <div class="col m8">
+  <div class="col l8 m12 s12">
     {{#with model.matches as |matches| }}
       {{ggf-tournament.matches-list matches=matches title='Matches'}}
     {{/with}}
   </div>
-  <div class="col m4">
-    <h4>Members</h4>
+  <div class="col l4 m12 s12">
     {{#with model.team as |team| }}
       {{ggf-teams.members-list team=team assign='assignMember' remove='removeMember'}}
     {{/with}}
