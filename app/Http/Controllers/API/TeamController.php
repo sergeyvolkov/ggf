@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\Tournament\RemoveTeam;
 use App\Models\Team;
 use App\Models\TournamentTeam;
 use App\Transformers\TeamSearchTransformer;
@@ -30,5 +31,10 @@ class TeamController extends Controller
             new TeamSearchTransformer(),
             'teams'
         );
+    }
+
+    public function remove($teamId, RemoveTeam $request)
+    {
+        return TournamentTeam::where(['id' => $teamId])->delete();
     }
 }
