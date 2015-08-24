@@ -12,7 +12,10 @@ before-install:
 install: ./bin/setup.sh
 cache:
   directories:
-  - vendor
-  - node_modules
-  - resources/frontend/node_modules/
-  - resources/frontend/bower_components/
+    - $HOME/.composer
+    - $HOME/.npm
+    - $HOME/.bower
+    - vendor
+    - node_modules
+    - resources/frontend/node_modules/
+    - resources/frontend/bower_components/
