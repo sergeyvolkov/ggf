@@ -7,4 +7,5 @@ env:
   - DB_USERNAME="postgres" DB_PASSWORD=""
 before-install:  
   - psql -c 'create database homestead;' -U postgres
+  - psql -c 'create database homestead_test;' -U postgres
 install: ./bin/setup.sh
