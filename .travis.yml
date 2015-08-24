@@ -9,3 +9,9 @@ before-install:
   - psql -c 'create database homestead;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
 install: ./bin/setup.sh
+cache:
+  directories:
+  - vendor
+  - node_modules
+  - resources/frontend/node_modules/
+  - resources/frontend/bower_components/
