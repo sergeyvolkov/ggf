@@ -10,7 +10,7 @@ addons:
   postgresql: "9.3"
 env:
   - DB_USERNAME="postgres" DB_PASSWORD=""
-before-install:  
+before_script:  
   - cp .env.travis .env
   - psql -c 'drop database if exists homestead;' -U postgres
   - psql -c 'create database homestead;' -U postgres
