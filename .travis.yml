@@ -21,6 +21,7 @@ before-install:
 install: 
   - php -i | grep postgre
   - php -m
+  - cat .env
   - php artisan migrate:status
   - yes | php artisan migrate
   - ./bin/setup.sh
