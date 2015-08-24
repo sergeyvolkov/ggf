@@ -2,7 +2,6 @@ language: php
 php:
   - 5.5
   - 5.6
-  - hhvm
 services:
   - postgresql
 # try running against postgres 9.3
@@ -12,13 +11,8 @@ env:
   - DB_USERNAME="postgres" DB_PASSWORD=""
 before_script:  
   - cp .env.travis .env
-  - psql -c 'drop database if exists homestead;' -U postgres
-  - psql -c 'create database homestead;' -U postgres
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
-  - php -i | grep postgre
-  - php -m
-  - cat .env
   - php artisan migrate:status
   - yes | php artisan migrate
   - ./bin/setup.sh
