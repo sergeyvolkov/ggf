@@ -18,7 +18,6 @@ before_script:
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
   - psql -c 'GRANT ALL ON homestead_test TO postgres;' -U postgres
-install: 
   - php -i | grep postgre
   - php -m
   - cp .env.travis .env
