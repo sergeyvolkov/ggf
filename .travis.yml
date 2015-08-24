@@ -18,6 +18,8 @@ before-install:
   - psql -c 'create database homestead_test;' -U postgres
 install: 
   - php -i | grep postgre
+  - php -m
+  - php artisan migrate
   - ./bin/setup.sh
 cache:
   directories:
