@@ -14,10 +14,10 @@ before-install:
   - cp .env.travis .env
   - psql -c 'drop database if exists homestead;' -U postgres
   - psql -c 'create database homestead;' -U postgres
-  - psql -c 'GRANT ALL ON db TO homestead;' -U postgres
+  - psql -c 'GRANT ALL ON homestead TO postgres;' -U postgres
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
-  - psql -c 'GRANT ALL ON db TO homestead_test;' -U postgres
+  - psql -c 'GRANT ALL ON homestead_test TO postgres;' -U postgres
 install: 
   - php -i | grep postgre
   - php -m
