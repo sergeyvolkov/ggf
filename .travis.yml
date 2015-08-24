@@ -11,7 +11,7 @@ before_script:
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
   - ./bin/setup.sh
-  - cp .env.travis .env
+  - cp -v .env.travis .env
   - php artisan migrate:status
   - yes | php artisan migrate
 cache:
