@@ -1,7 +1,3 @@
-{{#each list as |item| }}
+{{#md-collection content=list header='Members' as |item| }}
     {{ggf-teams.members-list-item member=item team=team remove='remove' assign='assign' }}
-{{/each}}
-
-{{#each emptyList as |item| }}
-    {{ggf-teams.members-list-item member=item team=team remove='remove' assign='assign' }}
-{{/each}}
+{{/md-collection}}
