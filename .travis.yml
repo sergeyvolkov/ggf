@@ -7,14 +7,11 @@ services:
 # try running against postgres 9.3
 addons:
   postgresql: "9.3"
-env:
-  - DB_USERNAME="postgres" DB_PASSWORD=""
 before_script:  
   - cp .env.travis .env
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
   - php artisan migrate:status
-  - yes | php artisan migrate
   - ./bin/setup.sh
 cache:
   directories:
