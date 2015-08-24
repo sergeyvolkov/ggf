@@ -4,8 +4,7 @@ php:
   - 5.6
   - hhvm
 env:
-  - DB_USERNAME=postgres
-  - DB_PASSWORD=
+  - DB_USERNAME="postgres" DB_PASSWORD=""
 before-install:  
   - psql -c 'create database homestead;' -U postgres
 install: ./bin/setup.sh
