@@ -13,7 +13,9 @@ before-install:
   - psql -c 'create database homestead;' -U postgres
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
-install: ./bin/setup.sh
+install: 
+  - php -i | grep postgre
+  - ./bin/setup.sh
 cache:
   directories:
     - vendor
