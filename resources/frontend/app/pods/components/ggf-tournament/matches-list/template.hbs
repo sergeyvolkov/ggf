@@ -1,5 +1,12 @@
 <h4>{{title}}</h4>
 
+{{select-2
+    content=rounds
+    searchEnabled=false
+    value=selectedRound
+    placeholder='Choose round'
+}}
+
 {{#md-table content=matchesList class='striped centered' as |match|}}
   {{md-table-col row=match valueBindingPath='id' header='#'}}
   {{md-table-col row=match valueBindingPath='round' header='Round'}}
