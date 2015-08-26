@@ -5,7 +5,7 @@ namespace App\Http\Requests\Tournament;
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AddTeam extends Request
+class RemoveTeam extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,6 @@ class AddTeam extends Request
      */
     public function rules()
     {
-        return [
-            'team.teamId' => 'required||exists:teams,id',
-            'team.tournamentId' => 'required|exists:tournaments,id'
-        ];
+        return [];
     }
 }

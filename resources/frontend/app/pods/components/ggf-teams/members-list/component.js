@@ -7,8 +7,6 @@ const {
 } = Ember;
 
 export default Component.extend({
-  classNameBindings: [':collection'],
-
   store: Ember.inject.service(),
 
   team: null,
@@ -46,7 +44,7 @@ export default Component.extend({
       }
 
       while (membersLeft > 0) {
-        this.get('emptyList').addObject(this.get('store').createRecord('teamMember', {
+        members.addObject(this.get('store').createRecord('teamMember', {
           teamId: this.get('team').get('id'),
           name: null
         }));
