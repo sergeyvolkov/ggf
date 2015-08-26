@@ -5,6 +5,11 @@ export default Ember.Component.extend({
     const matches = this.get('matches');
     let rounds = [];
 
+    const allRoundsOption = {
+      id:   0,
+      text: 'All rounds'
+    };
+
     matches.forEach( (match) => {
       const round = match.get('round');
 
@@ -17,12 +22,16 @@ export default Ember.Component.extend({
     } );
 
     // format for select-2
-    return rounds.map( (round) => {
+    let roundsForSelect = rounds.map( (round) => {
       return {
         id:   round,
         text: round
       };
     } );
+
+    roundsForSelect.unshift(allRoundsOption);
+
+    return roundsForSelect;
   }.property('matches'),
 
   // set score variable for each match
