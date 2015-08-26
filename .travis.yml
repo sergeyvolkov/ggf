@@ -1,0 +1,22 @@
+language: php
+php:
+  - 5.5
+  - 5.6
+services:
+  - postgresql
+# try running against postgres 9.3
+addons:
+  postgresql: "9.3"
+before_script:  
+  - psql -c 'drop database if exists homestead_test;' -U postgres
+  - psql -c 'create database homestead_test;' -U postgres
+  - ./bin/setup.sh
+  - cp -v .env.travis .env
+  - php artisan migrate:status
+  - yes | php artisan migrate
+cache:
+  directories:
+    - vendor
+    - node_modules
+    - resources/frontend/node_modules/
+    - resources/frontend/bower_components/
