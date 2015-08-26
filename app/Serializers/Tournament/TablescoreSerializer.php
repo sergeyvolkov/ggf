@@ -108,6 +108,7 @@ class TablescoreSerializer
                 && $previousRow['points'] > 0
                 && $previousRow['points'] == $row['points']
                 && $previousRow['goalsDifference'] == $row['goalsDifference']
+                && $previousRow['goalsScored'] == $row['goalsScored']
             ) {
                 $row['position'] = $previousRow['position'];
             } else {
