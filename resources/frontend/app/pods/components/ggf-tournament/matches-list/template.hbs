@@ -16,7 +16,15 @@
 {{#md-table content=matchesList class='striped centered' as |match|}}
   {{md-table-col row=match valueBindingPath='id' header='#'}}
   {{md-table-col row=match valueBindingPath='round' header='Round'}}
-  {{md-table-col row=match valueBindingPath='homeTeam' header='Home Team'}}
+  {{#md-table-col row=match key='homeTeam' header='Home Team'}}
+    {{#link-to 'tournament.team' match.homeTeamId}}
+      {{match.homeTeam}}
+    {{/link-to}}
+  {{/md-table-col}}
   {{md-table-col row=match valueBindingPath='score' header='Score'}}
-  {{md-table-col row=match valueBindingPath='awayTeam' header='Away Team'}}
+  {{#md-table-col row=match key='awayTeam' header='Away Team'}}
+    {{#link-to 'tournament.team' match.awayTeamId}}
+      {{match.awayTeam}}
+    {{/link-to}}
+  {{/md-table-col}}
 {{/md-table}}
