@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\TournamentWasReset' => [
             'App\Listeners\Tournament\Reset',
+        ],
+        'App\Events\MatchWasFinished' => [
+            'App\Listeners\Match\UpdateResultType',
         ]
     ];
 

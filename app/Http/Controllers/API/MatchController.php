@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\CreateLeague;
+use App\Http\Requests\MatchUpdate;
 use App\Models\League;
 use App\Models\Match;
 use App\Transformers\LeagueTransformer;
 use App\Transformers\MatchTransformer;
 use App\Transformers\TeamTransformer;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
@@ -35,5 +37,16 @@ class MatchController extends Controller
         }
 
         return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
+    }
+
+    public function update($matchId, MatchUpdate $request)
+    {
+        /**
+         * @var $match Match
+         */
+        $match = Match::findOrFail($matchId);
+        $match->update($request->get('match'));
+
+        return $this->response->collection(Match::where(['id' => $request->get('id')]), new MatchTransformer(), 'matches');
     }
 }

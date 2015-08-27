@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Match;
 use App\Models\Tournament;
 use App\Models\TournamentTeam;
+use App\Observers\MatchObserver;
 use App\Observers\TournamentObserver;
 use App\Observers\TournamentTeamObserver;
 use Illuminate\Support\Facades\Log;
@@ -20,6 +22,7 @@ class EloquentServiceProvider extends ServiceProvider
     {
         Tournament::observe(new TournamentObserver);
         TournamentTeam::observe(new TournamentTeamObserver);
+        Match::observe(new MatchObserver);
     }
 
     /**

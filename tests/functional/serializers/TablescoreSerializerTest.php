@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functional\Events;
+namespace App\Tests\Unit\Events;
 
 use App\Models\League;
 use App\Models\Match;
