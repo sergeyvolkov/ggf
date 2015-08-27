@@ -1,13 +1,17 @@
 <h4>Matches</h4>
 
-{{select-2
+<div class="col m6 left-align">
+  {{select-2
     content=rounds
     searchEnabled=false
     value=selectedRound
-    class="col m2"
-}}
+    class="col m4"
+  }}
+</div>
+<div class="col m6 right-align">
+  {{md-check name="Hide finished matches" checked=hideFinishedMatches}}
+</div>
 
-{{md-check name="Hide finished matches" checked=hideFinishedMatches}}
 
 {{#md-table content=matchesList class='striped centered' as |match|}}
   {{md-table-col row=match valueBindingPath='id' header='#'}}
