@@ -6,6 +6,8 @@ export default Ember.Component.extend({
     text: 'All rounds'
   },
 
+  hideFinishedMatches: false,
+
   rounds: function() {
     const matches = this.get('matches');
     let rounds = [];
@@ -39,15 +41,24 @@ export default Ember.Component.extend({
   matchesList: function() {
     const matches = this.get('matches');
     const selectedRound = this.get('selectedRound.id');
+    const hideFinishedMatches = this.get('hideFinishedMatches');
 
     return matches
       .filter( (match) => {
-        // use round filter
+        const isMatchFinished = (match.get('status') === 'finished');
+        const matchRound = match.get('round');
+
+        // use match status filter
+        if (hideFinishedMatches && isMatchFinished) {
+          return false;
+        }
+
+        // is round filter enabled
         if (selectedRound === -1) {
           return true;
         }
 
-        return match.get('round') === selectedRound;
+        return matchRound === selectedRound;
       } )
       .map( (match) => {
         // set score variable for each match
@@ -57,7 +68,7 @@ export default Ember.Component.extend({
 
         return match;
     } );
-  }.property('matches', 'selectedRound'),
+  }.property('matches', 'selectedRound', 'hideFinishedMatches'),
 
   getMatchScore(match) {
     const homeScore = (match.get('status') !== 'not_started') ? match.get('homeScore') : '-';
