@@ -12,19 +12,25 @@
   {{md-check name="Hide finished matches" checked=hideFinishedMatches}}
 </div>
 
+{{#if matchesList}}
+  {{#md-table content=matchesList class='striped centered' as |match|}}
+    {{md-table-col row=match valueBindingPath='id' header='#'}}
+    {{md-table-col row=match valueBindingPath='round' header='Round'}}
+    {{#md-table-col row=match key='homeTeam' header='Home Team'}}
+      {{#link-to 'tournament.team' match.homeTeamId}}
+        {{match.homeTeam}}
+      {{/link-to}}
+    {{/md-table-col}}
+    {{md-table-col row=match valueBindingPath='score' header='Score'}}
+    {{#md-table-col row=match key='awayTeam' header='Away Team'}}
+      {{#link-to 'tournament.team' match.awayTeamId}}
+        {{match.awayTeam}}
+      {{/link-to}}
+    {{/md-table-col}}
+  {{/md-table}}
+{{else}}
+  <div class="col m12 s12 center-align">
+    Matches not found.
+  </div>
+{{/if}}
 
-{{#md-table content=matchesList class='striped centered' as |match|}}
-  {{md-table-col row=match valueBindingPath='id' header='#'}}
-  {{md-table-col row=match valueBindingPath='round' header='Round'}}
-  {{#md-table-col row=match key='homeTeam' header='Home Team'}}
-    {{#link-to 'tournament.team' match.homeTeamId}}
-      {{match.homeTeam}}
-    {{/link-to}}
-  {{/md-table-col}}
-  {{md-table-col row=match valueBindingPath='score' header='Score'}}
-  {{#md-table-col row=match key='awayTeam' header='Away Team'}}
-    {{#link-to 'tournament.team' match.awayTeamId}}
-      {{match.awayTeam}}
-    {{/link-to}}
-  {{/md-table-col}}
-{{/md-table}}
