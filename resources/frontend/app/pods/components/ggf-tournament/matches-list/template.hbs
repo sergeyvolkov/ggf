@@ -9,8 +9,9 @@
 
 {{#md-collection classNames="matches-collection" content=matchesList as |match|}}
   <div class="match-item">
-    <div class="col m4 right-align">{{match.homeTeam}}</div>
-    <div class="col m4 center-align">{{match.score}}</div>
-    <div class="col m4 left-align">{{match.awayTeam}}</div>
+    <div class="col m3 center-align">{{match.round}}</div>
+    <div class="col m3 right-align">{{match.homeTeam}}</div>
+    <div class="col m3 center-align">{{match.score}}</div>
+    <div class="col m3 left-align">{{match.awayTeam}}</div>
   </div>
 {{/md-collection}}
