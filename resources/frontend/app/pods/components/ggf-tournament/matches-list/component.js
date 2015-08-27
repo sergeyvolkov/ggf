@@ -1,12 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  selectedRound: {
+    id: -1
+  },
+
   rounds: function() {
     const matches = this.get('matches');
     let rounds = [];
 
     const allRoundsOption = {
-      id:   0,
+      id:   -1,
       text: 'All rounds'
     };
 
@@ -34,18 +38,28 @@ export default Ember.Component.extend({
     return roundsForSelect;
   }.property('matches'),
 
-  // set score variable for each match
   matchesList: function() {
     const matches = this.get('matches');
+    const selectedRound = this.get('selectedRound.id');
 
-    return matches.map( (match) => {
-      const score = this.getMatchScore(match);
+    return matches
+      .filter( (match) => {
+        // use round filter
+        if (selectedRound === -1) {
+          return true;
+        }
 
-      match.set('score', score);
+        return match.get('round') === selectedRound;
+      } )
+      .map( (match) => {
+        // set score variable for each match
+        const score = this.getMatchScore(match);
 
-      return match;
+        match.set('score', score);
+
+        return match;
     } );
-  }.property('matches'),
+  }.property('matches', 'selectedRound'),
 
   getMatchScore(match) {
     const homeScore = (match.get('status') !== 'not_started') ? match.get('homeScore') : '-';
