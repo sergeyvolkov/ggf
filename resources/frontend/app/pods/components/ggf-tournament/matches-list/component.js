@@ -2,17 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   selectedRound: {
-    id: -1
+    id:   -1,
+    text: 'All rounds'
   },
 
   rounds: function() {
     const matches = this.get('matches');
     let rounds = [];
 
-    const allRoundsOption = {
-      id:   -1,
-      text: 'All rounds'
-    };
+    const allRoundsOption = this.get('selectedRound');
 
     matches.forEach( (match) => {
       const round = match.get('round');
