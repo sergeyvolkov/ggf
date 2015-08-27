@@ -6,13 +6,11 @@
     value=selectedRound
     class="col m2"
 }}
-<br>
 
-{{#md-collection classNames="matches-collection" content=matchesList as |match|}}
-  <div class="match-item">
-    <div class="col m3 center-align">{{match.round}}</div>
-    <div class="col m3 right-align">{{match.homeTeam}}</div>
-    <div class="col m3 center-align">{{match.score}}</div>
-    <div class="col m3 left-align">{{match.awayTeam}}</div>
-  </div>
-{{/md-collection}}
+{{#md-table content=matchesList class='striped centered' as |match|}}
+  {{md-table-col row=match valueBindingPath='id' header='#'}}
+  {{md-table-col row=match valueBindingPath='round' header='Round'}}
+  {{md-table-col row=match valueBindingPath='homeTeam' header='Home Team'}}
+  {{md-table-col row=match valueBindingPath='score' header='Score'}}
+  {{md-table-col row=match valueBindingPath='awayTeam' header='Away Team'}}
+{{/md-table}}
