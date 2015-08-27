@@ -14,7 +14,6 @@ Router.map(function() {
       this.route('teams');
       this.route('team', {path: '/team/:id'});
       this.route('matches');
-      this.route('fixtures');
       this.route('settings');
     });
   });
