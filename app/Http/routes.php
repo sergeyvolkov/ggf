@@ -45,8 +45,8 @@ Route::group(['middleware' => 'cors'], function() {
         Route::delete('/teamMembers/{teamMemberId}', 'API\TeamMemberController@remove');
         Route::get('/teamMembers/search', 'API\TeamMemberController@search');
 
-        Route::get('/matches', 'API\TournamentController@matches');
         Route::get('/tablescores', 'API\TournamentController@tablescore');
+        Route::get('/matches', 'API\MatchController@catalogue');
 
         Route::get('/me', 'API\MemberController@current');
     });

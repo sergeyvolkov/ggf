@@ -45,29 +45,6 @@ class TournamentController extends Controller
         return $this->response->collection($collection->get(), new TournamentTransformer($this->response), 'tournaments');
     }
 
-    public function matches()
-    {
-        $teamId = Input::get('teamId');
-        $status = Input::get('status');
-
-        $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
-            ->where('tournamentId', Input::get('tournamentId'))
-            ->orderBy('round')->orderBy('id');
-
-        if ($status) {
-            $collection->where('status', $status);
-        }
-
-        if ($teamId) {
-            $collection->where(function($query) use ($teamId) {
-                $query->where('homeTournamentTeamId', $teamId)
-                    ->orWhere('awayTournamentTeamId', $teamId);
-            });
-        }
-
-        return $this->response->collection($collection->get(), new MatchTransformer(), 'matches');
-    }
-
     public function tablescore()
     {
         $serializer = new TablescoreSerializer();
@@ -81,7 +58,6 @@ class TournamentController extends Controller
             'tablescore'
         );
     }
-
 
     /**
      * Create new tournament
