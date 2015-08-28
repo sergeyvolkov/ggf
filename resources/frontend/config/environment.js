@@ -22,10 +22,6 @@ module.exports = function (environment) {
       host: '//good-gateway-football.herokuapp.com'
     },
 
-    sassOptions: {
-      includePaths: ['bower_components/materialize/sass']
-    },
-
     contentSecurityPolicy: {
       'connect-src': "'self' good-gateway-football.herokuapp.com",
       'font-src': "'self' data: fonts.gstatic.com",
