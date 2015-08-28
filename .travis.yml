@@ -1,8 +1,9 @@
 language: php
 env:
-- DB_DATABASE=homestead_test
-- DB_USERNAME=postgres
-- DB_PASSWORD=
+  global:
+    - DB_DATABASE=homestead_test
+    - DB_USERNAME=postgres
+    - DB_PASSWORD=
 php:
   - 5.5
   - 5.6
