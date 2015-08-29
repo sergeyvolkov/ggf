@@ -17,6 +17,12 @@ export default Ember.Route.extend({
 
   currentPathChanged(applicationContoller) {
     let currentTournamentsRoute = applicationContoller.get('currentPath').split('.')[2];
+
+    // teams and team routes must have one tab
+    if (currentTournamentsRoute === 'team') {
+      currentTournamentsRoute = 'teams';
+    }
+
     let tabList = ['tablescore', 'matches', 'teams', 'settings'];
 
     if (0 <= tabList.indexOf(currentTournamentsRoute)) {
