@@ -34,7 +34,8 @@ class FacebookController extends Controller
             return response()->json([
                 'user' => [
                     'name' => Auth::user()->name,
-                    'id' => Auth::user()->facebookId
+                    'facebookId' => Auth::user()->facebookId,
+                    'id' => Auth::user()->id
                 ],
                 'token_type' => 'bearer',
                 'access_token' => $accessToken
