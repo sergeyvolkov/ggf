@@ -12,9 +12,7 @@ export default OAuth2.extend({
     return new Ember.RSVP.Promise(function (resolve, reject) {
       _this.makeRequest(_this.serverTokenEndpoint, oauthCredentials).then(function (response) {
         Ember.run(function () {
-          var expiresAt = _this.absolutizeExpirationTime(response.expires_in);
-          _this.scheduleAccessTokenRefresh(response.expires_in, expiresAt, response.refresh_token);
-          resolve(Ember.$.extend(response, {expires_at: expiresAt}));
+          resolve(Ember.$.extend(response, {id: response.user.id}));
         });
       }, function (xhr) {
         Ember.run(function () {

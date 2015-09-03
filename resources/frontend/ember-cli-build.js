@@ -7,6 +7,9 @@ module.exports = function(defaults) {
     fingerprint: {
       exclude: ['teams-logo', 'leagues-logo'],
       enabled: envConfig.APP.fingerprintEnabled || false
+    },
+    sassOptions: {
+      includePaths: ['bower_components/materialize/sass']
     }
   });
 
