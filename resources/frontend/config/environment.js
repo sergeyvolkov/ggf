@@ -19,12 +19,13 @@ module.exports = function (environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       namespace: 'api/v1',
-      host: '//good-gateway-football.herokuapp.com'
+      host: '//' + process.env.APP_HOSTNAME
     },
 
     contentSecurityPolicy: {
-      'connect-src': "'self' good-gateway-football.herokuapp.com",
-      'script-src': "'self' 'unsafe-inline' js-agent.newrelic.com bam.nr-data.net good-gateway-football.herokuapp.com",
+      'connect-src': "'self' bam.nr-data.net " + process.env.APP_HOSTNAME,
+      'img-src': "'self' bam.nr-data.net " + process.env.APP_HOSTNAME,
+      'script-src': "'self' 'unsafe-inline' js-agent.newrelic.com bam.nr-data.net " + process.env.APP_HOSTNAME,
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'font-src': "'self' data: fonts.gstatic.com"
     },
@@ -35,8 +36,8 @@ module.exports = function (environment) {
       sessionServiceName: 'session',
       providers: {
         'facebook-oauth2': {
-          apiKey: '681549091980013',
-          redirectUri: 'https://good-gateway-football.herokuapp.com'
+          apiKey: process.env.FACEBOOK_APP_ID,
+          redirectUri: process.env.FACEBOOK_REDIRECT_URI
         }
       }
     },
@@ -49,31 +50,12 @@ module.exports = function (environment) {
     }
   };
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-
-    ENV.baseURL = '/';
-    ENV.APP.host = 'http://192.168.10.10';
-
-    ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
+  if (environment === 'production') {
     ENV.APP.fingerprintEnabled = true;
-
-    ENV['torii']['providers']['facebook-oauth2']['apiKey'] = '681786761956246';
-    ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://192.168.10.10';
   }
 
-  if (environment === 'local') {
-    ENV.baseURL = '/';
-    ENV.APP.host = 'http://192.168.10.10';
-
-    ENV.contentSecurityPolicy['connect-src'] = "'self' 192.168.10.10";
-
-    ENV['torii']['providers']['facebook-oauth2']['apiKey'] = '682656945202561';
-    ENV['torii']['providers']['facebook-oauth2']['redirectUri'] = 'http://localhost:4200';
+  if (environment === 'development' || environment === 'local') {
+    ENV.APP.host = 'http://' + process.env.APP_HOSTNAME;
   }
 
   if (environment === 'test') {
@@ -88,24 +70,14 @@ module.exports = function (environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-    ENV.baseURL = '/';
-    ENV.APP.fingerprintEnabled = true;
-  }
-
   ENV['simple-auth'] = {
-    crossOriginWhitelist: ['http://192.168.10.10/', '//good-gateway-football.herokuapp.com/'],
+    crossOriginWhitelist: [ENV.APP.host],
     authorizer: 'simple-auth-authorizer:oauth2-bearer',
   };
 
   ENV['simple-auth-oauth2'] = {
     serverTokenEndpoint: ENV.APP.host + '/auth/facebook/token',
     serverTokenRevocationEndpoint: ENV.APP.host + '/auth/logout'
-  }
-
-  ENV['newRelic'] = {
-    licenseKey: process.env.NEW_RELIC_LICENSE_KEY,
-    applicationID: process.env.NEW_RELIC_APPLICATION_ID
   }
 
   return ENV;

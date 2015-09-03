@@ -12,7 +12,7 @@ module.exports = function(defaults) {
       includePaths: ['bower_components/materialize/sass']
     },
     dotEnv: {
-      clientAllowedKeys: ['NEW_RELIC_LICENSE_KEY', 'NEW_RELIC_APPLICATION_ID'],
+      clientAllowedKeys: ['APP_HOSTNAME', 'NEW_RELIC_LICENSE_KEY', 'NEW_RELIC_APPLICATION_ID'],
       path: '../../.env'
     }
   };
