@@ -19,7 +19,8 @@
         "guzzlehttp/guzzle": "^6.0@dev",
         "barryvdh/laravel-cors": "^0.7.0@dev",
         "laracasts/testdummy": "dev-master",
-        "barryvdh/laravel-debugbar": "^2.1@dev"
+        "barryvdh/laravel-debugbar": "^2.1@dev",
+        "intouch/laravel-newrelic": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
