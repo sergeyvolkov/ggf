@@ -24,8 +24,9 @@ module.exports = function (environment) {
 
     contentSecurityPolicy: {
       'connect-src': "'self' good-gateway-football.herokuapp.com",
-      'font-src': "'self' data: fonts.gstatic.com",
-      'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
+      'script-src': "'self' 'unsafe-inline' js-agent.newrelic.com bam.nr-data.net good-gateway-football.herokuapp.com",
+      'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
+      'font-src': "'self' data: fonts.gstatic.com"
     },
 
     /* torii */
@@ -100,6 +101,11 @@ module.exports = function (environment) {
   ENV['simple-auth-oauth2'] = {
     serverTokenEndpoint: ENV.APP.host + '/auth/facebook/token',
     serverTokenRevocationEndpoint: ENV.APP.host + '/auth/logout'
+  }
+
+  ENV['newRelic'] = {
+    licenseKey: process.env.NEW_RELIC_LICENSE_KEY,
+    applicationID: process.env.NEW_RELIC_APPLICATION_ID
   }
 
   return ENV;

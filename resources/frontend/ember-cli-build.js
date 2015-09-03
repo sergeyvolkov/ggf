@@ -10,16 +10,19 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       includePaths: ['bower_components/materialize/sass']
+    },
+    dotEnv: {
+      clientAllowedKeys: ['NEW_RELIC_LICENSE_KEY', 'NEW_RELIC_APPLICATION_ID'],
+      path: '../../.env'
     }
   };
 
   if (envConfig.newRelic) {
-    console.log('new relic', envConfig.newRelic);
 
-    options['inlineContent'] =  {
-      'new-relic' : {
+    options['inlineContent'] = {
+      'new-relic': {
         file: './new-relic.js',
-          postProcess: function(content) {
+        postProcess: function (content) {
           return content
             .replace(/\{\{NEW_RELIC_LICENSE_KEY\}\}/g, envConfig.newRelic.licenseKey)
             .replace(/\{\{NEW_RELIC_APPLICATION_ID\}\}/g, envConfig.newRelic.applicationID);
