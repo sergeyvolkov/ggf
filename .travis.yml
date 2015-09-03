@@ -15,7 +15,7 @@ addons:
 before_script:  
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
-  - ./bin/setup.sh
+  - travis_retry ./bin/setup.sh
   - php artisan migrate:status
   - yes | php artisan migrate
 cache:
