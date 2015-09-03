@@ -16,22 +16,21 @@ module.exports = function(defaults) {
       path: '../../.env'
     }
   };
+  
+  var app = new EmberApp(defaults, options);
 
-  if (envConfig.newRelic) {
-
-    options['inlineContent'] = {
+  if (process.env.NEW_RELIC_LICENSE_KEY && process.env.NEW_RELIC_APPLICATION_ID) {
+    app.options['inlineContent'] = {
       'new-relic': {
         file: './new-relic.js',
         postProcess: function (content) {
           return content
-            .replace(/\{\{NEW_RELIC_LICENSE_KEY\}\}/g, envConfig.newRelic.licenseKey)
-            .replace(/\{\{NEW_RELIC_APPLICATION_ID\}\}/g, envConfig.newRelic.applicationID);
+            .replace(/\{\{NEW_RELIC_LICENSE_KEY\}\}/g, process.env.NEW_RELIC_BROWSER_LICENSE_KEY)
+            .replace(/\{\{NEW_RELIC_APPLICATION_ID\}\}/g, process.env.NEW_RELIC_BROWSER_APPLICATION_ID);
         }
       }
     }
   }
-
-  var app = new EmberApp(defaults, options);
 
   return app.toTree();
 };
