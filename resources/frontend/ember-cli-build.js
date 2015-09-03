@@ -19,14 +19,14 @@ module.exports = function(defaults) {
   
   var app = new EmberApp(defaults, options);
 
-  if (process.env.NEW_RELIC_LICENSE_KEY && process.env.NEW_RELIC_APPLICATION_ID) {
+  if (process.env.NEW_RELIC_BROWSER_LICENSE_KEY && process.env.NEW_RELIC_BROWSER_APPLICATION_ID) {
     app.options['inlineContent'] = {
       'new-relic': {
         file: './new-relic.js',
         postProcess: function (content) {
           return content
-            .replace(/\{\{NEW_RELIC_LICENSE_KEY\}\}/g, process.env.NEW_RELIC_BROWSER_LICENSE_KEY)
-            .replace(/\{\{NEW_RELIC_APPLICATION_ID\}\}/g, process.env.NEW_RELIC_BROWSER_APPLICATION_ID);
+            .replace(/\{\{NEW_RELIC_BROWSER_LICENSE_KEY\}\}/g, process.env.NEW_RELIC_BROWSER_LICENSE_KEY)
+            .replace(/\{\{NEW_RELIC_BROWSER_APPLICATION_ID\}\}/g, process.env.NEW_RELIC_BROWSER_APPLICATION_ID);
         }
       }
     }
