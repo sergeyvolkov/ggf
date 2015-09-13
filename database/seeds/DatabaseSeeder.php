@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeriaATimSeeder::class);
         $this->call(BarclaysPremierLeagueSeeder::class);
         $this->call(LigaBBVASeeder::class);
+        $this->call(NationalTeamsSeeder::class);
 
         Model::reguard();
     }
