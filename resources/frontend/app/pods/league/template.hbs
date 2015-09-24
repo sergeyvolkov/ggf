@@ -3,10 +3,10 @@
     <div class="col m12">
       <h3>{{league.name}}</h3>
 
-      {{#md-tabs}}
-        {{#link-to 'league.teams'}}
-          {{md-tab value='teams' title='Teams'}}
-        {{/link-to}}
+      {{#md-tabs selected='teams'}}
+
+        {{ggf-md.md-tab value='teams' title='Teams' link='league.teams'}}
+
       {{/md-tabs}}
 
       {{outlet}}
