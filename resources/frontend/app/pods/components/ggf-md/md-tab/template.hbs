@@ -1,0 +1,13 @@
+{{#if link}}
+
+  {{#link-to link }}
+    {{title}}
+  {{/link-to}}
+
+{{else}}
+
+  <a class="{{if active 'active'}}">
+    {{title}}
+  </a>
+
+{{/if}}

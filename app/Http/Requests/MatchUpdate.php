@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use App\Models\Match;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class MatchUpdate extends Request
 {
@@ -14,7 +16,7 @@ class MatchUpdate extends Request
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -25,7 +27,6 @@ class MatchUpdate extends Request
     public function rules()
     {
         return [
-            'match.id' => 'required|integer',
             'match.homeScore' => 'required|integer',
             'match.awayScore' => 'required|integer',
             'match.status' => 'required|in:' . join(',', Match::getAvailableStatuses())

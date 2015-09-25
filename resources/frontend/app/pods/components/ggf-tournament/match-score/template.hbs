@@ -1,0 +1,16 @@
+{{#if editState }}
+
+  <div class="col s12">
+    <div class="col s6">
+      {{md-input value=homeScore type="number" validate=true min=0}}
+    </div>
+    <div class="col s6">
+      {{md-input value=awayScore type="number" validate=true min=0}}
+    </div>
+  </div>
+
+{{else}}
+
+  <span>{{score}}</span>
+
+{{/if}}
