@@ -48,7 +48,11 @@ Route::group(['middleware' => 'cors'], function() {
         Route::get('/tablescores', 'API\TournamentController@tablescore');
 
         Route::get('/matches', 'API\MatchController@catalogue');
-        Route::put('/matches/{matchId}', 'API\MatchController@update');
+
+        Route::group(['middleware' => ['before-match-update']], function() {
+            Route::put('/matches/{matchId}', 'API\MatchController@update');
+        });
+
 
         Route::get('/me', 'API\MemberController@current');
     });

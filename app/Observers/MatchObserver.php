@@ -13,8 +13,16 @@ class MatchObserver
         $dirtyStatus = array_get($model->getDirty(), 'status');
         $resultType = array_get($model->getOriginal(), 'resultType');
 
-        if (Match::RESULT_TYPE_UNKNOWN === $resultType
-            && Match::STATUS_FINISHED === $dirtyStatus
+        // original score values
+        $originalHomeScore = array_get($model->getOriginal(), 'homeScore');
+        $originalAwayScore = array_get($model->getOriginal(), 'awayScore');
+
+        // dirty score values
+        $dirtyHomeScore = array_get($model->getDirty(), 'homeScore');
+        $dirtyAwayScore = array_get($model->getDirty(), 'awayScore');
+
+        if ((Match::RESULT_TYPE_UNKNOWN === $resultType && Match::STATUS_FINISHED === $dirtyStatus)
+            || ($originalHomeScore !== $dirtyHomeScore || $originalAwayScore !== $dirtyAwayScore)
         ) {
             event(new MatchWasFinished($model));
         }
