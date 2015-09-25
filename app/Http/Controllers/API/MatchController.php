@@ -47,6 +47,6 @@ class MatchController extends Controller
         $match = Match::findOrFail($matchId);
         $match->update($request->get('match'));
 
-        return $this->response->collection(Match::where(['id' => $request->get('id')]), new MatchTransformer(), 'matches');
+        return $this->response->collection(Match::where(['id' => $matchId])->get(), new MatchTransformer(), 'matches');
     }
 }
