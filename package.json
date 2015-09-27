@@ -1,5 +1,8 @@
 {
   "private": true,
+  "engines": {
+    "node": "0.12.x"
+  },
   "devDependencies": {
     "gulp": "^3.8.8"
   },
