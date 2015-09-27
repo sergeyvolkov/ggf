@@ -14,6 +14,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Laracasts\TestDummy\Factory;
@@ -39,6 +40,10 @@ class MatchTest extends TestCase
      */
     public function testUpdateMatchScore($request, $response, $attributesToCheck)
     {
+        $member = Factory::create('App\Models\Member');
+
+        Auth::login($member);
+
         /**
          * @var $tournament Tournament
          * @var $league League
@@ -78,7 +83,7 @@ class MatchTest extends TestCase
         $this->put(
             '/api/v1/matches/' . $match->id,
             [
-                'match' => array_merge(['id' => $match->id], $request)
+                'match' => $request
             ],
             [
                 'HTTP_X-Requested-With' => 'XMLHttpRequest',
