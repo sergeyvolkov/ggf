@@ -1,21 +1,21 @@
 <div class="row">
-  {{#each model as |tournament|}}
-    <div class="col s12 m6 l4">
 
-      {{ggf-tournament.card tournament=tournament}}
+  <div class="col s12">
 
-    </div>
-  {{/each}}
+    {{ggf-tournament.list tournaments=model}}
+
+  </div>
+
+  {{#if session.isAuthenticated }}
+
+    {{#md-fixed-btns
+      class="fixed-btns-example"
+      btnIcon="mdi-content-add"
+      btnClass="btn-large indigo"
+      action="createTournament"
+      actionArgs="0"}}
+
+    {{/md-fixed-btns}}
+  {{/if}}
 </div>
 
-{{#if session.isAuthenticated }}
-
-  {{#md-fixed-btns
-    class="fixed-btns-example"
-    btnIcon="mdi-content-add"
-    btnClass="btn-large"
-    action="createTournament"
-    actionArgs="0"}}
-
-  {{/md-fixed-btns}}
-{{/if}}
