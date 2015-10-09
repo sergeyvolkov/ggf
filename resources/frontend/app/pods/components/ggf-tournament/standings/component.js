@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: 'ggf-tablescore',
+  classNames: 'ggf-standings',
 
   teams: Ember.A(),
 
-  tablescore: Ember.A()
+  standings: Ember.A()
 
 });

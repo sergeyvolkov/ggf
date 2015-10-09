@@ -6,19 +6,19 @@ use App\Models\Match;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 
-class TablescoreSerializer
+class StandingsSerializer
 {
     /**
      * @return Collection
      */
     public function collection(EloquentCollection $collection)
     {
-        $tablescore = new Collection();
+        $standings = new Collection();
 
-        $collection->map(function($match) use ($tablescore) {
+        $collection->map(function($match) use ($standings) {
 
-            $homeTeam = $tablescore->pull($match->homeTournamentTeam->id);
-            $awayTeam = $tablescore->pull($match->awayTournamentTeam->id);
+            $homeTeam = $standings->pull($match->homeTournamentTeam->id);
+            $awayTeam = $standings->pull($match->awayTournamentTeam->id);
 
             $defaultTeamData = [
                 'matches' => 0,
@@ -86,14 +86,14 @@ class TablescoreSerializer
                 }
             }
 
-            $tablescore->put($match->homeTournamentTeam->id, $homeTeam);
-            $tablescore->put($match->awayTournamentTeam->id, $awayTeam);
+            $standings->put($match->homeTournamentTeam->id, $homeTeam);
+            $standings->put($match->awayTournamentTeam->id, $awayTeam);
 
         });
 
 
         // sort by points and goal difference
-        $tablescore = $tablescore->sort(function($a, $b) {
+        $standings = $standings->sort(function($a, $b) {
             if ($b['points'] === $a['points']) {
                 return $b['goalsDifference'] - $a['goalsDifference'];
             }
@@ -103,7 +103,7 @@ class TablescoreSerializer
 
         $previousRow = null;
         $position = 1;
-        $tablescore = $tablescore->map(function($row) use (&$previousRow, &$position) {
+        $standings = $standings->map(function($row) use (&$previousRow, &$position) {
             if ($previousRow
                 && $previousRow['points'] > 0
                 && $previousRow['points'] == $row['points']
@@ -123,10 +123,10 @@ class TablescoreSerializer
         });
 
         // alphabetical sort for teams on the same position
-        $tablescore = $tablescore->sortBy(function($team) {
+        $standings = $standings->sortBy(function($team) {
             return $team['position'] . '-' . $team['name'];
         }, SORT_NUMERIC);
 
-        return $tablescore;
+        return $standings;
     }
 }

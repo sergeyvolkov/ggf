@@ -1,7 +1,7 @@
-{{#md-table class='bordered center' content=tablescore as |row|}}
+{{#md-table class='bordered center' content=standings as |row|}}
   {{md-table-col row=row valueBindingPath='position' header='#'}}
   {{#md-table-col row=row valueBindingPath='name' header='Name'}}
-    {{ggf-tournament.tablescore.team team=row.team}}
+    {{ggf-tournament.standings.team team=row.team}}
   {{/md-table-col}}
   {{md-table-col row=row valueBindingPath='matches' header='M'}}
   {{md-table-col row=row valueBindingPath='wins' header='W'}}

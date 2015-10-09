@@ -6,10 +6,10 @@ use App\Models\Match;
 use App\Models\Team;
 use App\Models\Tournament;
 use App\Models\TournamentTeam;
-use App\Serializers\Tournament\TablescoreSerializer;
+use App\Serializers\Tournament\StandingsSerializer;
 use App\Transformers\TournamentTransformer;
 use App\Transformers\MatchTransformer;
-use App\Transformers\TablescoreTransformer;
+use App\Transformers\StandingsTransformer;
 
 use App\Http\Requests\Tournament\Create as CreateTournament;
 use Illuminate\Support\Collection;
@@ -45,17 +45,17 @@ class TournamentController extends Controller
         return $this->response->collection($collection->get(), new TournamentTransformer($this->response), 'tournaments');
     }
 
-    public function tablescore()
+    public function standings()
     {
-        $serializer = new TablescoreSerializer();
+        $serializer = new StandingsSerializer();
 
         $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
             ->where(['tournamentId' => Input::get('tournamentId')]);
 
         return $this->response->collection(
             $serializer->collection($collection->get()),
-            new TablescoreTransformer(),
-            'tablescore'
+            new StandingsTransformer(),
+            'standing'
         );
     }
 

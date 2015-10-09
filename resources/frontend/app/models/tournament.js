@@ -13,7 +13,7 @@ export default Model.extend({
   membersType:  attr('string'),
   teams:        hasMany('teams', {async: false}),
   matches:      hasMany('matches', {async: false}),
-  tablescore:   hasMany('tablescore', {async: false}),
+  standing:   hasMany('standings', {async: false}),
 
   isDraft: computed('status', function () {
     return this.get('status') === 'draft';

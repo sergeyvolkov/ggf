@@ -1,0 +1,19 @@
+{{#md-tabs selected=selectedFilterTab}}
+  {{ggf-md.md-tab value='started' title='Active' }}
+  {{ggf-md.md-tab value='draft' title='Draft' }}
+  {{ggf-md.md-tab value='completed' title='Completed' }}
+{{/md-tabs}}
+
+{{#each tournamentsList as |tournament|}}
+  <div class="col s12 m6 l4">
+
+    {{ggf-tournament.card tournament=tournament}}
+
+  </div>
+{{else}}
+
+  <div class="col m12 s12 center-align">
+    Tournaments not found.
+  </div>
+
+{{/each}}

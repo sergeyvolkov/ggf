@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use League\Fractal\Resource\Collection as FractalCollection;
 use League\Fractal\TransformerAbstract;
 
-class TablescoreTransformer extends TransformerAbstract
+class StandingsTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [];
 
