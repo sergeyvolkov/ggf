@@ -13,12 +13,12 @@ export default Route.extend({
 
     return RSVP.hash({
       tournament: this.modelFor('tournament'),
-      tablescore: store.query('tablescore', {tournamentId}),
+      standings: store.query('standing', {tournamentId}),
       matches: store.query('match', {tournamentId}),
       teams: store.query('team', {tournamentId}),
     }).then((hash) => {
 
-      hash.tournament.set('tablescore', hash.tablescore);
+      hash.tournament.set('standings', hash.standings);
       hash.tournament.set('matches', hash.matches);
       hash.tournament.set('teams', hash.teams);
 
