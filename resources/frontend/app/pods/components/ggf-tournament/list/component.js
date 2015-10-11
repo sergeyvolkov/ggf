@@ -15,23 +15,24 @@ export default Ember.Component.extend({
     const selectedTab = this.get('selectedFilterTab');
 
     return tournaments.filter((tournament) => {
+      let isMatched = false;
+
       switch (selectedTab) {
         case TOURNAMENT_STATUS_STARTED:
         case TOURNAMENT_STATUS_DRAFT:
         case TOURNAMENT_STATUS_COMPLETED:
-
-          return selectedTab === tournament.get('status');
+          isMatched = selectedTab === tournament.get('status');
 
           break;
         default:
-
           this.set('selectedFilterTab', TOURNAMENT_STATUS_STARTED);
 
-          return selectedTab === TOURNAMENT_STATUS_STARTED;
+          isMatched = selectedTab === TOURNAMENT_STATUS_STARTED;
 
           break;
-
       }
+
+      return isMatched;
     });
   })
 });
