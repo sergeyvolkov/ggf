@@ -8,7 +8,7 @@ use App\Models\Team;
 use App\Models\Tournament;
 use App\Models\TournamentTeam;
 
-use App\Serializers\Tournament\TablescoreSerializer;
+use App\Serializers\Tournament\StandingsSerializer;
 use App\Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -17,18 +17,18 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laracasts\TestDummy\Factory;
 use Illuminate\Support\Debug\Dumper;
 
-class TablescoreSerializerTest extends TestCase
+class StandingsSerializerTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
 
     /**
      * @param $teams
      * @param $matches
-     * @param $resultTablescore
+     * @param $result
      *
      * @dataProvider matchesProvider
      */
-    public function testSerializerWithMatchesList($teams, $matches, $resultTablescore)
+    public function testSerializerWithMatchesList($teams, $matches, $result)
     {
         /**
          * @var $tournament Tournament
@@ -60,11 +60,11 @@ class TablescoreSerializerTest extends TestCase
             ]);
         }
 
-        $serializer = new TablescoreSerializer();
+        $serializer = new StandingsSerializer();
 
         $collection = $serializer->collection(Match::where(['tournamentId' => $tournament->id])->get());
 
-        foreach ($resultTablescore as $teamScore) {
+        foreach ($result as $teamScore) {
             $item = $collection->first(function($key, $item) use ($teamScore) {
                 return $item['teamId'] == $teamScore['team'];
             });
@@ -94,7 +94,7 @@ class TablescoreSerializerTest extends TestCase
                         'resultType' => 'draw'
                     ]
                 ],
-                'resultTablescore' => [
+                'result' => [
                     ['team' => 1, 'position' => 1],
                     ['team' => 2, 'position' => 2]
                 ]
@@ -117,7 +117,7 @@ class TablescoreSerializerTest extends TestCase
                         'resultType' => 'away'
                     ]
                 ],
-                'resultTablescore' => [
+                'result' => [
                     ['team' => 1, 'position' => 1],
                     ['team' => 3, 'position' => 1],
                     ['team' => 2, 'position' => 3],
@@ -141,7 +141,7 @@ class TablescoreSerializerTest extends TestCase
                         'resultType' => 'away'
                     ]
                 ],
-                'resultTablescore' => [
+                'result' => [
                     ['team' => 1, 'position' => 1],
                     ['team' => 3, 'position' => 2],
                     ['team' => 2, 'position' => 3],
