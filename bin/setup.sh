@@ -9,7 +9,7 @@ echo "Create .env"
 cp .env.example .env
 
 echo "Composer install"
-composer install --no-interaction
+composer install --no-interaction --prefer-source
 
 echo "Generate application key"
 php artisan key:generate
