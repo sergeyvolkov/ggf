@@ -1,4 +1,7 @@
 language: php
+
+sudo: false
+
 env:
   global:
     - DB_DATABASE=homestead_test
@@ -20,6 +23,7 @@ before_script:
   - yes | php artisan migrate
 cache:
   directories:
+    - $HOME/.composer/cache
     - vendor
     - node_modules
     - resources/frontend/node_modules/
