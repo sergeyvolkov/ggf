@@ -1,8 +1,12 @@
-# Good Gateway Football [![Build Status](https://travis-ci.org/sergeyvolkov/ggf.svg)](https://travis-ci.org/sergeyvolkov/ggf)
+# Good Gateway Football
 
-<a href="https://good-gateway-football.herokuapp.com" target="_blank">Demo</a>
+[![Build Status](https://travis-ci.org/sergeyvolkov/ggf.svg)](https://travis-ci.org/sergeyvolkov/ggf)
+[![Dependency Status](https://gemnasium.com/sergeyvolkov/ggf.svg)](https://gemnasium.com/sergeyvolkov/ggf)
+[![Dependency Status](https://www.versioneye.com/user/projects/5620940e36d0ab0021000900/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5620940e36d0ab0021000900)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/sergeyvolkov/ggf?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+<a href="https://good-gateway-football.herokuapp.com" target="_blank">Demo</a>
 
 ## Setup development environment with Homestead (per-project installation)
 
