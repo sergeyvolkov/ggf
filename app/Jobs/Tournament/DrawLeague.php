@@ -2,22 +2,14 @@
 
 namespace App\Jobs\Tournament;
 
-use App\Jobs\Job;
-use App\Events\TournamentWasStarted;
 use App\Models\Match;
 use App\Models\Tournament;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Database\Eloquent\Collection;
 
-
 class DrawLeague extends Job implements SelfHandling
 {
-    /**
-     * @var Tournament
-     */
-    protected $tournament;
-
     /**
      * @var Array
      */
@@ -48,17 +40,7 @@ class DrawLeague extends Job implements SelfHandling
      */
     protected $pairCnt;
 
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct(Tournament $tournament)
-    {
-        $this->setTournament($tournament);
-    }
-
-    protected function setTournament($tournament)
+    protected function setTournament(Tournament $tournament)
     {
         $this->tournament = $tournament;
 
