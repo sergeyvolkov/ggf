@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Listeners\Tournament;
+namespace App\Jobs\Tournament;
 
+use App\Jobs\Job;
 use App\Events\TournamentWasStarted;
 use App\Models\Match;
 use App\Models\Tournament;
+
+use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Database\Eloquent\Collection;
 
-class DrawLeague
+
+class DrawLeague extends Job implements SelfHandling
 {
     /**
      * @var Tournament
@@ -17,7 +21,7 @@ class DrawLeague
     /**
      * @var Array
      */
-    protected $teams;
+    protected $teams = [];
 
     /**
      * @var Collection
@@ -49,11 +53,10 @@ class DrawLeague
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Tournament $tournament)
     {
-        $this->teams = [];
+        $this->setTournament($tournament);
     }
-
 
     protected function setTournament($tournament)
     {
@@ -77,15 +80,12 @@ class DrawLeague
     }
 
     /**
-     * Handle the event.
+     * Handle the job
      *
-     * @param  Events $event
      * @return void
      */
-    public function handle(TournamentWasStarted $event)
+    public function handle()
     {
-        $this->setTournament($event->tournament);
-
         if (Tournament::MIN_TEAMS_AMOUNT > count($this->teams)) {
             throw new \UnexpectedValueException('Tournament should have at least 2 teams.');
         }
