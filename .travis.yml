@@ -18,6 +18,7 @@ addons:
 before_script:  
   - psql -c 'drop database if exists homestead_test;' -U postgres
   - psql -c 'create database homestead_test;' -U postgres
+  - travis_retry composer install --no-interaction --prefer-source
   - travis_retry ./bin/setup.sh
   - php artisan migrate:status
   - yes | php artisan migrate
