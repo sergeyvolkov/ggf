@@ -9,20 +9,41 @@ export default Route.extend({
 
   model: function() {
     const store = this.store;
-    const tournamentId = this.modelFor('tournament').get('id');
+    const tournament = this.modelFor('tournament');
 
-    return RSVP.hash({
-      tournament: this.modelFor('tournament'),
-      standings: store.query('standing', {tournamentId}),
+    const tournamentId = tournament.get('id');
+
+    let standingsModel;
+
+    let rsvpHash = {
       matches: store.query('match', {tournamentId}),
       teams: store.query('team', {tournamentId}),
-    }).then((hash) => {
+    };
 
-      hash.tournament.set('standings', hash.standings);
-      hash.tournament.set('matches', hash.matches);
-      hash.tournament.set('teams', hash.teams);
+    switch (tournament.get('type')) {
+      case 'knock_out':
+        rsvpHash['standing'] = store.find('standing', {tournamentId});
+        break;
+      case 'league':
+      default:
+        rsvpHash['tablescore'] = store.find('tablescore', {tournamentId});
+        break;
+    }
 
-      return hash.tournament;
+
+    return RSVP.hash(rsvpHash).then((hash) => {
+      tournament.set('matches', hash.matches);
+      tournament.set('teams', hash.teams);
+
+      if (hash.tablescore) {
+        tournament.set('tablescore', hash.tablescore);
+      }
+
+      if (hash.standing) {
+        tournament.set('standing', hash.standing);
+      }
+
+      return tournament;
     });
   },
 

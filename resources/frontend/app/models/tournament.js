@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-const { Model, attr, hasMany } = DS;
+const { Model, attr, hasMany, belongsTo } = DS;
 
 const { computed } = Ember;
 
@@ -13,7 +13,8 @@ export default Model.extend({
   membersType:  attr('string'),
   teams:        hasMany('teams', {async: false}),
   matches:      hasMany('matches', {async: false}),
-  standing:   hasMany('standings', {async: false}),
+  tablescore:   hasMany('tablescores', {async: false}),
+  standing:     hasMany('standings', {async: false}),
 
   isDraft: computed('status', function () {
     return this.get('status') === 'draft';

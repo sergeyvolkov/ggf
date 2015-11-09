@@ -3,7 +3,9 @@
     {{ggf-tournament.complete-setup}}
   {{else}}
     <div class="col s12">
-      {{ggf-tournament.standings matches=tournament.matches teams=tournament.teams standings=tournament.standings}}
+
+      {{ggf-tournament.tablescore tablescore=tournament.tablescore}}
+
     </div>
   {{/if}}
 </div>

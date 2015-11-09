@@ -6,7 +6,7 @@ use App\Models\Match;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 
-class StandingsSerializer
+class TablescoresSerializer
 {
     /**
      * @return Collection
