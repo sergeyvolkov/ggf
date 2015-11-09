@@ -45,7 +45,7 @@ class TournamentController extends Controller
         return $this->response->collection($collection->get(), new TournamentTransformer($this->response), 'tournaments');
     }
 
-    public function tablescore()
+    public function tablescores()
     {
         $serializer = new TablescoresSerializer();
 
@@ -57,6 +57,13 @@ class TournamentController extends Controller
             new TablescoresTransformer(),
             'tablescore'
         );
+    }
+
+    public function standings()
+    {
+        return [
+            'standings' => []
+        ];
     }
 
     /**
