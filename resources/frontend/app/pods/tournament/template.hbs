@@ -1,6 +1,8 @@
+{{#with model as tournament}}
+
 <div class="row">
   <div class="col s12">
-    <h3>{{model.name}}</h3>
+    <h3>{{tournament.title}}</h3>
 
     {{#md-tabs selected=selectedTab}}
         {{ggf-md.md-tab value='standings' title='Standings' link='tournament.standings'}}
@@ -15,3 +17,5 @@
     {{outlet}}
   </div>
 </div>
+
+{{/with}}

@@ -17,5 +17,22 @@ export default Model.extend({
 
   isDraft: computed('status', function () {
     return this.get('status') === 'draft';
+  }),
+
+  title: computed('name', 'type', function() {
+    let name = this.get('name');
+    let type;
+
+    switch (this.get('type')) {
+      case 'knock_out':
+        type = 'K';
+        break;
+      case 'league':
+      default:
+        type = 'L';
+        break;
+    }
+
+    return `${name} (${type})`;
   })
 });
