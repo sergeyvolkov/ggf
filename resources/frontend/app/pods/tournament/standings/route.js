@@ -22,11 +22,11 @@ export default Route.extend({
 
     switch (tournament.get('type')) {
       case 'knock_out':
-        rsvpHash['standing'] = store.find('standing', {tournamentId});
+        rsvpHash['standings'] = store.query('standing', {tournamentId});
         break;
       case 'league':
       default:
-        rsvpHash['tablescore'] = store.find('tablescore', {tournamentId});
+        rsvpHash['tablescore'] = store.query('tablescore', {tournamentId});
         break;
     }
 
@@ -39,8 +39,8 @@ export default Route.extend({
         tournament.set('tablescore', hash.tablescore);
       }
 
-      if (hash.standing) {
-        tournament.set('standing', hash.standing);
+      if (hash.standings) {
+        tournament.set('standings', hash.standings);
       }
 
       return tournament;

@@ -14,7 +14,8 @@ class StandingsSerializer
     public function collection(EloquentCollection $matches)
     {
         $standings = new Collection();
-        $pairs = new Collection();
+
+        $matches = $matches->sortBy('id');
 
         $matches->map(function($match) use ($standings) {
 
@@ -38,6 +39,8 @@ class StandingsSerializer
             }
 
             $pair['matches'][] = $match['id'];
+
+            sort($pair['matches']);
 
             $standings->put($pairId, $pair);
         });

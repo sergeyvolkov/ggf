@@ -17,8 +17,6 @@ class TablescoresSerializer
 
         $collection->map(function($match) use ($tablescore) {
 
-            dd($match);
-
             $homeTeam = $tablescore->pull($match->homeTournamentTeam->id);
             $awayTeam = $tablescore->pull($match->awayTournamentTeam->id);
 

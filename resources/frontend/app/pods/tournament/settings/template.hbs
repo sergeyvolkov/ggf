@@ -1,5 +1,7 @@
 {{#with model.tournament as |tournament|}}
 
+  {{log "model": model}}
+
   {{ggf-tournament.settings tournament=tournament submit="save"}}
 
 {{/with}}

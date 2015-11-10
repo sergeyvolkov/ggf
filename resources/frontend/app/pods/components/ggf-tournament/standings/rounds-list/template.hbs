@@ -1,0 +1,17 @@
+{{#each list as |round|}}
+
+  <h3>{{round.title}}</h3>
+
+  {{#each round.pairs as |pair|}}
+    <div class="col s12 m12 l6">
+      {{#md-card}}
+        {{#md-card-content}}
+          {{log "pair": pair.matches}}
+          {{ggf-tournament.standings.pair pair=pair}}
+        {{/md-card-content}}
+
+      {{/md-card}}
+    </div>
+  {{/each}}
+
+{{/each}}
