@@ -13,12 +13,14 @@ class TablescoresSerializer
      */
     public function collection(EloquentCollection $collection)
     {
-        $standings = new Collection();
+        $tablescore = new Collection();
 
-        $collection->map(function($match) use ($standings) {
+        $collection->map(function($match) use ($tablescore) {
 
-            $homeTeam = $standings->pull($match->homeTournamentTeam->id);
-            $awayTeam = $standings->pull($match->awayTournamentTeam->id);
+            dd($match);
+
+            $homeTeam = $tablescore->pull($match->homeTournamentTeam->id);
+            $awayTeam = $tablescore->pull($match->awayTournamentTeam->id);
 
             $defaultTeamData = [
                 'matches' => 0,
@@ -86,14 +88,14 @@ class TablescoresSerializer
                 }
             }
 
-            $standings->put($match->homeTournamentTeam->id, $homeTeam);
-            $standings->put($match->awayTournamentTeam->id, $awayTeam);
+            $tablescore->put($match->homeTournamentTeam->id, $homeTeam);
+            $tablescore->put($match->awayTournamentTeam->id, $awayTeam);
 
         });
 
 
         // sort by points and goal difference
-        $standings = $standings->sort(function($a, $b) {
+        $tablescore = $tablescore->sort(function($a, $b) {
             if ($b['points'] === $a['points']) {
                 return $b['goalsDifference'] - $a['goalsDifference'];
             }
@@ -103,7 +105,7 @@ class TablescoresSerializer
 
         $previousRow = null;
         $position = 1;
-        $standings = $standings->map(function($row) use (&$previousRow, &$position) {
+        $tablescore = $tablescore->map(function($row) use (&$previousRow, &$position) {
             if ($previousRow
                 && $previousRow['points'] > 0
                 && $previousRow['points'] == $row['points']
@@ -123,10 +125,10 @@ class TablescoresSerializer
         });
 
         // alphabetical sort for teams on the same position
-        $standings = $standings->sortBy(function($team) {
+        $tablescore = $tablescore->sortBy(function($team) {
             return $team['position'] . '-' . $team['name'];
         }, SORT_NUMERIC);
 
-        return $standings;
+        return $tablescore;
     }
 }
