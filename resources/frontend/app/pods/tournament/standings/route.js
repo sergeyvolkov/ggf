@@ -34,6 +34,8 @@ export default Route.extend({
     return RSVP.hash(rsvpHash).then((hash) => {
       tournament.set('matches', hash.matches);
       tournament.set('teams', hash.teams);
+      tournament.set('tablescore', new Ember.A());
+      tournament.set('standings', new Ember.A());
 
       if (hash.tablescore) {
         tournament.set('tablescore', hash.tablescore);

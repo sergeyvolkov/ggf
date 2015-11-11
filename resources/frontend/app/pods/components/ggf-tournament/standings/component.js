@@ -6,6 +6,8 @@ export default Ember.Component.extend({
 
   classNameBindings: [':standings'],
 
+  standings: new Ember.A(),
+
   rounds: computed('standings', function() {
 
     const standings = this.get('standings');
