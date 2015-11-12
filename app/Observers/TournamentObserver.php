@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Events\TournamentWasReset;
-use App\Events\TournamentWasStarted;
+use App\Events\Tournament\TournamentWasReset;
+use App\Events\Tournament\TournamentWasStarted;
 use App\Models\Tournament;
 use Illuminate\Support\Facades\Log;
 

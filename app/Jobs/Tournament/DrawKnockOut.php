@@ -6,6 +6,9 @@ use App\Models\Tournament;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Debug\Dumper;
 
 class DrawKnockOut extends Job implements SelfHandling
 {
@@ -17,7 +20,7 @@ class DrawKnockOut extends Job implements SelfHandling
     protected $teams;
 
     /**
-     * @var \Illuminate\Database\Eloquent\Collection
+     * @var EloquentCollection
      */
     protected $matches;
 
@@ -38,19 +41,17 @@ class DrawKnockOut extends Job implements SelfHandling
             ]);
         }
 
-        $this->teams = $this->teams->shuffle();
-        $this->matches = Match::where('tournamentId', $this->tournament->id);
-
         $this->determineRound();
     }
 
     protected function determineRound()
     {
-        if ($this->matches->count() === 0) {
+        if ($this->tournament->matches()->get()->count() === 0) {
             $this->round = 1;
         } else {
-            // @todo
-            throw new \RuntimeException('Next rounds draw is not ready yet.');
+            $rounds = $this->tournament->matches()->get()->pluck('round');
+
+            $this->round = $rounds->max() + 1;
         }
     }
 
@@ -76,20 +77,54 @@ class DrawKnockOut extends Job implements SelfHandling
     {
         $pairs = $this->getPairs();
 
-        $this->savePairs($pairs);
+        if ($pairs->count() > 0 && $pairs->get(0)->count() > 1) {
+            $gameType = Match::GAME_TYPE_QUALIFY;
+
+            // set game type to `final` when there is only 1 pair left in the tournament
+            if ($this->round !== 1 && 1 === $pairs->count()) {
+                $gameType = Match::GAME_TYPE_FINAL;
+            }
+
+            $this->savePairs($pairs, $gameType);
+        }
     }
 
+    /**
+     * @return Collection
+     */
     protected function getPairs()
     {
-        $pairs = $this->teams->chunk(2);
+        $round = $this->round;
+        $tournament = $this->tournament;
 
-        return $pairs;
+        if (1 === $round) {
+            $this->teams = $this->teams->shuffle();
+
+            $pairs = $this->teams->chunk(2);
+
+            return $pairs;
+        } else {
+            $currentPairs = $tournament->getPairs()->filter(function($pair) use ($round) {
+                return $pair->get('round') === $round - 1;
+            });
+
+            $roundWinners = new Collection();
+
+            $currentPairs->each(function($pair) use ($tournament, $roundWinners) {
+                // detect pair winner
+                $roundWinners->push($tournament->getScore($pair->get('matches'))->first());
+            });
+
+            return $this->teams->filter(function($team) use ($roundWinners) {
+                return $roundWinners->pluck('teamId')->contains($team['id']);
+            })->chunk(2);
+        }
     }
 
     /**
      * @param $pairs
      */
-    protected function savePairs($pairs)
+    protected function savePairs($pairs, $gameType = Match::GAME_TYPE_QUALIFY)
     {
         $defaults = [
             'tournamentId' => $this->tournament->id,
@@ -98,7 +133,7 @@ class DrawKnockOut extends Job implements SelfHandling
             'homePenaltyScore' => 0,
             'awayPenaltyScore' => 0,
             'round' => $this->round,
-            'gameType' => Match::GAME_TYPE_QUALIFY,
+            'gameType' => $gameType,
             'resultType' => Match::RESULT_TYPE_UNKNOWN,
             'status' => Match::STATUS_NOT_STARTED
         ];
@@ -112,13 +147,16 @@ class DrawKnockOut extends Job implements SelfHandling
             );
         }
 
-        foreach ($pairs as $pair) {
-            Match::create(
-                array_merge($defaults, [
-                    'awayTournamentTeamId' => array_get($pair->first(), 'id'),
-                    'homeTournamentTeamId' => array_get($pair->last(), 'id'),
-                ])
-            );
+        // generate reverse matches only for match with `qualify` type
+        if (Match::GAME_TYPE_QUALIFY === $gameType) {
+            foreach ($pairs as $pair) {
+                Match::create(
+                    array_merge($defaults, [
+                        'awayTournamentTeamId' => array_get($pair->first(), 'id'),
+                        'homeTournamentTeamId' => array_get($pair->last(), 'id'),
+                    ])
+                );
+            }
         }
     }
 }

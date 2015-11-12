@@ -13,14 +13,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\TournamentWasStarted' => [
+        'App\Events\Tournament\TournamentWasStarted' => [
             'App\Listeners\Tournament\Draw',
         ],
-        'App\Events\TournamentWasReset' => [
+        'App\Events\Tournament\TournamentWasReset' => [
             'App\Listeners\Tournament\Reset',
         ],
         'App\Events\MatchWasFinished' => [
             'App\Listeners\Match\UpdateResultType',
+        ],
+        'App\Events\Tournament\RoundHasBeenFinished' => [
+            'App\Listeners\Tournament\Draw'
         ]
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Tournament;
 
+use App\Events\Tournament\AbstractTournamentDrawEvent;
 use App\Events\TournamentWasStarted;
 use App\Jobs\Tournament\DrawKnockOut;
 use App\Jobs\Tournament\DrawLeague;
@@ -15,12 +16,14 @@ class Draw
     /**
      * Handle the event.
      *
-     * @param  TournamentWasStarted  $event
+     * @param  AbstractTournamentDrawEvent  $event
      * @return void
      */
-    public function handle(TournamentWasStarted $event)
+    public function handle(AbstractTournamentDrawEvent $event)
     {
         $tournament = $event->tournament;
+
+        Log::info('Tournament ' .$tournament->name . ' draw');
 
         switch ($tournament->type) {
             case Tournament::TYPE_LEAGUE:
