@@ -48,11 +48,7 @@ class MatchObserver
                 ])
                 ->get();
 
-            Log::info('Issue next round draw ' . $matches->count());
-
             if (Tournament::TYPE_KNOCK_OUT == $model->tournament->type && $matches->count() < 1) {
-                Log::info('Finished');
-
                 event(new RoundHasBeenFinished($model->tournament));
             }
         }
