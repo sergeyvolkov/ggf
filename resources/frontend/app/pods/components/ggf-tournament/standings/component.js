@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
     standings.forEach(function(pair) {
 
-      let round = rounds.findBy('title', pair.get('round'))
+      let round = rounds.findBy('title', pair.get('round'));
 
       if (!round) {
         round = Ember.Object.create({

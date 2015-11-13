@@ -1,15 +1,19 @@
-<div class="row">
-  {{#if tournament.isDraft }}
-    {{ggf-tournament.complete-setup}}
-  {{else}}
-    <div class="col s12">
+{{#with model as |tournament|}}
 
-      {{ggf-tournament.standings standings=tournament.standings}}
+  <div class="row">
+    {{#if tournament.isDraft }}
+      {{ggf-tournament.complete-setup}}
+    {{else}}
+      <div class="col s12">
 
-      {{ggf-tournament.tablescore tablescore=tournament.tablescore}}
+        {{ggf-tournament.standings standings=tournament.standings}}
 
-    </div>
-  {{/if}}
-</div>
+        {{ggf-tournament.tablescore tablescore=tournament.tablescore}}
 
-{{outlet}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{outlet}}
+
+{{/with}}

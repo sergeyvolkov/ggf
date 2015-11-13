@@ -13,8 +13,6 @@ export default Route.extend({
 
     const tournamentId = tournament.get('id');
 
-    let standingsModel;
-
     let rsvpHash = {
       matches: store.query('match', {tournamentId}),
       teams: store.query('team', {tournamentId}),
@@ -25,8 +23,9 @@ export default Route.extend({
         rsvpHash['standings'] = store.query('standing', {tournamentId});
         break;
       case 'league':
-      default:
         rsvpHash['tablescore'] = store.query('tablescore', {tournamentId});
+        break;
+      default:
         break;
     }
 
@@ -47,11 +46,5 @@ export default Route.extend({
 
       return tournament;
     });
-  },
-
-  setupController (controller, model) {
-    this._super(controller, model);
-
-    controller.set('tournament', model);
   }
 });

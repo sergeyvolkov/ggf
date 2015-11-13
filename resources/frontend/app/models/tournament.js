@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-const { Model, attr, hasMany, belongsTo } = DS;
+const { Model, attr, hasMany } = DS;
 
 const { computed } = Ember;
 
@@ -29,6 +29,8 @@ export default Model.extend({
         type = 'K';
         break;
       case 'league':
+        type = 'L';
+        break;
       default:
         type = 'L';
         break;
