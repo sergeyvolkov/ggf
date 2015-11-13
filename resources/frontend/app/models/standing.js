@@ -4,6 +4,8 @@ const { Model, attr, belongsTo, hasMany } = DS;
 
 export default Model.extend({
 
+  round: attr('string'),
+
   tournament: belongsTo('tournament', {async: false}),
 
   homeTeam: belongsTo('team', {async: false}),
