@@ -46,8 +46,6 @@ class Reset
 
     protected function cleanupMatches()
     {
-        Log::info('Clean up matches');
-
         return Match::where(['tournamentId' => $this->tournament->id])->delete();
     }
 }

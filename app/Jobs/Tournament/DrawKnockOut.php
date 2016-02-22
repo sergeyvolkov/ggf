@@ -41,7 +41,7 @@ class DrawKnockOut extends Job implements SelfHandling
             ]);
         }
 
-        $this->determineRound();
+        $this->round = $tournament->getCurrentRound() + 1;
     }
 
     protected function determineRound()
@@ -49,9 +49,7 @@ class DrawKnockOut extends Job implements SelfHandling
         if ($this->tournament->matches()->get()->count() === 0) {
             $this->round = 1;
         } else {
-            $rounds = $this->tournament->matches()->get()->pluck('round');
-
-            $this->round = $rounds->max() + 1;
+            $this->round = $this->tournament->currentRound() + 1;
         }
     }
 
@@ -127,7 +125,6 @@ class DrawKnockOut extends Job implements SelfHandling
     protected function savePairs($pairs, $gameType = Match::GAME_TYPE_QUALIFY)
     {
         $defaults = [
-            'tournamentId' => $this->tournament->id,
             'homeScore' => 0,
             'awayScore' => 0,
             'homePenaltyScore' => 0,
@@ -139,7 +136,7 @@ class DrawKnockOut extends Job implements SelfHandling
         ];
 
         foreach ($pairs as $pair) {
-            Match::create(
+            $this->tournament->matches()->create(
                 array_merge($defaults, [
                     'homeTournamentTeamId' => array_get($pair->first(), 'id'),
                     'awayTournamentTeamId' => array_get($pair->last(), 'id'),
@@ -150,7 +147,7 @@ class DrawKnockOut extends Job implements SelfHandling
         // generate reverse matches only for match with `qualify` type
         if (Match::GAME_TYPE_QUALIFY === $gameType) {
             foreach ($pairs as $pair) {
-                Match::create(
+                $this->tournament->matches()->create(
                     array_merge($defaults, [
                         'awayTournamentTeamId' => array_get($pair->first(), 'id'),
                         'homeTournamentTeamId' => array_get($pair->last(), 'id'),

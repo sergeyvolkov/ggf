@@ -62,10 +62,11 @@ class DrawKnockOutTest extends TestCase
     /**
      * @param $teamsAmount
      * @param $nextRoundMatchesCount
+     * @param $currentRound
      *
      * @dataProvider nextRoundDraw
      */
-    public function testKnockOutNextRoundDraw($teamsAmount, $nextRoundMatchesCount)
+    public function testKnockOutNextRoundDraw($teamsAmount, $nextRoundMatchesCount, $currentRound)
     {
         /**
          * @var $tournament Tournament
@@ -110,7 +111,7 @@ class DrawKnockOutTest extends TestCase
             $match->save();
         }
 
-        Log::info(Match::all()->count());
+        $this->assertEquals($currentRound, $tournament->getCurrentRound(), 'Current round is not equal.');
 
         // new matches of the next round should be generated
         $this->assertEquals(
@@ -143,11 +144,13 @@ class DrawKnockOutTest extends TestCase
         return [
             [
                 'teamsAmount' => 2,
-                'nextRoundMatchesCount' => 0
+                'nextRoundMatchesCount' => 0,
+                'currentRound' => 1
             ],
             [
                 'teamsAmount' => 4,
-                'nextRoundMatchesCount' => 1
+                'nextRoundMatchesCount' => 1,
+                'currentRound' => 2
             ]
         ];
     }

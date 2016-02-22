@@ -239,4 +239,15 @@ class Tournament extends Model
     {
         return $this->getScore($matches)->first();
     }
+
+    public function getCurrentRound()
+    {
+        $matches = $this->matches()->get();
+
+        if ($matches->count() === 0) {
+            return 0;
+        } else {
+            return $matches->pluck('round')->max();
+        }
+    }
 }

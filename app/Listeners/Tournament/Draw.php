@@ -23,8 +23,6 @@ class Draw
     {
         $tournament = $event->tournament;
 
-        Log::info('Tournament ' .$tournament->name . ' draw');
-
         switch ($tournament->type) {
             case Tournament::TYPE_LEAGUE:
                 $job = new DrawLeague($tournament);

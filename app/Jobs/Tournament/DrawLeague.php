@@ -171,8 +171,7 @@ class DrawLeague extends Job implements SelfHandling
     {
         foreach ($table as $key => $round) {
             foreach ($round as $match) {
-                Match::create([
-                    'tournamentId' => $this->tournament->id,
+                $this->tournament->matches()->create([
                     'homeTournamentTeamId' => $this->teams[$match[0] - 1]['id'],
                     'awayTournamentTeamId' => $this->teams[$match[1] - 1]['id'],
                     'homeScore' => 0,
