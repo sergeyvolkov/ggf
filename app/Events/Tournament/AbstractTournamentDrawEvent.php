@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Tournament;
 
 use App\Events\Event;
 use App\Models\Tournament;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TournamentWasReset extends Event
+abstract class AbstractTournamentDrawEvent extends Event
 {
-    use SerializesModels;
+    /**
+     * @var Tournament
+     */
+    public $tournament;
 
     /**
      * Create a new event instance.

@@ -45,7 +45,9 @@ class MatchController extends Controller
          * @var $match Match
          */
         $match = Match::findOrFail($matchId);
-        $match->update($request->get('match'));
+        $match->update(
+            array_get($request->only(['match.homeScore', 'match.awayScore', 'match.status']), 'match')
+        );
 
         return $this->response->collection(Match::where(['id' => $matchId])->get(), new MatchTransformer(), 'matches');
     }

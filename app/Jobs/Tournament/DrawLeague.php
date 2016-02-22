@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Listeners\Tournament;
+namespace App\Jobs\Tournament;
 
-use App\Events\TournamentWasStarted;
 use App\Models\Match;
 use App\Models\Tournament;
+
+use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Database\Eloquent\Collection;
 
-class DrawLeague
+class DrawLeague extends Job implements SelfHandling
 {
-    /**
-     * @var Tournament
-     */
-    protected $tournament;
-
     /**
      * @var Array
      */
-    protected $teams;
+    protected $teams = [];
 
     /**
      * @var Collection
@@ -44,18 +40,7 @@ class DrawLeague
      */
     protected $pairCnt;
 
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->teams = [];
-    }
-
-
-    protected function setTournament($tournament)
+    protected function setTournament(Tournament $tournament)
     {
         $this->tournament = $tournament;
 
@@ -77,15 +62,12 @@ class DrawLeague
     }
 
     /**
-     * Handle the event.
+     * Handle the job
      *
-     * @param  Events $event
      * @return void
      */
-    public function handle(TournamentWasStarted $event)
+    public function handle()
     {
-        $this->setTournament($event->tournament);
-
         if (Tournament::MIN_TEAMS_AMOUNT > count($this->teams)) {
             throw new \UnexpectedValueException('Tournament should have at least 2 teams.');
         }
@@ -189,8 +171,7 @@ class DrawLeague
     {
         foreach ($table as $key => $round) {
             foreach ($round as $match) {
-                Match::create([
-                    'tournamentId' => $this->tournament->id,
+                $this->tournament->matches()->create([
                     'homeTournamentTeamId' => $this->teams[$match[0] - 1]['id'],
                     'awayTournamentTeamId' => $this->teams[$match[1] - 1]['id'],
                     'homeScore' => 0,

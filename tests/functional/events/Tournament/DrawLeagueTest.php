@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Unit\Events;
+namespace App\Tests\Unit\Events\Tournament;
 
 use App\Models\Match;
 use App\Models\Tournament;
@@ -29,7 +29,9 @@ class DrawLeagueTest extends TestCase
         /**
          * @var $tournament Tournament
          */
-        $tournament = Factory::create('App\Models\Tournament');
+        $tournament = Factory::create('App\Models\Tournament', [
+            'type' => Tournament::TYPE_LEAGUE
+        ]);
 
         /**
          * @var $tournament Tournament

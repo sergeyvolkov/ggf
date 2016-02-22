@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Match;
+use App\Models\Member;
 use App\Models\Team;
 use App\Models\Tournament;
 use App\Models\TournamentTeam;
 use App\Serializers\Tournament\StandingsSerializer;
+use App\Serializers\Tournament\TablescoresSerializer;
+use App\Transformers\StandingsTransformer;
 use App\Transformers\TournamentTransformer;
 use App\Transformers\MatchTransformer;
-use App\Transformers\StandingsTransformer;
+use App\Transformers\TablescoresTransformer;
 
 use App\Http\Requests\Tournament\Create as CreateTournament;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
@@ -45,6 +49,20 @@ class TournamentController extends Controller
         return $this->response->collection($collection->get(), new TournamentTransformer($this->response), 'tournaments');
     }
 
+    public function tablescores()
+    {
+        $serializer = new TablescoresSerializer();
+
+        $collection = Match::with(['homeTournamentTeam.team', 'awayTournamentTeam.team'])
+            ->where(['tournamentId' => Input::get('tournamentId')]);
+
+        return $this->response->collection(
+            $serializer->collection($collection->get()),
+            new TablescoresTransformer(),
+            'tablescore'
+        );
+    }
+
     public function standings()
     {
         $serializer = new StandingsSerializer();
@@ -54,8 +72,8 @@ class TournamentController extends Controller
 
         return $this->response->collection(
             $serializer->collection($collection->get()),
-            new StandingsTransformer(),
-            'standing'
+            new StandingsTransformer()  ,
+            'standings'
         );
     }
 
@@ -70,7 +88,7 @@ class TournamentController extends Controller
         $input = $request->input('tournament');
         $input['status'] = Tournament::STATUS_DRAFT;
 
-        $tournament = Tournament::create($input);
+        $tournament = Auth::user()->tournaments()->create($input);
 
         return $this->response->collection(Tournament::where(['id' => $tournament->id])->get(), new TournamentTransformer($this->response), 'tournaments');
     }

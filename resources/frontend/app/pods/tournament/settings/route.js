@@ -12,7 +12,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     const tournamentId = this.modelFor('tournament').get('id');
 
     return RSVP.hash({
-      tournament: store.find('tournament', tournamentId, function (tournament) {
+      tournament: store.peekRecord('tournament', tournamentId, function (tournament) {
         return !tournament.get('isDirty');
       })
     });
