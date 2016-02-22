@@ -9,7 +9,9 @@ use App\Models\TournamentTeam;
 use App\Events\TournamentWasStarted;
 
 use App\Tests\TestCase;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 use Laracasts\TestDummy\Factory;
@@ -381,5 +383,255 @@ class UpdateMatchTest extends TestCase
         );
 
         $this->assertResponseStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+
+    /**
+     * @param $teams
+     * @param $matches
+     * @param $request
+     * @param $response
+     *
+     * @dataProvider updateWithResults
+     */
+    public function testMatchUpdateWithMatchResults($teams, $matches, $request, $response)
+    {
+        $member = Factory::create('App\Models\Member');
+
+        Auth::login($member);
+
+        /**
+         * @var $tournament Tournament
+         * @var $league League
+         */
+        $tournament = Factory::create(
+            'App\Models\Tournament',
+            [
+                'type' => Tournament::TYPE_KNOCK_OUT
+            ]
+        );
+        $league = Factory::create('App\Models\League');
+
+        $tournamentTeams = new Collection();
+
+        foreach ($teams as $teamName) {
+            $team = Factory::create('App\Models\Team', [
+                'leagueId' => $league->id,
+                'name' => $teamName
+            ]);
+
+            $tournamentTeam = $tournament->tournamentTeams()->create([
+                'teamId' => $team->id,
+                'tournamentId' => $tournament->id,
+            ]);
+
+            $tournamentTeams->push([
+                'name' => $teamName,
+                'id' => $tournamentTeam->id
+            ]);
+        }
+
+        $this->expectsEvents(\App\Events\Tournament\TournamentWasStarted::class);
+
+        $tournament->status = Tournament::STATUS_STARTED;
+        $tournament->save();
+
+        $this->assertEquals(0, $tournament->matches()->get()->count());
+
+        foreach ($matches as $match) {
+
+            $homeTeam = $tournamentTeams->where('name', $match['homeTournamentTeam'])->first();
+            $awayTeam = $tournamentTeams->where('name', $match['awayTournamentTeam'])->first();
+
+            unset($match['homeTournamentTeam']);
+            unset($match['awayTournamentTeam']);
+
+            $tournament->matches()->create(
+                array_merge(
+                    [
+                        'tournamentId' => $tournament->id,
+                        'homeTournamentTeamId' => array_get($homeTeam, 'id'),
+                        'awayTournamentTeamId' => array_get($awayTeam, 'id'),
+                    ],
+                    $match
+                )
+            );
+        }
+
+        $tournamentMatches = $tournament->matches()->get();
+
+        $this->assertEquals(count($matches), $tournamentMatches->count());
+
+        // find match by data from request variable
+        $match = $tournamentMatches->filter(function($match) use ($tournamentTeams, $request) {
+            $homeTeam = $tournamentTeams->where('name', array_get($request, 'match.homeTournamentTeam'))->first();
+            $awayTeam = $tournamentTeams->where('name', array_get($request, 'match.awayTournamentTeam'))->first();
+
+            return ($match->homeTournamentTeamId === array_get($homeTeam, 'id'))
+                && ($match->awayTournamentTeamId === array_get($awayTeam, 'id'))
+                && ($match->round === array_get($request, 'match.round'));
+        })->values()->first();
+
+        $this->assertInstanceOf(Match::class, $match);
+
+        $this->put(
+            '/api/v1/matches/' . $match->id,
+            [
+                'match' => [
+                    'homeScore' => array_get($request, 'match.homeScore'),
+                    'awayScore' => array_get($request, 'match.awayScore'),
+                    'status' => Match::STATUS_FINISHED
+                ]
+            ],
+            [
+                'HTTP_X-Requested-With' => 'XMLHttpRequest',
+                'HTTP_CONTENT_TYPE' => 'application/json',
+                'HTTP_ACCEPT' => 'application/json'
+            ]
+        );
+
+        $this->assertResponseStatus($response['status']);
+    }
+
+    public function updateWithResults()
+    {
+        return [
+            'successUpdate' => [
+                'teams' => ['A', 'B', 'C', 'D'],
+                'matches' => [
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_HOME_WIN,
+                        'status' => Match::STATUS_FINISHED,
+                        'homeTournamentTeam' => 'A',
+                        'awayTournamentTeam' => 'B',
+                        'homeScore' => 2,
+                        'awayScore' => 0,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ],
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_DRAW,
+                        'status' => Match::STATUS_FINISHED,
+                        'homeTournamentTeam' => 'B',
+                        'awayTournamentTeam' => 'A',
+                        'homeScore' => 1,
+                        'awayScore' => 1,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ],
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_HOME_WIN,
+                        'status' => Match::STATUS_FINISHED,
+                        'homeTournamentTeam' => 'C',
+                        'awayTournamentTeam' => 'D',
+                        'homeScore' => 2,
+                        'awayScore' => 0,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ],
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_UNKNOWN,
+                        'status' => Match::STATUS_NOT_STARTED,
+                        'homeTournamentTeam' => 'D',
+                        'awayTournamentTeam' => 'C',
+                        'homeScore' => 0,
+                        'awayScore' => 0,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ]
+                ],
+                'request' => [
+                    'match' => [
+                        'round' => 1,
+                        'homeTournamentTeam' => 'D',
+                        'awayTournamentTeam' => 'C',
+                        'homeScore' => 0,
+                        'awayScore' => 3
+                    ]
+                ],
+                'response' => [
+                    'status' => Response::HTTP_OK,
+                    'rounds' => [
+                        2 => [
+                            'teams' => ['A', 'D']
+                        ]
+                    ]
+                ]
+            ],
+            'failToUpdateMatchWithoutWinnerInPair' => [
+                'teams' => ['A', 'B', 'C', 'D'],
+                'matches' => [
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_HOME_WIN,
+                        'status' => Match::STATUS_FINISHED,
+                        'homeTournamentTeam' => 'A',
+                        'awayTournamentTeam' => 'B',
+                        'homeScore' => 2,
+                        'awayScore' => 0,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ],
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_DRAW,
+                        'status' => Match::STATUS_FINISHED,
+                        'homeTournamentTeam' => 'B',
+                        'awayTournamentTeam' => 'A',
+                        'homeScore' => 1,
+                        'awayScore' => 1,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ],
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_HOME_WIN,
+                        'status' => Match::STATUS_FINISHED,
+                        'homeTournamentTeam' => 'C',
+                        'awayTournamentTeam' => 'D',
+                        'homeScore' => 2,
+                        'awayScore' => 0,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ],
+                    [
+                        'round' => 1,
+                        'gameType' => Match::GAME_TYPE_QUALIFY,
+                        'resultType' => Match::RESULT_TYPE_UNKNOWN,
+                        'status' => Match::STATUS_NOT_STARTED,
+                        'homeTournamentTeam' => 'D',
+                        'awayTournamentTeam' => 'C',
+                        'homeScore' => 0,
+                        'awayScore' => 0,
+                        'homePenaltyScore' => 0,
+                        'awayPenaltyScore' => 0
+                    ]
+                ],
+                'request' => [
+                    'match' => [
+                        'round' => 1,
+                        'homeTournamentTeam' => 'D',
+                        'awayTournamentTeam' => 'C',
+                        'homeScore' => 2,
+                        'awayScore' => 0
+                    ]
+                ],
+                'response' => [
+                    'status' => Response::HTTP_UNPROCESSABLE_ENTITY,
+                    'rounds' => []
+                ]
+            ]
+        ];
     }
 }
