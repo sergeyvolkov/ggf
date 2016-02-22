@@ -67,4 +67,12 @@ class Member extends Model implements Authenticatable
     {
         return $this->hasMany('MemberToken');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tournaments()
+    {
+        return $this->hasMany(Tournament::class, 'owner');
+    }
 }
