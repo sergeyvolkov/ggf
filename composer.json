@@ -1,6 +1,6 @@
 {
     "name": "ggg/ggf",
-    "version": "0.9.19",
+    "version": "0.9.22",
     "description": "Good Gateway Football",
     "keywords": ["football", "fifa"],
     "license": "MIT",
@@ -8,9 +8,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "~5.5",
+        "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "laravel/homestead": "~2.1",
+        "laravel/homestead": "~3.0",
         "illuminate/html": "~5.0",
         "sorskod/larasponse": "dev-L5",
         "doctrine/dbal": "^2.5",
