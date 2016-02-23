@@ -15,7 +15,7 @@ class StandingsTransformer extends TransformerAbstract
     {
         return [
             'id' => $pair['id'],
-            'tournamentId' => $pair['tournamentId'],
+            'tournament' => $pair['tournamentId'],
             'round' => $pair['round'],
             'homeTeam' => $pair['homeTeamId'],
             'homeTeamName' => $pair['homeTeamName'],

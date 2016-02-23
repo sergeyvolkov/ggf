@@ -23,7 +23,9 @@ class MatchTransformer extends TransformerAbstract
             'awayScore' => $match->awayScore,
             'awayPenaltyScore' => $match->awayPenaltyScore,
             'tournamentId' => $match->tournamentId,
-            'status' => $match->status
+            'status' => $match->status,
+            'gameType' => $match->gameType,
+            'resultType' => $match->resultType
         ];
     }
 }

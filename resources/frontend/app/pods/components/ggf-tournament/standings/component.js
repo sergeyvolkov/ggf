@@ -16,11 +16,13 @@ export default Ember.Component.extend({
 
     standings.forEach(function(pair) {
 
-      let round = rounds.findBy('title', pair.get('round'));
+      let round = rounds.findBy('round', pair.get('round'));
 
       if (!round) {
         round = Ember.Object.create({
-          title: pair.get('round'),
+          round: pair.get('round'),
+          gameType: pair.get('gameType'),
+          tournament: pair.get('tournament'),
           pairs: new Ember.A()
         });
 
