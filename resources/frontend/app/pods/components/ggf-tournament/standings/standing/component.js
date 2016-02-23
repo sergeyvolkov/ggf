@@ -17,10 +17,8 @@ export default Component.extend({
         // @todo deduct group stage rounds for multistage tournament
         return '1/' + (parseInt(teamsAmount / 2 / round, 10));
 
-        break;
       case 'final':
         return 'Final';
-        break;
     }
   })
 
