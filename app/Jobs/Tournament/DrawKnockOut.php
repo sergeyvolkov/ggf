@@ -12,8 +12,6 @@ use Illuminate\Support\Debug\Dumper;
 
 class DrawKnockOut extends Job implements SelfHandling
 {
-    const LIST_OF_AVAILABLE_TEAMS_AMOUNT = [2, 4, 8, 16, 32, 64];
-
     /**
      * @var Collection
      */
@@ -28,6 +26,14 @@ class DrawKnockOut extends Job implements SelfHandling
      * @var int
      */
     protected $round;
+
+    /**
+     * @return array
+     */
+    static function listOfAvailableTeamsAmount()
+    {
+        return [2, 4, 8, 16, 32, 64];
+    }
 
     protected function setTournament(Tournament $tournament)
     {
@@ -64,7 +70,7 @@ class DrawKnockOut extends Job implements SelfHandling
             throw new \UnexpectedValueException('Tournament should have at least 2 teams.');
         }
 
-        if (!in_array(count($this->teams), self::LIST_OF_AVAILABLE_TEAMS_AMOUNT)) {
+        if (!in_array(count($this->teams), self::listOfAvailableTeamsAmount())) {
             throw new \UnexpectedValueException('Amount of teams should be a 2, 4, 8, 16, 32 or 64.');
         }
 
