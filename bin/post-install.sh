@@ -15,5 +15,3 @@ echo "NPM Install [frontend]"
 npm install
 
 cd $DIR/../
-
-sh bin/build.sh
