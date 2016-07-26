@@ -11,121 +11,39 @@ class StandingsSerializer
     /**
      * @return Collection
      */
-    public function collection(EloquentCollection $collection)
+    public function collection(EloquentCollection $matches)
     {
         $standings = new Collection();
 
-        $collection->map(function($match) use ($standings) {
+        $matches = $matches->sortBy('id');
 
-            $homeTeam = $standings->pull($match->homeTournamentTeam->id);
-            $awayTeam = $standings->pull($match->awayTournamentTeam->id);
+        $matches->map(function($match) use ($standings) {
 
-            $defaultTeamData = [
-                'matches' => 0,
-                'position' => 0,
-                'wins' => 0,
-                'draws' => 0,
-                'losts' => 0,
-                'points' => 0,
-                'goalsScored' => 0,
-                'goalsAgainsted' => 0,
-                'goalsDifference' => 0,
-            ];
+            $pairId = [$match->homeTournamentTeam->id, $match->awayTournamentTeam->id];
+            sort($pairId);
+            $pairId = implode('-', $pairId);
 
-            if (!$homeTeam) {
-                $homeTeam = array_merge(
-                    [
-                        'teamId' => $match->homeTournamentTeam->id,
-                        'name' => $match->homeTournamentTeam->team->name,
-                    ],
-                    $defaultTeamData
-                );
+            $pair = $standings->pull($pairId);
+
+            if (!$pair) {
+                $pair = [
+                    'id' => $pairId,
+                    'tournamentId' => $match->tournamentId,
+                    'round' => $match->round,
+                    'homeTeamId' => $match->homeTournamentTeam->id,
+                    'homeTeamName' => $match->homeTournamentTeam->team->name,
+                    'awayTeamId' => $match->awayTournamentTeam->id,
+                    'awayTeamName' => $match->awayTournamentTeam->team->name,
+                    'matches' => []
+                ];
             }
 
-            if (!$awayTeam) {
-                $awayTeam = array_merge(
-                    [
-                        'teamId' => $match->awayTournamentTeam->id,
-                        'name' => $match->awayTournamentTeam->team->name,
-                    ],
-                    $defaultTeamData
-                );
-            }
+            $pair['matches'][] = $match['id'];
 
-            if (Match::STATUS_FINISHED == $match->status) {
-                $homeTeam['matches']++;
-                $awayTeam['matches']++;
-                $homeTeam['goalsScored'] += $match->homeScore;
-                $homeTeam['goalsAgainsted'] += $match->awayScore;
-                $homeTeam['goalsDifference'] = ($homeTeam['goalsScored'] - $homeTeam['goalsAgainsted']);
+            sort($pair['matches']);
 
-                $awayTeam['goalsScored'] += $match->awayScore;
-                $awayTeam['goalsAgainsted'] += $match->homeScore;
-                $awayTeam['goalsDifference'] = ($awayTeam['goalsScored'] - $awayTeam['goalsAgainsted']);
-
-                switch ($match->resultType) {
-                    case Match::RESULT_TYPE_HOME_WIN:
-                        $homeTeam['wins']++;
-                        $homeTeam['points'] += Match::POINTS_WIN;
-                        $awayTeam['losts']++;
-
-                        break;
-                    case Match::RESULT_TYPE_AWAY_WIN:
-                        $awayTeam['wins']++;
-                        $homeTeam['losts']++;
-                        $awayTeam['points'] += Match::POINTS_WIN;
-
-                        break;
-                    case Match::RESULT_TYPE_DRAW:
-                        $homeTeam['draws']++;
-                        $awayTeam['draws']++;
-                        $homeTeam['points'] += Match::POINTS_DRAW;
-                        $awayTeam['points'] += Match::POINTS_DRAW;
-
-                        break;
-                }
-            }
-
-            $standings->put($match->homeTournamentTeam->id, $homeTeam);
-            $standings->put($match->awayTournamentTeam->id, $awayTeam);
-
+            $standings->put($pairId, $pair);
         });
-
-
-        // sort by points and goal difference
-        $standings = $standings->sort(function($a, $b) {
-            if ($b['points'] === $a['points']) {
-                return $b['goalsDifference'] - $a['goalsDifference'];
-            }
-
-            return $b['points'] - $a['points'];
-        });
-
-        $previousRow = null;
-        $position = 1;
-        $standings = $standings->map(function($row) use (&$previousRow, &$position) {
-            if ($previousRow
-                && $previousRow['points'] > 0
-                && $previousRow['points'] == $row['points']
-                && $previousRow['goalsDifference'] == $row['goalsDifference']
-                && $previousRow['goalsScored'] == $row['goalsScored']
-            ) {
-                $row['position'] = $previousRow['position'];
-            } else {
-                $row['position'] = $position;
-            }
-
-            $position++;
-
-            $previousRow = $row;
-
-            return $row;
-        });
-
-        // alphabetical sort for teams on the same position
-        $standings = $standings->sortBy(function($team) {
-            return $team['position'] . '-' . $team['name'];
-        }, SORT_NUMERIC);
 
         return $standings;
     }

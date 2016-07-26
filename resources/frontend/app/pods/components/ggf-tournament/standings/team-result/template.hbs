@@ -1,0 +1,10 @@
+<div class="col s12">
+  <div class="col s8">
+    <span class="card-title black-text">{{team.name}}</span>
+  </div>
+  <div class="col s4 score">
+    {{#each scores key="@index" as |score| }}
+      <span class="card-title black-text">{{score}}</span>
+    {{/each}}
+  </div>
+</div>

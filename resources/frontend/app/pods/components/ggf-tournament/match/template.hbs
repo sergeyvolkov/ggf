@@ -6,8 +6,8 @@
 
 <div class="col s4">
   <div class="row">
-    {{#link-to 'tournament.team' match.homeTeamId}}
-      {{match.homeTeam}}
+    {{#link-to 'tournament.team' match.homeTeam.id}}
+      {{match.homeTeam.name}}
     {{/link-to}}
   </div>
 
@@ -16,8 +16,8 @@
 {{ggf-tournament.match-score homeScore=match.homeScore awayScore=match.awayScore status=match.status editState=editState toggle='toggleOnEditState'}}
 
 <div class="col s4">
-  {{#link-to 'tournament.team' match.awayTeamId}}
-    {{match.awayTeam}}
+  {{#link-to 'tournament.team' match.awayTeam.id}}
+    {{match.awayTeam.name}}
   {{/link-to}}
 </div>
 

@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   model(params) {
     const store = this.store;
 
-    return store.find('tournament', params.tournamentId);
+    return store.findRecord('tournament', params.tournamentId);
   },
 
   setupController(controller, model, transition) {

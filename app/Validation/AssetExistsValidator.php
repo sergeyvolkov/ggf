@@ -2,11 +2,9 @@
 
 namespace App\Validation;
 
-use Illuminate\Validation\Validator;
-
-class AssetExistsValidator extends Validator
+class AssetExistsValidator
 {
-    public function validateAssetExists($attribute, $value, $parameters)
+    public function validate($attribute, $value, $parameters)
     {
         return realpath(public_path() . DIRECTORY_SEPARATOR . $value);
     }

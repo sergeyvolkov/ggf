@@ -1,8 +1,10 @@
-<div class="row">
-  <div class="col s12">
-    <h3>{{model.name}}</h3>
+{{#with model as |tournament|}}
 
-    {{#md-tabs selected=selectedTab}}
+  <div class="row">
+    <div class="col s12">
+      <h3>{{tournament.title}}</h3>
+
+      {{#md-tabs selected=selectedTab}}
         {{ggf-md.md-tab value='standings' title='Standings' link='tournament.standings'}}
         {{ggf-md.md-tab value='matches' title='Matches' link='tournament.matches'}}
         {{ggf-md.md-tab value='teams' title='Teams' link='tournament.teams'}}
@@ -10,8 +12,10 @@
         {{#if session.isAuthenticated}}
           {{ggf-md.md-tab value='settings' title='Settings' link='tournament.settings'}}
         {{/if}}
-    {{/md-tabs}}
+      {{/md-tabs}}
 
-    {{outlet}}
+      {{outlet}}
+    </div>
   </div>
-</div>
+
+{{/with}}

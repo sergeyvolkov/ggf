@@ -1,11 +1,20 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+const { Route, RSVP } = Ember;
+
+export default Route.extend(ApplicationRouteMixin, {
   model() {
     const tournamentId = this.modelFor('tournament').get('id');
 
-    return this.store.query('match', {tournamentId});
+    let rsvpHash = {
+      matches: this.get('store').query('match', {tournamentId}),
+      teams: this.get('store').query('team', {tournamentId}),
+    };
+
+    return RSVP.hash(rsvpHash).then((hash) => {
+      return hash.matches;
+    });
   },
 
   setupController(controller, model) {

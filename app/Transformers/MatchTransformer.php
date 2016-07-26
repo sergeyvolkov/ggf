@@ -14,14 +14,18 @@ class MatchTransformer extends TransformerAbstract
         return [
             'id' => $match->id,
             'round' => $match->round,
-            'homeTeam' => $match->homeTournamentTeam->team->name,
+            'homeTeam' => $match->homeTournamentTeamId,
             'homeTeamId' => $match->homeTournamentTeamId,
-            'awayTeam' => $match->awayTournamentTeam->team->name,
+            'awayTeam' => $match->awayTournamentTeamId,
             'awayTeamId' => $match->awayTournamentTeamId,
             'homeScore' => $match->homeScore,
+            'homePenaltyScore' => $match->homePenaltyScore,
             'awayScore' => $match->awayScore,
+            'awayPenaltyScore' => $match->awayPenaltyScore,
             'tournamentId' => $match->tournamentId,
-            'status' => $match->status
+            'status' => $match->status,
+            'gameType' => $match->gameType,
+            'resultType' => $match->resultType
         ];
     }
 }
