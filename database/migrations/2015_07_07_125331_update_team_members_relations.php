@@ -17,7 +17,7 @@ class UpdateTeamMembersRelations extends Migration
         });
 
         Schema::table('team_members', function(Blueprint $table) {
-            $table->dropForeign('team_members_teamId_foreign');
+            $table->dropForeign('team_members_teamid_foreign');
         });
 
         Schema::table('team_members', function (Blueprint $table) {
